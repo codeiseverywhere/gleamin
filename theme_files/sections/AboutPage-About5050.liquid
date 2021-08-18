@@ -1,0 +1,48 @@
+
+<section id="About-5050" class="About-5050">
+  <article class="About-5050__content">
+
+    <div class="About-50__text-wrap">
+      <div class="About-50__text-box">
+        <p class="About-50__text">
+          {{ section.settings.text-1 }}
+        </p>
+        {% if section.settings.text-2 != blank %}
+          <p class="About-50__text">
+            {{ section.settings.text-2 }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="About-50__image-wrap">
+      {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="About-50__image">{% endcomment %}
+      {% include 'responsive-image' image: section.settings.image, classes: 'About-50__image' %} 
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "About 5050",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text-1",
+        "label": "Section Text 1",
+        "default": "At Gleamin, we use potent superfoods to enhance natural beauty and empower life. Our pure, organic products are carefully formulated to invigorate our global community with a new-found sense of freedom."
+      },
+      {
+        "type": "text",
+        "id": "text-2",
+        "label": "Section Text 2 (Optional)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

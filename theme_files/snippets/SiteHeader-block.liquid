@@ -1,0 +1,190 @@
+<div {{block.shopify_attributes}} class="SiteHeader--block {% if block.type == 'currency' %}SiteHeader--block--currency{% endif %}">
+    {% case block.type %}
+
+
+        {% when 'menu' %}
+            <ul class="SiteHeader--nav-menu">
+                {% for link in linklists[block.settings.linklist].links %}
+                    {% assign has_dropdown = false %}
+                    {% if block.settings.linklist != blank %}
+                    {% if link.links != blank %}
+                        {% assign has_dropdown = true %}
+                    {% endif %}
+                        <li class="SiteHeader--nav-menu-item
+                            {% if link.title == 'Before & After' %}SiteHeader--nav-menu-item--last-mobile{% endif %}
+                            {% if link.title == 'About Us' %}SiteHeader--nav-menu-item--hide-mobile{% endif %}">
+                            <a href="{{link.url}}" class="SiteHeader--nav-menu-link">
+                                <p class="SiteHeader--nav-menu-text {% if has_dropdown %}SiteHeader--nav-menu-text-hover {% endif %} ">
+                                    {{ link.title }}
+                                </p>
+                            </a>
+                            {% if link.links != blank %}
+                                <div class="SiteHeader--nav-menu-dropdown" id="dropdown-{{ link.handle }}">
+                                    <div class="SiteHeader--nav-menu-dropdown-inner">
+                                        <ul class="SiteHeader--nav-menu-dropdown-list">
+                                            {% for childlink in link.links %}
+                                            {% assign handle = childlink.handle | append: '-header-image.jpg' %}
+                                                <li class="SiteHeader--nav-menu-dropdown-item">
+                                                    <a href="{{ childlink.url }}" class="SiteHeader--nav-menu-dropdown-link">
+                                                        <div class="SiteHeader--nav-menu-dropdown-image-wrap">
+                                                            {% comment %}<img  
+                                                            data-handle="{{ handle }}"
+                                                            src="{{ images[handle] | img_url: 'master' }}" class="SiteHeader--nav-menu-dropdown-image" />{% endcomment %}
+                                                            {% render 'responsive-image' image: images[handle], classes: 'SiteHeader--nav-menu-dropdown-image', data-handle: 'handle' %} 
+                                                        </div>
+                                                        <p class="SiteHeader--nav-menu-dropdown-text">
+                                                            {{ childlink.title }}
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li class="SiteHeader--nav-menu-item {% if link.title == 'Our Difference' %}SiteHeader--nav-menu-item--hide-mobile{% endif %}">
+                            <a href="{{link.url}}" class="SiteHeader--nav-menu-link">
+                                <p class="SiteHeader--nav-menu-text">
+                                    {{ link.title }}
+                                </p>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+        {% when 'menu-toggle' %}
+            <div 
+                id="SiteHeader--menu-toggle" 
+                class="SiteHeader-icon SiteHeader-menu-toggle" 
+                data-toggle="offcanvas" 
+                data-target="#SiteHeader-navigation_id0" 
+                data-toggle-options="nohover">
+                <div class="SiteHeader-icon-image-wrap">
+                    {% render 'Icon-Hamburger' %}
+                </div>
+            </div>
+
+
+        {% when 'accounts' %}
+            <div class="SiteHeader-icon SiteHeader-account-icon">
+                <a href="/account" class="SiteHeader-icon-link">
+                   {% render 'Icon-Account' %}
+                </a>
+            </div>
+
+
+        {% when 'cart' %}
+            <div class="SiteHeader-icon SiteHeader-cart-icon">
+                <a class="SiteHeader-icon-link" href="/cart"
+                    {% if block.settings.use-minicart %}data-toggle="offcanvas" data-toggle-options="nohover nohref" data-target="#SiteHeader-cart_menu--{{block.id}}"{% endif %}>
+                        {% render 'Icon-Bag' %}
+
+                    {% if block.settings.cart-count and cart.item_count > 0 or block.settings.use-minicart %}
+                        <span class="SiteHeader-cart_notification"
+                            {% if block.settings.use-minicart %}data-minicart-notification{% endif %}
+                            style="background-color: {{ block.settings.cart-notification-bg-color }};{% if cart.item_count == 0 %} display: none;{% endif %}">
+                        {% if cart.item_count > 0 %}
+                            <p class="SiteHeader-cart-notification-text" style="color: {{ block.settings.cart-notification-text-color }}">
+                                {{ cart.item_count }}
+                            </p>
+                        {% endif %}
+                        </span>
+                    {% endif %}
+                </a>
+            </div>
+
+            {% if block.settings.use-minicart %}
+                <div id="SiteHeader-cart_menu--{{block.id}}"
+                    class="SiteHeader-cart_menu {% if block.settings.location == "second_menu" %}SiteHeader-cart_menu--placed_on_left{% else %}SiteHeader-cart_menu--placed_on_right{% endif %}"
+                    data-minicart
+                    data-minicart-moneyformat="{{shop.money_with_currency}}"
+                    data-minicart-friendlyerror="Oh no! The cart failed to load."></div>
+                <template data-minicart-countrylist>
+                    {{country_option_tags}}
+                </template>
+            {% endif %}
+
+        {% when 'search' %}
+            <div class="SiteHeader-icon SiteHeader-search-icon">
+                <a href="/search" class="SiteHeader-icon-link">
+                    {% render 'Icon-Search' %} 
+
+                </a>
+            </div>
+
+        {% when 'search-mobile' %}
+            <div class="SiteHeader-icon SiteHeader-icon-search-mobile">
+                <a href="/search" class="SiteHeader-icon-search-mobile-link">
+                    {% render 'Icon-Search' %} 
+
+                </a>
+            </div>
+
+
+        {% when 'hilight-button' %}
+            <div class="SiteHeader-icon SiteHeader-button-icon">
+                <a 
+                    href="{{ block.settings.hilight-url }}" 
+                    class="SiteHeader-hilight_button_link"
+                    style="color: {{ block.settings.hilight-text-color }}">
+                    {{ block.settings.hilight-text }}
+                </a>
+                <div 
+                    class="SiteHeader-hilight_button-hilight" 
+                    style="background-color: {{ block.settings.hilight-bg-color }}"></div>
+            </div>
+
+        {% when 'currency' %}
+            {% if block.settings.currency == true %}
+                {% assign storeCurrency = cart.currency.iso_code %}
+                {% assign shopurl = shop.url %}
+
+                <form 
+                    method="post" 
+                    action="/cart/update" 
+                    id="currency_form" 
+                    accept-charset="UTF-8" 
+                    class="desktop-shopify-currency-form" 
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="form_type" value="currency">
+                    <input type="hidden" name="return_to" value="{{ canonical_url | remove: shopurl }}">
+                    <input type="hidden" name="currency" value="" id="form-currency-input">
+                </form>
+
+                <div id="SiteHeader-Currency-Selector" class="SiteHeader--nav-currency SiteHeader--nav-currency--desktop" data-state="closed">
+
+                    <div class="SiteHeader--nc-current">
+                        <p class="SiteHeader--nc-current-text">{{ storeCurrency }}</p>
+                        <div id="SiteHeader-Currency-Arrow">
+                            <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_arrow_drop_down_24px.png?v=1597337994" alt="arrow-down">
+                        </div>
+                    </div>
+
+                    <ul id="SiteHeader-currency-list" class="SiteHeader--nc-list" data-currency="{{ currency }}">
+                        {% for currency in shop.enabled_currencies %}
+                            {% if currency.iso_code != storeCurrency %}
+                                <li 
+                                    class="SiteHeader--nc-item" 
+                                    data-selectedCurrency="{{ currency.iso_code }}">
+                                    <div class="SiteHeader--nc-wrap">
+                                        <p class="SiteHeader--nc-current-text">
+                                            {{ currency.iso_code }}
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+
+                </div>
+                
+            {% endif %}
+
+
+            
+    {% endcase %}
+</div>
+

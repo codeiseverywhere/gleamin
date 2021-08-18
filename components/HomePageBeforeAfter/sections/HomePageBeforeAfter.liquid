@@ -1,0 +1,141 @@
+
+
+<section id="homepage-before-after" class="hompage-before-after">
+  <div class="hba__inner Site__page-width">
+
+    <div class="hba__header-wrap">
+      <h4 class="hba__header-title">
+        {{ section.settings.section-title }}
+      </h4>
+      <p class="hba__header-text">
+        {{ section.settings.section-text }}
+      </p>
+    </div>
+
+    <div class="hba__content">
+      <div class="hba__slider-wrap">
+
+        <div class="hba__slider">
+          {% for block in section.blocks %}
+
+            <div class="hba__slide">
+              <div class="hba__slide-image-wrap">
+                {% comment %}<img src="{{ block.settings.image | img_url: 'master' }}" class="hba__slide-image" {% if block.settings.alt != blank %}alt="{{ block.settings.alt }}"{% endif %}>{% endcomment %}
+                {% include 'responsive-image' image: block.settings.image, classes: 'hba__slide-image' %} 
+              </div>
+              <div data-index="{{ forloop.index }}" class="hba__slide-text-wrap">
+                <p data-index="{{ forloop.index }}" class="p-small hba__slide-text hba__text--full">
+                  {{ block.settings.review }}
+                </p>
+                <h6 class="hba__slide-sub-text">
+                  {{ block.settings.text }}
+                </h6>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% comment %} 
+          <div class="hba__slider-nav">
+            {% for block in section.blocks %}
+              <div class="hba__slide-nav"></div>
+            {% endfor %}
+          </div> 
+        {% endcomment %}
+
+      </div>
+
+      {% if product.url contains 'products' %}
+      {% else %}
+        <div class="hba__d-cta-wrap" data-handle="{{ product.url }}">
+          <a href="{{ section.settings.link }}" class="hba__d-cta Site__button-main">
+            {{ section.settings.button-text }}
+          </a>
+        </div>
+      {% endif %}
+      
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+{% schema %}
+  {
+    "name": "HP Before and After",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "section-title",
+        "label": "Section Title",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "text",
+        "id": "section-text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "Visit Page"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Slide Image"
+          },
+          {
+            "type": "text",
+            "id": "alt",
+            "label": "Alt tag text for image",
+            "default": "image",
+            "info": "this is optional but good for SEO"
+          },
+          {
+            "type": "text",
+            "id": "review",
+            "label": "Review Text",
+            "default": "“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.”"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Reviewer Name",
+            "default": "Jane doe"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Misc",
+        "name": "HP Before & After"
+      }
+    ]
+  }
+{% endschema %}

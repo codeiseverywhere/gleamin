@@ -1,0 +1,46 @@
+<section id="Ingredients-hero" class="Ingredients-hero">
+  <article class="Ingredients-h__content">
+
+			<div class="Ingredients-h__image-wrap">
+				{% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="Ingredients-h__image">{% endcomment %}
+        {% include 'responsive-image' image: section.settings.image, classes: 'Ingredients-h__image' %}
+			</div>
+			<div class="Ingredients-h__text-box">
+				<div class="Ingredients-h__title-wrap">
+					<h3 class="Ingredients-h__title">
+						{{ section.settings.title }}
+					</h3>
+				</div>
+					<p class="Ingredients-h__description">
+						{{ section.settings.text }}
+					</p>
+			</div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Ingredients"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      }
+    ]
+  }
+{% endschema %}

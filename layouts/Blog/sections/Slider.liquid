@@ -1,0 +1,109 @@
+<section id="Blog-Slider" class="Blog-Slider">
+  <article class="Blog-s__content">
+  
+    {% if current_tags %}
+    <div id="Blog-s__slider" class="Blog-s__slider">
+      {% for article in blog.articles limit: 3 %}
+        <div class="Blog-s__slide">
+          <div class="Blog-s__slide-inner">
+
+            {% comment %}<img src="{{ article.image | img_url: 'master' }}" class="Blog-s__slide-image">{% endcomment %}
+            {% include 'responsive-image' image: article.image, classes: 'Blog-s__slide-image' %}
+
+            <div class="Blog-s__slide-textbox">
+
+              <div class="Blog-s__slide-label">
+                <p class="Blog-s__slide-label-text">
+                  {{ current_tags.first }}
+                </p>
+              </div>
+
+              <div class="Blog-s__slide-title-wrap">
+                <div class="Blog-s__slide-title-highlight">
+                  <a href="{{ article.url }}" class="Blog-s__slide-title">
+                    {{ article.title }}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div id="Blog-s__slider" class="Blog-s__slider">
+      {% for block in section.blocks %}
+        {% assign article = articles[block.settings.post] %}
+        <div class="Blog-s__slide">
+          <div class="Blog-s__slide-inner">
+
+            {% comment %}<img src="{{ article.image | img_url: 'master' }}" class="Blog-s__slide-image">{% endcomment %}
+            {% include 'responsive-image' image: article.image, classes: 'Blog-s__slide-image' %}
+
+            <div class="Blog-s__slide-textbox">
+
+              <div class="Blog-s__slide-label">
+                <p class="Blog-s__slide-label-text">
+                  {{ block.settings.label }}
+                </p>
+              </div>
+
+              <div class="Blog-s__slide-title-wrap">
+                <div class="Blog-s__slide-title-highlight">
+                  <a href="{{ article.url }}" class="Blog-s__slide-title">
+                    {{ article.title }}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Slider",
+    "class": "Blog-Slider-margin-bottom",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Slider Backgeound Color",
+        "default": "#F5F5F5"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Create a name for the block"
+          },
+          {
+            "type": "article",
+            "id": "post",
+            "label": "Pick a Blog Post"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Pick a Label for the blog post"
+          }
+          
+        ]
+      }
+    ]
+  }
+{% endschema %}

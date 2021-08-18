@@ -1,0 +1,155 @@
+<section id="Pledge-Overview" class="Pledge__overview">
+  <article class="Pledge__overview-content Site__page-width">
+  
+    <div class="Pledge__o-columns">
+
+      <div class="Pledge__o-column Pledge__o-column--left">
+
+        <!-- image top left -->
+        <div class="Pledge__o-block Pledge__o-block--top-left">
+          {% comment %}<img 
+            src="{{ section.settings.image-top-left | img_url: 'master' }}" 
+            alt="{% if section.settings.alt-image-top-left != blank %}{{ section.settings.alt-image-top-left }}{% else %}image{% endif %}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.image-top-left %}
+        </div>
+
+        <!-- content bottom left -->
+        <div class="Pledge__o-block Pledge__o-block--bottom-left">
+          <div class="Pledge__o-content-image">
+            {% comment %}<img 
+              src="{{ section.settings.image-pledge-logo | img_url: 'master' }}" 
+              alt="{% if section.settings.image-pledge-logo != blank %}{{ section.settings.alt-image-top-left }}{% else %}image{% endif %}">{% endcomment %}
+              {% include 'responsive-image' image: section.settings.image-pledge-logo %}
+          </div>
+          <h5 class="Pledge__o-bold-text">
+            {{ section.settings.bold-text }}
+          </h5>
+          <p class="Pledge__o-text">
+            {{ section.settings.text }}
+          </p>
+          <a href="{{ section.settings.link }}" target="_blank" class="Pledge__o-link">
+            {{ section.settings.link-text }}
+          </a>
+        </div>
+
+      </div>
+
+      <div class="Pledge__o-column Pledge__o-column--right">
+      
+        <!-- image top right -->
+        <div class="Pledge__o-block Pledge__o-block--top-right">
+          {% comment %}<img 
+            src="{{ section.settings.image-top-right | img_url: 'master' }}" 
+            alt="{% if section.settings.alt-image-top-right != blank %}{{ section.settings.alt-image-top-right }}{% else %}image{% endif %}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.image-top-right %}
+
+        </div>
+
+        <!-- image bottom right -->
+        <div class="Pledge__o-block Pledge__o-block--bottom-right">
+          {% comment %}<img 
+            src="{{ section.settings.image-bottom-right | img_url: 'master' }}" 
+            alt="{% if section.settings.alt-image-bottom-right != blank %}{{ section.settings.alt-image-bottom-right }}{% else %}image{% endif %}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.image-bottom-right %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Overview",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image Top Left (desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-top-left",
+        "label": "Choose an image for the Top Left Image"
+      },
+      {
+        "type": "text",
+        "id": "alt-image-top-left",
+        "label": "Set the alt text for the image",
+        "default": "Image",
+        "info": "short 3 word max desription of the image"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Content for Bottom Left (desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-pledge-logo",
+        "label": "Image / Logo for pledge organization"
+      },
+      {
+        "type": "textarea",
+        "id": "bold-text",
+        "label": "Bold Headline text",
+        "default": "We have partnered with .."
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text body describing your partnership",
+        "default": "This international non-profit is re-imagining charity, focusing on expanding financial access to underserved communities to help them flourish independently. In a shared vision of providing resources to empower and motivate individuals, we will begin this Pledge by contributing 1% of profits to KIVA projects."
+      },
+      {
+        "type": "text",
+        "id": "link-text",
+        "label": "Text for link to read more",
+        "default": "Read More About .."
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Url Link for Read More Link"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Image Top Right (desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-top-right",
+        "label": "Choose an image for the Top Right Image"
+      },
+      {
+        "type": "text",
+        "id": "alt-image-top-right",
+        "label": "Set the alt text for the image",
+        "default": "Image",
+        "info": "short 3 word max desription of the image"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Image Bottom Right (desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-bottom-right",
+        "label": "Choose an image for the Bottom Right Image"
+      },
+      {
+        "type": "text",
+        "id": "alt-image-bottom-right",
+        "label": "Set the alt text for the image",
+        "default": "Image",
+        "info": "short 3 word max desription of the image"
+      }
+    ]
+  }
+{% endschema %}

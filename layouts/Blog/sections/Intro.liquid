@@ -1,0 +1,66 @@
+<section id="Blog-Intro" class="Blog-Section-sidebar">
+  <article class="Blog-i__content">
+
+    <h4 class="Blog-i__title">
+      {% if current_tags != blank %}{{current_tags.first}}{% else %}{{ section.settings.title }}{% endif %}
+    </h4>
+
+    <div class="Blog-i__textbox">
+      {% if current_tags != blank %}
+        {% for block in section.blocks %}
+          {% if block.settings.category == current_tags.first %}
+            <p class="Blog-i__text">
+              {{ block.settings.intro }}
+            </p>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+      	<p class="Blog-i__text">
+            {{ section.settings.text }}
+        </p>
+      {% endif %}
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Intro",
+    "class": "Blog-sections-margin",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Gleamin Blog"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      }
+    ],
+    "blocks": [
+          {
+            "type": "Text",
+            "name": "Intro",
+            "settings": [
+              {
+                "type": "text",
+                "id": "category",
+                "label": "For category",
+                "default": "Lorem"
+              },
+              {
+                "type": "textarea",
+                "id": "intro",
+                "label": "Description",
+                "default": "Lorem ipsum dolor sit amet"
+              }
+            ]
+          }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,235 @@
+.Blog-Feed {
+  width: 100%;
+  height: auto;
+  padding: 0px 37px 0px 20px;
+  border-right: 1px solid #f5f5f5;
+
+}
+.Blog-f__content {
+  width: 100%;
+  max-width: 750px;
+  margin-left: auto;
+}
+
+.Blog-f__blog-feed {
+  width: 100%;
+}
+
+.Blog-f__article {
+  width: 100%;
+  height: auto;
+  padding: 50px 0px;
+  border-bottom: 1px solid #00000030;
+}
+.Blog-f__article-wrap-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.Blog-f__article:last-child {
+  width: 100%;
+  height: auto;
+  padding: 50px 0px 50px;
+  border-bottom: 1px solid #00000030;
+}
+.Blog-f__article-image {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-height: 425px;
+  overflow: hidden;
+  margin-bottom: 35px;
+}
+.Blog-f__article-image-link {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.Blog-f__article-image img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.Blog-f__label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: inline-block;
+  width: auto;
+  padding: 3px 35px;
+  background-color: $Color_accent-3;
+  text-align: center;
+}
+.Blog-f__label--mobile {
+  display: none;
+  width: auto;
+  padding: 3px 35px;
+  background-color: $Color_accent-3;
+  text-align: center;
+}
+.Blog-f__label-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.Blog-f__article-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 35px;
+  margin-bottom: 16px;
+}
+.Blog-f__article-title:hover {
+  color: $Color_accent-2;
+}
+.Blog-f__article-text {
+  margin-bottom: 10px;
+}
+.Blog-f__article-text span, .Blog-f__article-text p {
+  font-size: 18px !important;
+  font-size: 400 !important;
+  color: #00000080 !important;
+  background-color: transparent !important;
+  line-height: 30px !important;
+  font-family: $Paragraph-font !important;
+}
+.Blog-f__article-link {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00000080;
+}
+.Blog-f__article-link:hover {
+  color: $Color_accent-2;
+}
+
+.Blog-f__article-wrap-link:hover .Blog-f__article-link {
+  color: $Color_accent-2;
+}
+.Blog-f__article-wrap-link:hover .Blog-f__article-title {
+  color: $Color_accent-2;
+}
+
+.Blog-f__blog-feed-more-btn-wrap {
+  display: none;
+  width: 100%;
+  max-width: 750px;
+  margin-left: auto;
+  height: auto;
+  margin-top: 50px;
+}
+.Blog-f__blog-feed-more-btn {
+  width: 100%;
+  max-width: 335px;
+  height: 60px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1000px){
+  .Blog-Feed {
+    width: 100%;
+    height: auto;
+    padding: 0px 20px;
+    border-right: none;
+  
+  }
+  .Blog-f__content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: none;
+  }
+  
+  .Blog-f__blog-feed {
+    width: 100%;
+  }
+  
+  .Blog-f__article {
+    width: 100%;
+    height: auto;
+    padding: 50px 0px;
+    border-bottom: 1px solid #00000030;
+  }
+  .Blog-f__article:last-child {
+    width: 100%;
+    height: auto;
+    padding: 50px 0px 50px;
+    border-bottom: 1px solid #00000030;
+  }
+  .Blog-f__article-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 52vw;
+    overflow: hidden;
+    margin-bottom: 35px;
+  }
+  .Blog-f__article-image img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .Blog-f__label {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: auto;
+    padding: 3px 35px;
+    background-color: $Color_accent-3;
+    text-align: center;
+  }
+  .Blog-f__label--mobile {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .Blog-f__label-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+  }
+  
+  .Blog-f__article-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 35px;
+    margin-bottom: 16px;
+  }
+  .Blog-f__article-text {
+    margin-bottom: 10px;
+  }
+  .Blog-f__article-text span, .Blog-f__article-text p {
+    font-size: 18px !important;
+    font-size: 400 !important;
+    color: #00000080 !important;
+    background-color: transparent !important;
+    line-height: 30px !important;
+    font-family: $Paragraph-font !important;
+  }
+  .Blog-f__article-link {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #00000080;
+  }
+}

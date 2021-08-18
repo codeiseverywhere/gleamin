@@ -1,0 +1,151 @@
+<section id="ThankYou-hero" class="ThankYou-hero" data-url="{{ request.path }}">
+  <article class="ThankYou-h__content">
+
+			<div class="ThankYou-h__image-wrap">
+      {% if product.metafields.coming-soon.image != blank %}
+       {% comment %}<img src="{{ product.metafields.coming-soon.image }}" class="ThankYou-h__image">{% endcomment %}
+        {% include 'responsive-image' image: product.metafields.coming-soon.image, classes: 'ThankYou-h__image' %}
+      {% else %}
+				{% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="ThankYou-h__image">{% endcomment %}
+        {% include 'responsive-image' image: section.settings.image, classes: 'ThankYou-h__image' %} 
+      {% endif %}
+			</div>
+			<div class="ThankYou-h__text-box">
+
+        <!-- titles -->
+				<div class="ThankYou-h__title-wrap">
+					<h3 id="ThankYou-title-contact" class="ThankYou-h__title">
+						{{ section.settings.title-contact }}
+					</h3>
+					<h3 id="ThankYou-title-referral" class="ThankYou-h__title">
+						{{ section.settings.title-referral }}
+					</h3>
+					<h3 id="ThankYou-title-subscription" class="ThankYou-h__title">
+						{{ section.settings.title-subscription }}
+					</h3>
+					<h3 id="ThankYou-title-coming-soon" class="ThankYou-h__title">
+						{{ section.settings.title-coming-soon }}
+					</h3>
+				</div>
+
+          <!-- text -->
+          <p id="ThankYou-referral" class="ThankYou-h__description">
+						{{ section.settings.text-referral }}
+					</p>
+          <p id="ThankYou-contact" class="ThankYou-h__description">
+						{{ section.settings.text-contact }}
+					</p>
+          <p id="ThankYou-subscription" class="ThankYou-h__description">
+						{{ section.settings.text-subscription }}
+					</p>
+          <p id="ThankYou-coming-soon" class="ThankYou-h__description">
+						{{ section.settings.text-coming-soon}}
+					</p>
+
+          <!-- Button -->
+          <a href="{{ section.settings.link }}" class="ThankYou-h__button Site__button-main">
+            {{ section.settings.button-text }}
+          </a>
+
+			</div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contact"
+      },
+      {
+        "type": "text",
+        "id": "title-contact",
+        "label": "Contact Title",
+        "default": "Thank You"
+      },
+      {
+        "type": "text",
+        "id": "text-contact",
+        "label": "Contact Text",
+        "default": "CONTACT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+
+      {
+        "type": "header",
+        "content": "Referral"
+      },
+      {
+        "type": "text",
+        "id": "title-referral",
+        "label": "Referral Title",
+        "default": "Thank You"
+      },
+      {
+        "type": "text",
+        "id": "text-referral",
+        "label": "Referral Text",
+        "default": "REFERRAL Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+
+      {
+        "type": "header",
+        "content": "Subscriptions"
+      },
+      {
+        "type": "text",
+        "id": "title-subscription",
+        "label": "Subscription Title",
+        "default": "Thank You"
+      },
+      {
+        "type": "text",
+        "id": "text-subscription",
+        "label": "Subscription Text",
+        "default": "SUBSCRIPTION Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+
+      {
+        "type": "header",
+        "content": "Coming Soon"
+      },
+      {
+        "type": "text",
+        "id": "title-coming-soon",
+        "label": "Coming Soon Title",
+        "default": "Thank You"
+      },
+      {
+        "type": "text",
+        "id": "text-coming-soon",
+        "label": "Coming Soon Text",
+        "default": "SUBSCRIPTION Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "Continue Shopping"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      },
+
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      }
+    ]
+  }
+{% endschema %}

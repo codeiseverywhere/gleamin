@@ -1,0 +1,226 @@
+
+{% if product.metafields.product-page.testimonials.testimonials != blank %}
+<section id="product-before-after" class="product-before-after">
+  <div class="pba__inner Site__page-width">
+
+    <div class="pba__header-wrap">
+      <h4 class="pba__header-title">
+        {{ section.settings.section-title }}
+      </h4>
+      <p class="pba__header-text">
+        {{ section.settings.section-text }}
+      </p>
+    </div>
+
+    <div class="pba__content">
+
+      <div class="pba__desktop">
+        <div class="pba__d-blocks">
+          {% for test in product.metafields.product-page.testimonials.testimonials %}
+
+            {% assign handle = test.text | handleize | split: '-' | size %}
+
+            <div class="pba__d-block">
+              <div class="pba__d-image-wrap">
+                {% comment %}<img src="{{ test.image }}" class="pba__d-image" {% if test.alt != blank %}alt="{{ test.alt }}"{% endif %}>{% endcomment %}
+                {% include 'responsive-image' image: test.image, classes: 'pba__d-image' %}
+              </div>
+              <div data-index="{{ forloop.index }}" class="pba__d-text-wrap">
+                <p class="p-small pba__d-text pba__text--truncated">
+                  {% if handle > 30 %}
+                    "{{ test.text | truncatewords: 30, '...' }}"
+                    <span data-index="{{ forloop.index }}" class="pba__read-more">
+                      Read More
+                    </span>
+                  {% else %}
+                    "{{ test.text }}"
+                  {% endif %}
+                </p>
+                <p class="p-small pba__d-text pba__text--full">
+                  "{{ test.text }}"
+                  <span data-index="{{ forloop.index }}" class="pba__show-less">
+                    Show Less
+                  </span>
+                </p>
+                <h6 class="pba__d-sub-text">
+                  {{ test.name }}
+                </h6>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="pba__mobile">
+
+        <div class="pba__slider">
+          {% for test in product.metafields.product-page.testimonials.testimonials %}
+
+            {% assign handle = test.text | handleize | split: '-' | size %}
+
+            <div class="pba__slide">
+              <div class="pba__slide-image-wrap">
+               {% comment %} <img src="{{ test.image }}" class="pba__slide-image" {% if test.alt != blank %}alt="{{ test.alt }}"{% endif %}>{% endcomment %}
+                {% include 'responsive-image' image: test.image, classes: 'pba__slide-image' %}
+              </div>
+              <div data-index="{{ forloop.index }}" class="pba__slide-text-wrap">
+                <p class="p-small pba__d-text pba__text--truncated">
+                  {% if handle > 30 %}
+                    "{{ test.text | truncatewords: 30, '...' }}"
+                    <span data-index="{{ forloop.index }}" class="pba__read-more pba__read-more--mobile">
+                      Read More
+                    </span>
+                  {% else %}
+                    {{ test.text }}
+                  {% endif %}
+                </p>
+                <p class="p-small pba__d-text pba__text--full">
+                  "{{ test.text }}"
+                  <span data-index="{{ forloop.index }}" class="pba__show-less pba__show-less--mobile">
+                    Show Less
+                  </span>
+                </p>
+                <h6 class="pba__slide-sub-text">
+                  {{ test.name }}
+                </h6>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="pba__slider-nav">
+          {% for test in product.metafields.product-page.testimonials.testimonials %}
+            <div class="pba__slide-nav"></div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      {% if product.url contains 'products' %}
+      {% else %}
+        <div class="pba__d-cta-wrap" data-handle="{{ product.url }}">
+          <a href="{{ section.settings.link }}" class="pba__d-cta Site__button-main">
+            {{ section.settings.button-text }}
+          </a>
+        </div>
+      {% endif %}
+      
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    //desktop
+    const wraps = document.querySelectorAll('.pba__d-text-wrap');
+    const readMoreBtns = document.querySelectorAll('.pba__read-more');
+    const showLessBtns = document.querySelectorAll('.pba__show-less');
+    //mobile
+    const wrapsM = document.querySelectorAll('.pba__slide-text-wrap');
+    const readMoreBtnsM = document.querySelectorAll('.pba__read-more--mobile');
+    const showLessBtnsM = document.querySelectorAll('.pba__show-less--mobile');
+
+    const showMore = (id) => {
+      wraps.forEach(wrap => {
+        const ID = wrap.dataset.index;
+        if (ID == id) {
+          wrap.classList.add('pba__d-text-wrap--full');
+        }
+      })
+    }
+    const showLess = (id) => {
+      wraps.forEach(wrap => {
+        const ID = wrap.dataset.index;
+        if (ID == id) {
+          wrap.classList.remove('pba__d-text-wrap--full');
+        }
+      })
+    }
+    const showMoreM = (id) => {
+      wrapsM.forEach(wrap => {
+        const ID = wrap.dataset.index;
+        if (ID == id) {
+          wrap.classList.add('pba__d-text-wrap--full');
+        }
+      })
+    }
+    const showLessM = (id) => {
+      wrapsM.forEach(wrap => {
+        const ID = wrap.dataset.index;
+        if (ID == id) {
+          wrap.classList.remove('pba__d-text-wrap--full');
+        }
+      })
+    }
+
+    readMoreBtns.forEach(btn => {
+      const id = btn.dataset.index;
+      btn.addEventListener('click', (e) => showMore(id));
+    })
+    showLessBtns.forEach(btn => {
+      const id = btn.dataset.index;
+      btn.addEventListener('click', (e) => showLess(id))
+    })
+    readMoreBtnsM.forEach(btn => {
+      const id = btn.dataset.index;
+      btn.addEventListener('click', (e) => showMoreM(id));
+    })
+    showLessBtnsM.forEach(btn => {
+      const id = btn.dataset.index;
+      btn.addEventListener('click', (e) => showLessM(id))
+    })
+  });
+})();
+</script>
+
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Before and After",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "section-title",
+        "label": "Section Title",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "text",
+        "id": "section-text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "Visit Page"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      }
+    ],
+    "presets": [
+      {
+        "category": "Product",
+        "name": "Before & After"
+      }
+    ]
+  }
+{% endschema %}
+

@@ -1,0 +1,83 @@
+<div class="Rewards__refer-content">
+  
+  <div class="Rewards__refer-column Rewards__refer-column--image">
+    <div class="Rewards__refer-image">
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt }}" >
+    </div>
+  </div>
+
+  <div class="Rewards__refer-column Rewards__refer-column--textbox">
+    <div class="Rewards__refer-textbox">
+
+      <span class="Rewards__refer-textbox-title-highlight">
+        <h5 class="Rewards__refer-textbox-title">
+          {{ section.settings.title }}
+        </h5>
+      </span>
+
+      <p class="Rewards__refer-textbox-text">
+        {{ section.settings.text }}
+      </p>
+
+      <a href="{{ section.settings.cta-link }}" class="Site__button-main Rewards__refer-textbox-cta">
+        {{ section.settings.cta-text }}
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Refer",
+    "class": "Rewards__refer",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Textbox Settings"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title",
+        "default": "Refer a Friend"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Refer a friend and get $10 off your next order!"
+      },
+      {
+        "type": "url",
+        "id": "cta-link",
+        "label": "Button Link"
+      },
+      {
+        "type": "text",
+        "id": "cta-text",
+        "label": "Button Text",
+        "default": "Start Referring Now"
+      },
+
+      {
+        "type": "header",
+        "content": "Image Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "image-alt",
+        "label": "Image Alt Text",
+        "default": "Clay Masks"
+      }
+    ]
+  }
+{% endschema %}

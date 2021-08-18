@@ -1,0 +1,150 @@
+//Header Rows
+.SiteHeder--row-inner {
+  max-width: 1920px;
+  margin: 0px auto;
+}
+
+//Top Row
+.SiteHeader--top-row {
+  width: 100%;
+  height: $SiteHeader--top-row-height;
+  background-color: $SiteHeader--top-row-background-color;
+  color: $SiteHeader--top-row-text-color;
+}
+.SiteHeder--top-row-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 60px;
+}
+
+// -- menu left
+.SiteHeader--menu-left {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+.SiteHeader--menu-left-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+// - menu right
+.SiteHeader--menu-right {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+.SiteHeader--menu-right-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+//Bottom Row
+.SiteHeader--bottom-row {
+  position: relative;
+  width: 100%;
+  height: $SiteHeader--bottom-row-height;
+  background-color: $SiteHeader--bottom-row-background-color;
+  color: $SiteHeader--bottom-row-text-color;
+}
+.SiteHeader--bottom-row-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+//Block
+.SiteHeader--block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+.SiteHeader--bottom-row .SiteHeader--block {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+  //Top Row
+  .SiteHeader--top-row {
+    position: relative;
+    width: 100%;
+    height: $SiteHeader--top-row-height;
+    background-color: $SiteHeader--top-row-background-color;
+    color: $SiteHeader--top-row-text-color;
+  }
+  .SiteHeder--top-row-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 25px;
+  }
+
+  // -- menu left
+  .SiteHeader--menu-left {
+    display: inline-block;
+    width: auto;
+    height: auto;
+  }
+  .SiteHeader--menu-left-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  // - menu right
+  .SiteHeader--menu-right {
+    display: inline-block;
+    width: auto;
+    height: auto;
+  }
+  .SiteHeader--menu-right-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  //Bottom Row
+  .SiteHeader--bottom-row {
+    position: relative;
+    width: 100%;
+    height: $SiteHeader--bottom-row-height;
+    background-color: $SiteHeader--bottom-row-background-color;
+    color: $SiteHeader--bottom-row-text-color;
+  }
+  /* .SiteHeader--bottom-row-inner {
+    overflow: hidden;
+  } */
+
+  //Block
+  .SiteHeader--block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+  }
+  .SiteHeader--bottom-row .SiteHeader--block {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,234 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js supports-no-cookies" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js supports-no-cookies" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WXKVH2L');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Chartable Code -->
+  <script type="text/javascript">
+  !function(t,e,c,n,o,r){t[n]=t[n]||function(){(t[n].q=t[n].q||[]).push(arguments)},setTimeout(function(){o=e.createElement("script"),r=e.getElementsByTagName("script")[0],o.src=c,r.parentNode.insertBefore(o,r)},0)}(window,document,"https://ext.chtbl.com/trackable.js","trackable");
+
+  // Initialize with your Trackable API key
+  trackable('init', '6f37cace685e1db7deb9ce307c5814cf');
+	</script>
+  <!-- End Chartable Code -->
+
+  <!-- Lucky Orange -->
+  <script type='text/javascript'>
+    window.__lo_site_id = 288253;
+
+    (function() {
+      var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+      wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+    })();
+  </script>
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  {% capture seo_title %}
+    {{ page_title }}
+    {% if current_tags %}
+      {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {% endif %}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  {% endcapture %}
+  <title>{{ seo_title }}</title>
+
+  <!-- begin Convert Experiences code--> <script type="text/javascript" src="https://cdn-3.convertexperiments.com/js/10035227-10033185.js"></script> <!-- end Convert Experiences code -->
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'Theme-social_meta_tags' %}
+
+<style>
+
+{{ settings.paragraph-font | font_face }}
+{{ settings.paragraph-btn-font | font_face }}
+{{ settings.headline-large-font | font_face }}
+{{ settings.headline-small-font | font_face }}
+
+
+
+
+
+</style>
+
+  {{ 'main.css' | asset_url | stylesheet_tag }}
+  {{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+  
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+
+  {% comment %}Lazy Sizes{% endcomment %} 
+  <script>
+    window.lazySizesConfig = {
+        loadHidden: false,
+        hFac: 0.5,
+        expFactor: 2,
+        ricTimeout: 150,
+        lazyClass: 'lazyLoad',
+        loadingClass: 'lazyLoading',
+        loadedClass: 'lazyLoaded'
+      };
+  </script>
+  <script defer src="{{ 'lazysizes.min.js' | asset_url }}"></script>
+  <script defer src="{{ 'ls.rias.min.js' | asset_url }}"></script>
+
+  {% comment %} Yotpo Javascript Library {% endcomment %}
+  <script type="text/javascript">(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/oaSU55AXQ55Zl3N2Yc7Y2imcYzIsbHHoNFPUxNok/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();</script>
+
+  {% if template.directory == 'customers' %}
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+  {% endif %}
+  
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {{ content_for_header }}
+  
+  {{ 'script.js' | asset_url | script_tag }}
+
+  <!-- Pixels & Event Tags -->
+
+  <!-- Global site tag (gtag.js) - Google Ads: 686059028 --> 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-686059028"></script> 
+  <script> 
+    window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-686059028'); 
+  </script>
+
+  <!-- anti-flicker snippet (recommended)  -->
+  <style>.async-hide { opacity: 0 !important} </style>
+  <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+  h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+  (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+  })(window,document.documentElement,'async-hide','dataLayer',4000,
+  {'GTM-WXKVH2L':true});</script>
+  
+
+<!-- Mircosoft UET  -->
+  <script>
+  (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"56104049"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+</script>
+
+<!-- Hot Jar -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1313298,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+{% render 'shogun-head' %}
+{% include 'sca.freegifts' %}
+  <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/0nw4U4E1tNalSL-gdR4Mmg" async></script>
+
+</head>
+
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}" >
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXKVH2L"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <a class="in-page-link visually-hidden skip-link sr-only" href="#MainContent" >{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {% section "SiteHeader" %}
+    
+    
+    <main 
+      role="main" 
+      id="MainContent" 
+      data-currency="{% if cart.currency.iso_code == 'USD' %}{{ cart.currency.iso_code }}{% endif %}"
+      data-promo="{% if settings.bogo-in-mini-cart %}true{% else %}false{% endif %}"
+      data-freeshippingbar="{% if settings.show-free-shipping %}true{% else %}false{% endif %}"
+      data-freeshippingthreshold="{{settings.free-shipping-threshold}}"
+      class="MainContent {% if settings.header-position == 'fixed' %}{% if settings.announcement-bar %} MainContent-site_header--fixed-with-announcement-bar {% else %} MainContent-site_header--fixed {% endif %}{% else %}MainContent-site_header--relative{% endif %}">
+
+        {{ content_for_layout }}
+
+    </main>
+
+    {% section 'SiteFooter' %}
+
+    <section class="Modal is-Offcanvas--closed" id="Collection-quick_view_modal" role="dialog" aria-hidden="true">
+        <button type="button" class="Modal-close" data-dismiss="offcanvas" aria-label="Close">
+          <img src="{{ settings.quick-view-x | img_url: '14px' }}" alt="X Icon" class="Modal-close-image">
+        </button>
+        <div data-quickview-content class="Modal-content">
+        </div>
+    </section>
+
+    {% if cart.currency.iso_code == 'USD' %}
+    	{% include 'Afterpay-afterpay' %}
+  	{% endif %}
+
+    <!-- AccessiBe Plugin -->
+    <script>(function(){ var s = document.createElement('script'), e = ! document.body ? document.querySelector('head') : document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : true, hideTrigger : true, language : 'en', position : 'right', leadColor : '#146FF8', triggerColor : '#146FF8', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; e.appendChild(s);}());</script>
+
+</body>
+
+</html>
+
+<script>
+  var cart_metafields = { "items" : [
+    {%- for item in cart.items -%}
+      {% assign mf = "" %}
+      {% if item.product.metafields.global.upgrade_upsell != blank %}
+        {% assign mf = item.product.metafields.global.upgrade_upsell %}
+      {% endif %}
+       {"id": {{ item.id  }}, "upsell": "{{ mf }}" {% if item.properties["_order_bump_bump_id"] != blank %}, "upgraded":true{% endif %} }
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]};
+</script>
+<script>
+//Adjust MainContent Element Margin Top depending on Announcement Bar Height.
+// - default margin top is 100px
+(function () {
+  window.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('SiteHeader');
+    const mainContent = document.getElementById('MainContent');
+    const headerHeight = header.clientHeight;
+    mainContent.style.marginTop = `${headerHeight}px`;
+  })
+})()
+</script>

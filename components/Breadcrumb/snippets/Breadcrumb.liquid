@@ -1,0 +1,58 @@
+
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+{%- assign t2 = template | split: '.' | second -%}
+{%- assign t3 = template | split: '.' | last -%}
+
+<nav id="breadcrumbs" class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+
+  <div class="breadcrumbs__spacer"></div>
+
+  <a class="breadcrumbs__text" href="/">Home</a>
+
+    {%- case t -%}
+      {%- when 'page' -%}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+
+
+      {%- when 'product' -%}
+          {% if collection.url %}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+          {% endif %}
+
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+
+
+      {%- when 'collection' and collection.handle -%}
+        {%- if current_tags -%}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+        {%- else -%}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+        {%- endif -%}
+
+
+      {%- when 'blog' -%}
+        {%- if current_tags -%}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+        {%- else -%}
+          <div class="breadcrumbs__break">|</div>
+          <a class="breadcrumbs__text" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+        {%- endif -%}
+
+
+      {%- when 'article' -%}
+        <div class="breadcrumbs__break">|</div>
+        <a class="breadcrumbs__text" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+      {%- else -%}
+        <div class="breadcrumbs__break">|</div>
+        <a class="breadcrumbs__text" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+    {%- endcase -%}
+
+</nav>
+{%- endunless -%}

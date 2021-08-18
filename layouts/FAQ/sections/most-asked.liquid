@@ -1,0 +1,86 @@
+<div id="{{ section.settings.anchor }}" class="FAQ-a__block">
+
+  <div class="FAQ-a__header">
+    <h4 class="FAQ-a__header-text">
+      {{ section.settings.title }}
+    </h4>
+  </div>
+
+  <div class="FAQ-a__drawers">
+    {% for block in section.blocks %}
+      <div 
+        id="FAQ-drawer-{{ block.id }}" 
+        class="FAQ-a__drawer"
+        data-index="{{ forloop.index }}">
+
+          <div id="FAQ-question-{{ block.id }}" class="FAQ-a__drawer-header">
+            <p class="FAQ-a__drawer-header-text">
+              {{ block.settings.title }}
+            </p>
+            <div class="FAQ-a__drawer-header-icon">
+              <img id="FAQ-icon" src="{{ section.settings.icon | img_url: 'master' }}">
+              <img id="FAQ-icon-hover" src="{{ section.settings.icon-hover | img_url: 'master' }}">
+            </div>
+          </div>
+
+          <div id="FAQ-answer-{{ block.id }}" class="FAQ-a__drawer-answer">
+            <p class="FAQ-a__drawer-answer-text">
+              {{ block.settings.answer }}
+            </p>
+          </div>
+
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Most Asked Questions",
+    "class": "FAQ-section-accordion-margin",
+    "settings": [
+      {
+        "type": "text",
+        "id": "anchor",
+        "label": "Anchor tag for sidebar"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Lorem Ipsum dolor et"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Plus Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-hover",
+        "label": "Minus Icon"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Type",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Question",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod?"
+          },
+          {
+            "type": "textarea",
+            "id": "answer",
+            "label": "Answer",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Enim nulla aliquet porttitor lacus luctus."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

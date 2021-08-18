@@ -1,0 +1,38 @@
+
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+	{% assign on_sale = true %}
+	{% assign on_sale_class = ' is-sale' %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+	{% assign sold_out = false %}
+{% endif %}
+
+{{product.metafields.shogun.above}}
+
+<div class="Product-template-container" itemscope itemtype="http://schema.org/Product">
+	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+	<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+	{% section 'Product-product-byroe' %}
+
+	<span id="product-json" hidden>{{ product | json }}</span>
+</div>
+
+{{product.metafields.shogun.below}}
+
+<div 
+  class="yotpo yotpo-main-widget" 
+  data-product-id="{{ product.id }}" 
+  data-name="{{ product.title | escape }}" 
+  data-url="{{ shop.url }}{{ product.url }}" 
+  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&amp;','%26'}}" 
+  data-description="{{ product.description | escape }}" 
+  data-price="{{ variant.price | money_without_currency }}" 
+  data-currency="{{ shop.currency }}">
+</div>
+
+{% section 'Product-related-products' %}

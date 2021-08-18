@@ -1,0 +1,94 @@
+
+<section id="Customer__account" class="Customer__account">
+  <article class="Customer__account-content">
+
+    {% comment %} Header {% endcomment %}
+    <div class="Customer__account-header">
+      <span class="Customer__account-header-hilight">
+        <h1 class="Customer__account-header-text">
+          {{ section.settings.header }}
+        </h1>
+      </span>
+    </div>
+
+    {% comment %} Columns {% endcomment %}
+    <div class="Customer__account-columns">
+
+        {% include 'AccountDashboard-orders' %}
+        
+        {% include 'AccountDashboard-details' %}
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Account Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Page Header"
+      },
+      {
+        "type": "text",
+        "id": "header",
+        "label": "Page Header",
+        "default": "My Account"
+      },
+
+      {
+        "type": "header",
+        "content": "Section Headers"
+      },
+      {
+        "type": "text",
+        "id": "order",
+        "label": "Order Header",
+        "default": "Order History"
+      },
+      {
+        "type": "text",
+        "id": "address",
+        "label": "Address Header",
+        "default": "Address"
+      },
+      {
+        "type": "text",
+        "id": "reward",
+        "label": "Rewards Header",
+        "default": "Rewards"
+      },
+      {
+        "type": "text",
+        "id": "subscription",
+        "label": "Subscription Header",
+        "default": "Subscriptions"
+      },
+
+      {
+        "type": "header",
+        "content": "Orders"
+      },
+      {
+        "type": "text",
+        "id": "no-orders",
+        "label": "No Orders Text",
+        "default": "You haven't placed any orders yet."
+      },
+
+
+      {
+        "type": "header",
+        "content": "Address"
+      },
+      {
+        "type": "text",
+        "id": "delete-confirmation",
+        "label": "Delete Address Confirmation Message",
+        "default": "Are you sure you want to delete this address?"
+      }
+    ]
+  }
+{% endschema %}

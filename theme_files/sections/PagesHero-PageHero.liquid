@@ -1,0 +1,45 @@
+<section id="PageHero" class="PageHero">
+  <article class="PageHero__content">
+
+			<div class="PageHero__image-wrap">
+				<img src="{{ section.settings.image | img_url: 'master' }}" class="PageHero__image">
+			</div>
+			<div class="PageHero__text-box">
+				<div class="PageHero__title-wrap">
+					<h3 class="PageHero__title">
+						{{ section.settings.title }}
+					</h3>
+				</div>
+					<p class="PageHero__description">
+						{{ section.settings.text }}
+					</p>
+			</div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Page Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Press"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      }
+    ]
+  }
+{% endschema %}

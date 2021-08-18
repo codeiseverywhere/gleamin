@@ -1,0 +1,49 @@
+<div id="Blog-article-{{ article.handle }}" class="Blog-f__article" data-index="{{ forloop.index }}">
+    <a href="{{ article.url }}" class="Blog-f__article-wrap-link">
+
+      <div class="Blog-f__article-image grid_item-img">
+
+          {% comment %}<img src="{{ article.image | img_url: 'master' }}">{% endcomment %}
+          {% include 'responsive-image' image: article.image %}
+
+          
+
+      </div>
+
+      {% if article.tags.size > 0 %}
+          <div class="Blog-f__label grid-item">
+            <p class="Blog-f__label-text">
+              {% for tag in article.tags %}
+                {% if forloop.first %}
+                  {{ tag }}
+                {% endif %}
+              {% endfor %}
+            </p>
+          </div>
+        {% endif %}
+
+      {% if article.tags.size > 0 %}
+        <div class="Blog-f__label--mobile">
+          <p class="Blog-f__label-text">
+            {% for tag in article.tags %}
+              {% if forloop.first %}
+                {{ tag }}
+              {% endif %}
+            {% endfor %}
+          </p>
+        </div>
+      {% endif %}
+
+        <p class="Blog-f__article-title">
+          {{ article.title }}
+        </p>
+
+      <p class="Blog-f__article-text">
+        {{ article.excerpt_or_content | strip_html | truncatewords: 25, '...'}}
+      </p>
+      
+      <p class="Blog-f__article-link">
+        Read More &#8594;
+      </p>
+    </a>
+  </div>

@@ -1,0 +1,93 @@
+$Page--light--background_color: $Color--white;
+$Page--light--color: $Font-color--black; //contrast($Page--light--background_color, $Font-color--white, $Font-color--black);
+
+$Page--dark--background_color: $Color--black;
+$Page--dark--color: $Font-color--white; //contrast($Page--dark--background_color, $Font-color--white, $Font-color--black);
+
+$Page--with_border--border_width: 15px;
+
+.Page {
+    @include clearfix;
+
+    font-family: $Font-family;
+    font-weight: $Font-weight;
+
+    position: relative;
+    z-index: $ZIndex-ordinary;
+}
+
+@mixin make-Page--color($color, $background_color, $border_color) {
+    background-color: $background_color;
+    @include make-Type--color($color);
+
+    .Page-border {
+        background-color: $border_color;
+    }
+}
+
+.Page--light {
+    @include make-Page--color($Page--light--color, $Page--light--background_color, $Page--dark--background_color);
+}
+
+.Page--dark {
+    @include make-Page--color($Page--dark--color, $Page--dark--background_color, $Page--light--background_color);
+}
+
+.Page--with_border {
+    margin: $Page--with_border--border_width;
+}
+
+.Page-border {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: $ZIndex-site_border;
+}
+
+.Page__static-body ul li {
+	font-size: 18px;
+  color: #000;
+ 	line-height: 32px;
+  opacity: .8;
+}
+
+.Page__static-body ol li {
+  color: #000;
+	font-size: 18px;
+ 	line-height: 32px;
+  opacity: .8;
+}
+
+.Page__static-body ol span {
+	font-size: 18px;
+  color: #000;
+ 	line-height: 32px;
+  opacity: .8;
+}
+
+@media screen and (max-width: 749px) {
+  .Page__static-content ul li {
+    font-size: 0.9375em;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .Page__static-content ol li {
+    font-size: 0.9375em;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .Page__static-content ol span {
+    font-size: 0.9375em;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .Page__static-content ol span {
+    font-size: 0.9375em;
+  }
+}

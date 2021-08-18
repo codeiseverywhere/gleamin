@@ -1,0 +1,124 @@
+<section id="Press-grid" class="Press-grid">
+  <article class="Press-g__content Site__page-width">
+
+    <div class="Press-g__header">
+      <h4 class="Press-g__header-text">
+        {{ section.settings.title }}
+      </h4>
+    </div>
+
+    <div class="Press-g__grid-wrap">
+      <div class="Press-g__grid">
+        {% for block in section.blocks %}
+          <div class="Press-g__grid-item" style="background-color: {{ section.settings.item-bg-color }}">
+
+            <div class="Press-g__image-wrap">
+              <img src="{{ block.settings.image | img_url: 'master' }}" class="Press-g__image">
+            </div>
+
+            <div class="Press-g__text-box">
+              <div class="Press-g__source-row">
+                <div class="Press-g__source-block" style="background-color: {{ section.settings.source-bg-color }}">
+                  <p class="Press-g__source-text" style="color: {{ section.settings.source-color }}">
+                    {{ block.settings.source }}
+                  </p>
+                </div>
+              </div>
+              <div class="Press-g__text-row">
+                <p class="Press-g__text">
+                  {{ block.settings.text }}
+                </p>
+              </div>
+              <div class="Press-g__read-more-row">
+                <a href="{{ block.settings.link }}" target="_blank" class="Press-g__read-more-link">
+                  <p class="Press-g__read-more-text">
+                    {{ block.settings.link-text }}
+                  </p>
+                  <span class="Press-g__arrow-wrap">
+                    &#8594;
+                  </span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Press Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Press lorem ipsum"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Press lorem ipsum"
+      },
+      {
+        "type": "color",
+        "id": "item-bg-color",
+        "label": "Grid Item Background Color",
+        "default": "#F2F2F4"
+      },
+      {
+        "type": "color",
+        "id": "source-bg-color",
+        "label": "Grid Item Label Background Color",
+        "default": "#114B5F"
+      },
+      {
+        "type": "color",
+        "id": "source-color",
+        "label": "Grid Item Label Text Color",
+        "default": "#FFF"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Item",
+        "name": "Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Grid Item Image"
+          },
+          {
+            "type": "text",
+            "id": "source",
+            "label": "Grid Item Label Text",
+            "default": "Source"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Grid Item Text",
+            "default": "Lorem ipsum dolor sit amet, adipiscing elit sed do eiusmod incididunt."
+          },
+          {
+            "type": "text",
+            "id": "link-text",
+            "label": "Grid Item Link Text",
+            "default": "Read More"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Grid Item Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,65 @@
+
+{% if image.aspect_ratio != blank %}
+	{%- capture supported_sizes -%}{%- render 'image-size', sizes: '8,13,30,50,100,200,300,400,600,700,800,900,1000,1200', image: image -%}{%- endcapture -%}
+	{%- assign media_aspect_ratio = image.aspect_ratio -%}
+	{% assign image_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+	{% if image_alt != blank %}
+		{% assign image_alt = image_alt | escape  %}
+	{% else %}
+		{% assign image_alt = image.alt | escape  %}
+	{% endif %}
+	
+	
+{% else %}
+	{%- comment -%}{% assign fn = image | split: '/' | last %}
+	{% assign fn = fn | split: '?' | first %}
+
+		{% assign _image = images['https://cdn.shopify.com/s/files/1/0071/0898/4921/files/Section2_RR_05-min.jpg?v=1600810242'] %}
+		{{_image}}{%- endcomment -%}
+
+	{%- assign supported_sizes = "8,13,30,50,100,200,300,400,600,700,800,900,1000,1200" -%}
+	{%- assign media_aspect_ratio = "" -%}
+	{% assign image_url = image | split: '?' | first %}
+	{% assign image_url = image_url | replace: '.jpg', '_{width}x.jpg' %}
+	{% assign image_url = image_url | replace: '.png', '_{width}x.png' %}
+	{% assign image_url = image_url | replace: '.svg', '_{width}x.svg' %}
+	{% if image_alt != blank %}
+		{% assign image_alt = image_alt | escape  %}
+	{% else %}
+		{% assign image_alt = ""  %}
+	{% endif %}
+{% endif %}
+
+
+
+<img 
+	{% if id != blank %}id="{{ id }}"{% endif %} 
+	{% if data-handle != blank %}data-handle="{{ data-handle }}"{% endif %} 
+	{% if data-icon != blank %}data-icon="{{ data-icon }}"{% endif %} 
+	class="lazyLoad fadeIn {% if classes != blank %}{{ classes }}{% endif %}" 
+	data-src="{{ image_url }}" 
+	data-widths="[{{ supported_sizes }}]" 
+	data-sizes="auto" 
+	{% if max_width != blank or max_height != blank %}
+		style="
+		{% if max_width != blank %}max-width:{{ max_width}}px; {% endif %}
+		{% if max_height != blank %}max-height:{{ max_height}}px; {% endif %}
+		"
+	{% endif %}
+	{% if image_alt != blank %}alt="{{ image_alt }}"{% endif %}
+>
+
+
+<noscript>
+	{% if type == 'product' %}
+		<img src="{{ image | product_img_url: 'original' }}">
+	{% elsif type == 'original' %}
+		<img src="{{ image | img_url: 'original' }}">
+	{% elsif type == 'shopify asset' %}
+		<img src="{{ image | shopify_asset_url }}">
+	{% else %}
+		<img src="{{ image | img_url: 'master' }}">
+	{% endif %}
+</noscript>
+
+

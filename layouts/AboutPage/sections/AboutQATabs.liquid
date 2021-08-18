@@ -1,0 +1,198 @@
+
+<style>
+  .About-qat__tab-width {
+    width: calc(100% / {{ section.blocks.size }});
+  }
+</style>
+<section id="About-QA-Tabs" class="About-QA-Tabs" style="background-color: {{ section.settings.bg-color }}">
+  <article class="About-qat__content">
+
+  <div class="About-qat__header">
+    <h4 class="About-qat__title">
+      {{ section.settings.title }}
+    </h4>
+  </div>
+
+  <div class="About-qat__container">
+
+    <!-- Desktop -->
+    <div class="About-qat__desktop">
+      <!-- Tabs -->
+      <div class="About-qat__tabs" data-tabs="{{ section.blocks.size }}">
+        {% for block in section.blocks %}
+          <div id="AQATtab-{{ forloop.index }}" class="About-qat__tab About-qat__tab-width {% if forloop.first %}About-qat__tab--selected{% endif %}">
+            <div class="About-qat__tab-title-wrap">
+              <h6 class="About-qat__tab-title">
+                {{ block.settings.tab-title }}
+              </h6>
+            </div>
+            <div class="About-qat__tab-indicator" style="background-color: {{ section.settings.tabs-bg-color }}"></div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- Slides -->
+      <div class="About-qat__slides">
+        {% for block in section.blocks %}
+          <div id="AQATslide-{{ forloop.index }}" class="About-qat__slide {% if forloop.first %}About-qat__slide--selected{% endif %}">
+            
+            <p class="About-qat__slide-headline">
+              {{ block.settings.tab-headline }}
+            </p>
+            <p class="About-qat__slide-text">
+              {{ block.settings.tab-text-1 }}
+            </p>
+            {% if block.settings.tab-text-2 != blank %}
+              <p class="About-qat__slide-text">
+                {{ block.settings.tab-text-2 }}
+              </p>
+            {% endif %}
+            {% if block.settings.tab-text-3 != blank %}
+              <p class="About-qat__slide-text">
+                {{ block.settings.tab-text-3 }}
+              </p>
+            {% endif %}
+            {% if block.settings.tab-text-4 != blank %}
+              <p class="About-qat__slide-text">
+                {{ block.settings.tab-text-4 }}
+              </p>
+            {% endif %}
+            {% if block.settings.tab-text-5 != blank %}
+              <p class="About-qat__slide-text">
+                {{ block.settings.tab-text-5 }}
+              </p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class='About-qatm__mobile'>
+      <div class="About-qatm__slider-container">
+
+        <!-- Mobile Slider Nav -->
+        <div class="About-qatm__slider-nav">
+          {% for block in section.blocks %}
+            <div class="About-qatm__slider-nav-item About-qat__tab-width" style="background-color: {{ section.settings.tabs-bg-color }}"></div>
+          {% endfor %}
+        </div>
+        <div class="About-qatm__slider">
+          {% for block in section.blocks %}
+            <div id="AQATslide-{{ forloop.index }}" class="About-qatm__slide">
+              <div class="About-qatm__tab-title-wrap">
+                <h6 class="About-qatm__tab-title">
+                  {{ block.settings.tab-title }}
+                </h6>
+              </div>
+              <p class="About-qatm__slide-headline">
+                {{ block.settings.tab-headline }}
+              </p>
+              <p class="About-qatm__slide-text">
+                {{ block.settings.tab-text-1 }}
+              </p>
+              {% if block.settings.tab-text-2 != blank %}
+                <p class="About-qatm__slide-text">
+                  {{ block.settings.tab-text-2 }}
+                </p>
+              {% endif %}
+              {% if block.settings.tab-text-3 != blank %}
+                <p class="About-qatm__slide-text">
+                  {{ block.settings.tab-text-3 }}
+                </p>
+              {% endif %}
+              {% if block.settings.tab-text-4 != blank %}
+                <p class="About-qatm__slide-text">
+                  {{ block.settings.tab-text-4 }}
+                </p>
+              {% endif %}
+              {% if block.settings.tab-text-5 != blank %}
+                <p class="About-qatm__slide-text">
+                  {{ block.settings.tab-text-5 }}
+                </p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "About QA Tabs",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Section Background Color",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Q & A"
+      },
+      {
+        "type": "color",
+        "id": "tabs-bg-color",
+        "label": "Tabs Indicator Background Color",
+        "default": "#114B5F"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Tab",
+        "name": "Tab",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "text",
+            "id": "tab-title",
+            "label": "Tab Title",
+            "default": "Lorem Ipsum"
+          },
+          {
+            "type": "text",
+            "id": "tab-headline",
+            "label": "Tab Headline",
+            "default": "Lorem ipsum dolor sit amet"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text-1",
+            "label": "Tab Textarea 1",
+            "default": "Self-care has always been a major topic in my life. Since the tender age of 13, I battled with rosacea and really discovered how much it impacted my inner confidence."
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text-2",
+            "label": "Tab Textarea 2",
+            "info": "(optional)"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text-3",
+            "label": "Tab Textarea 3",
+            "info": "(optional)"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text-4",
+            "label": "Tab Textarea 4",
+            "info": "(optional)"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text-5",
+            "label": "Tab Textarea 5",
+            "info": "(optional)"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

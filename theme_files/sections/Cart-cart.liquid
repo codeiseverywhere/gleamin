@@ -1,0 +1,264 @@
+
+{% comment %}
+
+  This is your /cart template. If you are using the Ajaxify Cart plugin,
+  your form (with action="/cart") layout will be used in the drawer/modal.
+
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+{% endcomment %}
+
+<section id="Cart" class="Cart">
+  <div class="Cart__content">
+
+  <!-- Pintrest Event Code -->
+    <script>
+      pintrk('track', 'addtocart', {
+        orderID: {{order.id}}
+        value: {{order.value}},
+      currency: 'USD'
+      });
+    </script>
+
+    {% assign items_has_subscriptions = 'false' %}
+    {% assign product_subscription_price = 0.00 %}
+
+    {% comment %} Header {% endcomment %}
+    <h1 id="Cart-header" class="Cart__page-title">
+      {{ section.settings.page-title }}
+    </h1>
+
+    {% if cart.item_count == 0 %}
+
+      {% comment %} Cart Empty {% endcomment %}
+      <div class="Cart__empty-wrap">
+        <p class="Cart__empty-text">
+          {{ section.settings.cart-empty-text }}
+        </p>
+        <a href="{{ section.settings.empty-cart-link }}" class="Cart__empty-button Site__button-main">
+          {{ section.settings.empty-cart-button-text }}
+        </a>
+      </div>
+
+    {% else %}
+
+      {% comment %} Sales Banner {% endcomment %}
+      {% if section.settings.show-sale-banner %}
+        {% comment %} {% include 'sale-banner' %} {% endcomment %}
+      {% endif %}
+
+      <div class="Cart__form-wrap">
+        <form action="/cart" method="POST" novalidate class="Cart__form">
+
+          {% comment %} Line Items {% endcomment %}
+          <ul id="Cart-line-items" class="Cart__line-items">
+            {% for item in cart.items %}
+
+              <!-- check to see if any product is a subscription product -->
+              {% if item.product.metafields.subscriptions.is_subscription_product == 'true' %}
+                {% assign items_has_subscriptions = 'true' %}
+              {% endif %}
+
+              <li 
+                id="cart-line-item--{{ item.handle }}" 
+                class="Cart__line-item"
+                data-id="{{ item.id }}"
+                data-index="{{ forloop.index }}"
+                data-handle="{{ item.handle }}"
+                data-title="{{ item.title }}"
+                data-sku="{{ item.sku }}"
+                data-price="{{ item.price }}"
+                data-quantity="{{ item.quantity }}"
+                data-subscriptions="{{ item.product.metafields.subscriptions.has_subscription }}">
+
+                <div class="Cart__item-info">
+
+                  {% comment %} Image {% endcomment %}
+                  <div class="Cart__item-info-image">
+                    {% comment %}<img src="{{ item.image | img_url: 'master' }}" alt="{{ item.title }}">{% endcomment %}
+                    {% include 'responsive-image' image: item.image, image_alt:item.title  %}
+                  </div>
+
+                  <div class="Cart__item-info-details">
+                    {% comment %} Title {% endcomment %}
+                    <a href="{{ item.url }}" class="Cart__item-info-title">
+                      {{ item.title }}
+                    </a>
+                    {% comment %} Variant {% endcomment %}
+                    <p class="Cart__item-info-variant">
+                      {% unless item.product.has_only_default_variant %}
+                        {% for option in item.options_with_values %}
+                          {{ option.name }}: {{ option.value }}
+                        {% endfor %}
+                      {% endunless %}
+                      {% for content in item.product.metafields %}
+                        <span data-data="{{ content }}"></span>
+                      {% endfor %}
+                    </p>
+                    {% comment %} Quantity {% endcomment %}
+                    <div class="Cart__item-info-qty-wrap">
+
+                      <div class="Cart__item-info-qty-box">
+                        <div class="Cart__item-info-qty-selector Cart__item-info-qty-inc">
+                          <a {% if item.quantity > 1 %} href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}"{% endif %} class="Cart__item-info-qty-selector-link">
+                            -
+                          </a>
+                        </div>
+                        <div class="Cart__item-info-val">
+                          <input 
+                            type="number"
+                            min="0" 
+                            name="updates[]"
+                            id="updates_{{ item.key }}"
+                            pattern="[0-9]{10}"
+                            value="{{ item.quantity }}"
+                            onblur="this.form.submit();">
+                        </div>
+                        <div class="Cart__item-info-qty-selector Cart__item-info-qty-dec">
+                          <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" class="Cart__item-info-qty-selector-link">
+                            +
+                          </a>
+                        </div>
+                      </div>
+                      {% comment %} Remove {% endcomment %}
+                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="Cart__item-info-remove">Remove</a>
+
+                    </div>
+                    {% comment %} Mobile Quantity {% endcomment %}
+                    <p class="Cart__item-info-price-mobile">
+                      {{ item.price | money_without_trailing_zeros }}
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="Cart__item-price-block">
+                  <p class="Cart__item-price">
+                    {{ item.price | money_without_trailing_zeros }}
+                  </p>
+                </div>
+
+              </li>
+
+            {% endfor %}
+          </ul>
+
+          {% comment %} Footer {% endcomment %}
+          <div id="Cart-footer" class="Cart__footer">
+
+            {% comment %} Notes {% endcomment %}
+            <div id="Cart-notes" class="Cart__notes">
+              {% if settings.cart_notes %}
+                <textarea 
+                  name="note" 
+                  id="CartSpecialInstructions" 
+                  placeholder="Special Instructions..."
+                  value="{{ cart.note }}"
+                  class="Cart__notes-input"></textarea>
+              {% endif %}
+            </div>
+
+            {% comment %} Summary {% endcomment %}
+            <div id="Cart-summary" class="Cart__summary" >
+              {% if items_has_subscriptions ==  'true' %}
+                {% assign discount = cart.items_subtotal_price | divided_by: 10  %}
+              {% endif %}
+              {% assign sub_total = cart.items_subtotal_price %}
+              
+              {% assign estimated_total = 0.00 | plus: sub_total | minus: discount %}
+              <div class="Cart__summary-row">
+                <p class="Cart__summary-label">Subtotal</p>
+                <p class="Cart__sumarry-value">{{ cart.original_total_price | money }}</p>
+              </div>
+              {% if cart.total_discount != 0.00 %}
+              <div class="Cart__summary-row">
+                <p class="Cart__summary-label">Promotion <span>(Subscription -- save 10%)</span></p>
+                <p class="Cart__sumarry-value">{{ cart.total_discount | money }}</p>
+              </div>
+              {% endif %}
+              <div class="Cart__summary-row">
+                <p class="Cart__summary-label">Tax <span>(calculated in checkout)</span></p>
+                <p class="Cart__sumarry-value">--</p>
+              </div>
+              <div class="Cart__summary-row">
+                <p class="Cart__summary-label">Shipping <span>(calculated in checkout)</span></p>
+                <p class="Cart__sumarry-value">--</p>
+              </div>
+              <div class="Cart__summary-row Cart__summary-row--last {% if items_has_subscriptions ==  'false' %}Cart__summary-row--last--afterpay{% endif %}">
+                <p class="Cart__summary-label">Estimated Total</p>
+                <p class="Cart__sumarry-value">{{ cart.total_price | money }}</p>
+              </div>
+              <div class="Cart__summary-checkout">
+                {% if items_has_subscriptions ==  'false' %}
+                  {% if additional_checkout_buttons %}
+                    <div class="Cart__summary-additional-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {% endif %}
+                {% endif %}
+                {% include 'Cart-subscription-cart-footer' %}
+                <button type="submit" name="checkout" value="Checkout" class="Cart__summary-button Site__button-main">
+                  {{ section.settings.checkout-text }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    {% endif %}
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "page-title",
+        "label": "Page Title",
+        "default": "Your Bag"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Empty Bag"
+      },
+      {
+        "type": "textarea",
+        "id": "cart-empty-text",
+        "label": "Empty Cart Message",
+        "default": "Your Bag is empty!"
+      },
+      {
+        "type": "text",
+        "id": "empty-cart-button-text",
+        "label": "Empty Bag Button Text",
+        "default": "Continue Shopping"
+      },
+      {
+        "type": "url",
+        "id": "empty-cart-link",
+        "label": "Empty Cart Button Link"
+      },
+
+      {
+        "type": "header",
+        "content": "Summary"
+      },
+      {
+        "type": "text",
+        "id": "checkout-text",
+        "label": "Summary Checkout Button Text",
+        "default": "Checkout"
+      }
+    ]
+  }
+{% endschema %}

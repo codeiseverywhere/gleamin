@@ -1,0 +1,47 @@
+{% if stars == 1 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 1.5 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 2 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 2.5 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 3 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 3.5 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 4 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 4.5 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+
+{% elsif stars == 5 %}
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+  <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+{% endif %}

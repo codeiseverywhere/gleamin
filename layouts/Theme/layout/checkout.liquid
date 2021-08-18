@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+    
+    <!-- Post Script - SMS Compliance -->
+    <script type="application/javascript" async src="https://sdk.postscript.io/integrations/sdk-min.js"></script>
+    
+    <script type="text/javascript">
+    !function(t,e,c,n,o,r){t[n]=t[n]||function(){(t[n].q=t[n].q||[]).push(arguments)},setTimeout(function(){o=e.createElement("script"),r=e.getElementsByTagName("script")[0],o.src=c,r.parentNode.insertBefore(o,r)},0)}(window,document,"https://ext.chtbl.com/trackable.js","trackable");
+
+    // Initialize with your Trackable API key
+    trackable('init', '6f37cace685e1db7deb9ce307c5814cf', {
+      pageType: 'checkout'
+    });
+	</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+    
+    <title>{{ page_title }}</title>
+    <!-- begin Convert Experiences code--> <script type="text/javascript" src="https://cdn-3.convertexperiments.com/js/10035227-10033185.js"></script> <!-- end Convert Experiences code -->
+    {{ content_for_header }}
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+  	
+    {% comment %}
+		{% render 'shogun-head' %}
+    {% endcomment %}
+    
+    {{ 'urgency-banner.css' | asset_url | stylesheet_tag }}
+</head>
+  <body>
+    
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    <div class="top-wrap">
+    	{% include 'countdown-mobile' %}
+    </div>
+
+    {{ order_summary_toggle }}
+    
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main"> 
+          
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {% comment %} The Vaan Group - Order Bump (1/2) {% endcomment %}
+            	<div id="orderbump"></div>
+            {% comment %} END OF The Vaan Group - Order Bump (1/2) {% endcomment %}
+            {{ alternative_payment_methods }}
+            <span></span>
+          </header>
+          
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+          
+        </div>
+        
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          
+          {% include 'countdown-desktop' %}
+          
+          
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+        
+      </div>
+    
+    {% comment %} <div id="popup" style="display:none;">
+        <div class="popup-holder">
+          <div class="popup-content">
+            <h2>Order Review</h2>
+            <p>Please review your order details carefully <strong>and include any apt / unit / suite numbers</strong> so that we can deliver your products as quickly as possible!</p>
+            <a href="#" class="btn" id="place-order-btn">Place Order</a>
+            <a href="#" class="close-popup">close and review</a>
+          </div>
+        </div>
+    </div> {% endcomment %}
+   
+    <script type="text/javascript">
+      //console.log('checkout reached')
+      trackable('checkout', {
+        value: {{ checkout.total_price | money_without_currency }},
+        currency: '{{ shop.currency }}',
+      })
+
+      //var popupShown = false;
+      window.addEventListener('DOMContentLoaded', (event) => {
+
+        if (Shopify.Checkout.OrderStatus) {
+          document.getElementsByClassName("countdown-desktop")[0].remove();          
+        }
+
+        //console.log(Shopify.Checkout.step)
+        if (/*Shopify.Checkout.step === "contact_information" ||*/ Shopify.Checkout.step === "shipping_method") {
+          let pa = document.createElement('p');
+          pa.textContent = 'Please check to make sure your apt / unit / suite number is entered correctly, if applicable.';
+          pa.classList.add("tf_notification");
+
+          /*if (Shopify.Checkout.step === "contact_information") {
+            let el = document.getElementById('checkout_shipping_address_address2');
+            pa.appendAfter(el);
+          } else {*/
+            let el = document.getElementsByClassName('section--shipping-method');
+            pa.appendBefore(el[0]);
+          //}
+        }/* else if (Shopify.Checkout.step === "payment_method") {
+          let pay_btn = document.getElementById("continue_button");
+          pay_btn.addEventListener("click", function(evt) {
+            if (popupShown == false) {
+              evt.preventDefault();
+              //window.history.back();
+              showPopup();
+            } 
+
+          }, true);
+
+          let close_btn = document.getElementsByClassName("close-popup")[0];
+          close_btn.addEventListener("click", function(evt) {
+            popupShown = false;
+            showPopup("close");
+          }, true);
+
+          let order_btn = document.getElementById("place-order-btn");
+          order_btn.addEventListener("click", function(evt) {
+            popupShown = true;
+            showPopup("close");
+            pay_btn.click();
+          }, true);
+        }*/
+      });
+
+      /*function showPopup (which) {
+        let popup = document.getElementById("popup");
+        if (which == "close") {
+          popup.style.display = "none";
+        } else {
+          popup.style.display = "flex";
+        }
+      }*/
+
+
+      Element.prototype.appendAfter = function (element) {
+        element.parentNode.insertBefore(this, element.nextSibling);
+      },false;
+    
+      Element.prototype.appendBefore = function (element) {
+        element.parentNode.insertBefore(this, element);
+      },false;
+    
+
+	  </script>
+
+    <style>
+      p.tf_notification {
+        padding: 10px 10px 7px 10px;
+        font-size: .8571428571em;
+        color: #737373;
+      }
+
+      /*#popup {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color:rgba(0,0,0,0.3);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+      #popup .popup-holder {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background-color:#fff;
+        max-width: 340px;
+        padding: 30px;
+        color: #000;
+      }
+      #popup h2 {
+        font-weight: 700;
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+
+      #popup p strong {
+        font-weight:700;
+      }
+
+      #popup .btn {
+        margin-top: 20px;
+        text-transform: uppercase;
+        width: 100%;
+        font-size: 18px;
+      }
+      #popup .btn:hover {
+        opacity:0.7;
+      }
+
+      #popup a.close-popup {
+        text-decoration:underline;
+        font-size:12px;
+        display: block;
+        width: 110px;
+        margin:10px auto 0;
+        text-align:center;
+      }*/
+
+      div[data-post-purchase-survey] .content {
+        border-color:#8c8c8c;
+        border-radius: 5px;
+      }
+      .enquire__survey {
+        border-top:0 !important;
+
+      }
+      .enquire__survey .os-step__title.enquire-survey__title {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 45px;
+        letter-spacing: .45px;
+        color: #000;
+        font-family: 'Playfair Display'!important;
+        margin-bottom:20px;
+        position: relative;
+        z-index:1;
+        display: inline-block;
+      }
+
+      .enquire__survey .os-step__title.enquire-survey__title:before {
+        content: 'One more thing:';
+        display:block;
+        font-size: inherit;
+        font-weight: 700;
+        line-height: inherit;
+        letter-spacing: inherit;
+        color: #000;
+        font-family: 'Playfair Display'!important;
+      }
+      @media screen and (max-width:768px) {
+        .enquire__survey .os-step__title.enquire-survey__title {
+          font-size:24px;
+          line-height:32px;
+        }
+      }
+      .enquire__survey .os-step__title.enquire-survey__title:after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 0.3em;
+          background-color: #fff005;
+          position: absolute;
+          z-index: -1;
+          bottom: 0.3em;
+          left: 0px;
+        }
+
+
+      .enquire__survey input,
+      .enquire__survey label {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: .45px;
+        color: #000;
+        opacity: .8;
+        margin: 0px 0px 5px;
+      }
+
+      .enquire__survey .btn.enquire__action--submit {
+        background-color: #000;
+        color: white;
+      }
+
+
+      #enquire-branding-tag {
+          display:none!important;
+      }
+
+
+      /* GetRepeat */ 
+
+      .PRZM-ModalBody {
+          padding: 55px ​40px;
+      }
+      .PRZM-ModalBody,
+      .PRZM-ModalBody * {
+            font-family: 'Poppins';
+      }
+      .PRZM-Modal {
+        border:none;
+        border-radius:0;
+        box-shadow: none;
+        width: 750px;
+        padding: 30px;
+      }
+      .PRZM-Modal .CloseButton {
+        top:0;
+      }
+
+      .EnterPhoneNumber .title-container {
+        justify-content: center;
+        align-items: center;
+        max-width: 460px;
+        margin: 0 auto;
+      }
+      .PRZM-Modal h1 {
+        font-weight:600;
+        padding: 0 !important;
+        margin: 0 !important;
+        color:#2A2A2A;
+      }
+      .PRZM-Modal .EnterPhoneNumber .PhoneIcon {
+        height:45px !important;
+        width:45px !important;
+      }
+      .PRZM-Modal .Header {
+        max-width: 500px;
+        margin: 40px auto 30px;
+      }
+      .PRZM-Modal .Success h3,
+      .PRZM-Modal .EnterVerifyCode h3,
+      .PRZM-Modal .Header-desc h3 {
+        color: #2A2A2A;
+        font-family: Poppins;
+        font-weight:400;
+        font-size: 18px;
+        letter-spacing: 0.45px;
+        line-height: 30px;
+        text-align: center;
+      }
+      .PRZM-Modal .TOSArea {
+        margin-bottom:20px;
+        align-items: center;
+        grid-template-columns: 32px 1fr;
+        grid-column-gap: 20px;
+      }
+
+      .PRZM-Modal .TOSArea .TOS{
+        color: #2A2A2A;
+        font-family: Poppins;
+        font-size: 14px;
+        letter-spacing: 0.45px;
+        line-height: 25px;
+      }
+      .PRZM-Modal .TOSArea .TOS-Checkbox  {
+        position:relative;
+      }
+
+      .PRZM-Modal .TOSArea .TOS-Checkbox .checkmark {
+        border-radius:5px;
+        left: 0;
+        border-color:#767676;
+        height: 32px;
+        width: 32px;
+      }
+      .PRZM-Modal .TOSArea .TOS-Checkbox input {
+        height: 32px;
+        width: 32px;
+      }
+      .PRZM-Modal .EnterPhoneNumber .TOS-Checkbox .checkmark:after {
+        left: 11px;
+        top: 6px;
+        width: 5px;
+        height: 12px;
+      }
+
+      .PRZM-Modal .CodeEntry input.VerifyCode,
+      .PRZM-Modal .PhoneArea .PhoneNumber {
+        border-radius:0;
+        border:1px solid #767676;
+        font-size:14px;
+        padding:5px 0 5px 20px;
+      }
+      .PRZM-Modal .Success button,
+      .PRZM-Modal .EnterVerifyCode button,
+      .PRZM-Modal .EnterPhoneNumber form button {
+        border-radius:0;
+        font-size:14px;
+        padding: 14px 0;
+      }
+      .PRZM-Modal .Success button:hover,
+      .PRZM-Modal .EnterVerifyCode button:hover,
+      .PRZM-Modal .EnterPhoneNumber form button:hover {
+        color:#000;
+        background-color:#fff005;
+        border-color:#fff005;
+      }
+
+      .PRZM-Modal .Errors {
+        font-size:1em;
+      }
+
+      .PRZM-Modal .Success,
+      .PRZM-Modal .EnterVerifyCode {
+            text-align: center;
+      }
+
+      @media screen and (max-width:850px) {
+        .PRZM-Modal {
+              width: 75%;
+        }
+        .EnterPhoneNumber .title-container {
+              width: 90%;
+        }
+      }
+      
+      @media screen and (max-width:768px) {
+        /*.PRZM-Modal {
+              width: auto;
+        }*/
+        .PRZM-ModalContainer {
+              overflow-y: auto;
+        }
+        .PRZM-ModalBody {
+          padding: 0px;
+        }
+        .EnterPhoneNumber .title-container {
+          flex-direction:column;
+        }
+        .PRZM-Modal .EnterPhoneNumber .PhoneIcon {
+          margin-bottom: 25px;
+        }
+        .PRZM-Modal .EnterPhoneNumber .Header {
+          margin-top:-10px;
+        }
+
+        .PRZM-Modal .TOSArea {
+          align-items: flex-start;
+        }
+
+    
+      }
+
+    </style>
+
+      
+    </div>
+
+    {{ tracking_code }}
+    
+    {{ 'urgency-banner.js' | asset_url | script_tag }}
+    
+    {% comment %} The Vaan Group - Order Bump (2/2) {% endcomment %}
+    	<script src="https://tvg-order-bump.herokuapp.com/storefront/assets/order-bump.js"></script>
+    {% comment %} END OF The Vaan Group - Order Bump (2/2) {% endcomment %}
+    
+    
+  </body>
+</html>

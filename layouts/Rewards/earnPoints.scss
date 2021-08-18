@@ -1,0 +1,414 @@
+.Rewards__Earn-Points {
+  width: 100%;
+  height: auto;
+  padding: 100px 0px;
+  background-color: #f5f5f5;
+}
+.Rewards-ep__content {
+  width: 100%;
+  max-width: 1140px;
+  height: 100%;
+  margin: 0px auto;
+}
+
+// Header
+.Rewards-ep__header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.Rewards-ep__title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+  margin: 0;
+}
+
+// Columns
+.Rewards-ep__columns-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+// image
+.Rewards-ep__column-image {
+  width: 100%;
+  max-width: 348px;
+  margin-right: 30px;
+}
+.Rewards-ep__image-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 544px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Rewards-ep__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+//campaigns / slider
+.Rewards-ep__column-slider {
+  width: 100%;
+  height: 100%;
+  max-width: 762px;
+}
+.Rewards-ep__slider-content {
+  width: 100%;
+  height: 100%;
+}
+.Rewards-ep__slider-container {
+  position: relative;
+  width: 100%;
+}
+.Rewards-ep__slider-wrapper {
+  //height: 100% !important;
+}
+
+.Rewards-ep__slider-slide {
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  opacity: 0 !important;
+}
+.Rewards-ep__column-slider .swiper-slide-active {
+  opacity: 1 !important;
+  z-index: 5;
+}
+.Rewards__Earn-Points .logged-in {
+  cursor: pointer;
+}
+.Rewards-ep__slider-slide-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.Rewards-ep__slider-slide-header {
+  width: 100%;
+  height: auto;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.Rewards-ep__slider-slide-header-text {
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 400;
+}
+
+
+.Rewards-ep__slider-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 42px;
+  z-index: 10;
+}
+.Rewards-ep__slider-controls-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Rewards-ep__slider--arrow {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  height: 20px !important;
+}
+.Rewards-ep__slider--arrow::after {
+  font-size: 20px !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+
+
+.Rewards-ep__slider-slide-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+.Rewards-ep__slider-slide-grid-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #f5dae0, #114b5f);
+}
+.Rewards-ep__grid--customer .Rewards-ep__grid-item {
+  cursor: pointer;
+}
+.Rewards-ep__grid-item {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+}
+.Rewards-ep__grid-item-backing {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 30px;
+  background-color: #fff;
+}
+.Rewards-ep__grid-item-image-wrap {
+  margin-right: 30px;
+}
+.Rewards-ep__grid-item-image {
+  width: 100%;
+  height: 100%;
+  max-height: 75px;
+  min-height: 75px;
+  object-fit: contain;
+}
+.Rewards-ep__grid-item-content-wrap {
+}
+.Rewards-ep__grid-item-points {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 42px;
+  color: #000000;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.Rewards-ep__grid-item-title {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #000;
+  opacity: 0.8;
+  margin: 0;
+}
+
+@media screen and (max-width: 1180px) {
+  .Rewards-ep__content {
+    width: 100%;
+    max-width: 1140px;
+    height: 100%;
+    margin: 0px auto;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .Rewards__Earn-Points {
+    width: 100%;
+    height: auto;
+    padding: 80px 0px;
+    background-color: #f5f5f5;
+  }
+  // Header
+  .Rewards-ep__header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  .Rewards-ep__title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 42px;
+    margin: 0;
+  }
+
+  // Columns
+  .Rewards-ep__columns-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // image
+  .Rewards-ep__column-image {
+    width: 100%;
+    max-width: 600px;
+    margin-right: 0px;
+    margin-top: 30px;
+  }
+  .Rewards-ep__image-wrap {
+    width: 100%;
+    height: 43vw;
+    min-height: 0px;
+    max-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Rewards-ep__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  //campaigns / slider
+  .Rewards-ep__column-slider {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+  }
+  .Rewards-ep__slider-content {
+    width: 100%;
+    height: 100%;
+  }
+  .Rewards-ep__slider-container {
+    position: relative;
+    width: 100%;
+  }
+  .Rewards-ep__slider-wrapper {
+    //height: 100% !important;
+  }
+
+  .Rewards-ep__slider-slide {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    opacity: 0 !important;
+  }
+  .Rewards-ep__column-slider .swiper-slide-active {
+    opacity: 1 !important;
+    z-index: 5;
+  }
+  .Rewards-ep__slider-slide-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .Rewards-ep__slider-slide-header {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .Rewards-ep__slider-slide-header-text {
+    font-size: 22px;
+    line-height: 31px;
+    font-weight: 400;
+  }
+
+
+  .Rewards-ep__slider-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 31px;
+    z-index: 10;
+  }
+  .Rewards-ep__slider-controls-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
+  }
+  .Rewards-ep__slider--arrow {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    height: 20px !important;
+    margin-top: 0px !important;
+  }
+  .Rewards-ep__slider--arrow::after {
+    font-size: 20px !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+
+
+  .Rewards-ep__slider-slide-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+  }
+  .Rewards-ep__slider-slide-grid-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #f5dae0, #114b5f);
+  }
+  .Rewards-ep__grid--customer .Rewards-ep__grid-item {
+    cursor: pointer;
+  }
+  .Rewards-ep__grid-item {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+  }
+  .Rewards-ep__grid-item-backing {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 15px;
+    background-color: #fff;
+  }
+  .Rewards-ep__grid-item-image-wrap {
+    margin-right: 0px;
+    margin-bottom: 9px;
+  }
+  .Rewards-ep__grid-item-image {
+    width: 100%;
+    height: 100%;
+    max-height: 60px;
+    object-fit: contain;
+  }
+  .Rewards-ep__grid-item-content-wrap {
+  }
+  .Rewards-ep__grid-item-points {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 42px;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .Rewards-ep__grid-item-title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #000;
+    opacity: 0.8;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .Rewards-ep__slider-slide-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+  .Rewards-ep__image-wrap {
+    height: 89vw;
+  }
+}

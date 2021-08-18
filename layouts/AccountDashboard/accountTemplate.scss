@@ -1,0 +1,91 @@
+.Customer__account {
+  width: 100%;
+  max-width: 1186px;
+  height: auto;
+  margin: 0px auto;
+  padding: 60px 20px;
+}
+.Customer__account-content {
+  width: 100%;
+  height: 100%;
+}
+
+//Header
+.Customer__account-header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.Customer__account-header-hilight {
+  display: inline;
+  padding: 0 1%;
+  background-color: #fff005;
+}
+.Customer__account-header-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0;
+}
+
+//Subheaders
+.Customer__account-subheader {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+.Customer__account-subheader--orders {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.Customer__account-subheader-text {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 37px;
+  color: #000000;
+  margin: 0;
+}
+.Customer__account-subheader-arrow-wrap {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Customer__account-subheader-arrow {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+.Customer__account-subheader-arrow--flip {
+  transform: rotate(180deg);
+}
+
+//Columns
+.Customer__account-columns {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .Customer__account {
+    width: 100%;
+    max-width: 768px;
+    height: auto;
+    margin: 0px auto;
+    padding: 30px 20px;
+  }
+  .Customer__account-columns {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .Customer__account-header {
+    text-align: center;
+  }
+}

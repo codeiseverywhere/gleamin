@@ -1,0 +1,38 @@
+<section id="Rewards-How-To-Earn-Points" class="Rewards-How-To-Earn-Points">
+  <article class="Rewards-htep__content">
+
+    <div class="Rewards-htep__header">
+      <h4 class="Rewards-htep__title">
+        {{ section.settings.title }}
+      </h4>
+    </div>
+
+    <div class="Rewards-htep__grid-container">
+      <ul class="campaigns">
+        <p>Referrals</p>
+      </ul>
+    </div>
+
+    
+    
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "How To Earn Points",
+    "settings":[
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "How to earn points"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

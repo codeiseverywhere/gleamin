@@ -1,0 +1,439 @@
+
+<section id="Product-template" class="Product-template">
+  <article class="Product-t__content">
+
+    <!-- Column Image -->
+    <div class="Product-t__column Product-t__column--image">
+      <div class="Product-t__slider-wrap">
+
+        <!-- nav slider -->
+        <div id="Product-t__nav-slider" class="Product-t__nav-slider">
+          {% for image in product.images %}
+            <div class="Product-t__nav-slide">
+              <div class="Product-t__nav-slide-image">
+                <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- main slider -->
+        <div id="Product-t__main-slider" class="Product-t__main-slider">
+          {% for image in product.images %}
+            <div id="Product-main-slide-{{ image.id }}" class="Product-t__main-slide">
+              <div class="Product-t__main-slide-image-inner">
+                <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Column Details -->
+    <div class="Product-t__column Product-t__column--details">
+      <div class="Product-t__details-container">
+
+        <!-- title -->
+        <h2 class="Product-t__title">
+          {{ product.title }}
+        </h2>
+
+        <!-- review - bottomLine -->
+        <div class="yotpo bottomLine"
+          data-appkey="f04Iy67xoUAambIydTzmtX9u3TAmO9ZGAbIvn2nw"
+          data-domain="{{shop.permanent_domain | escape }}"
+          data-product-id="{{ product.id }}"
+          data-product-models="{{ product.id }}"
+          data-name="{{ product.title | escape }}"
+          data-url="{{ shop.url }}{{ product.url }}"
+          data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+          data-description="{{ product.description | escape }}"
+          data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+        </div>
+
+        <!-- weight -->
+        <p class="Product-t__weight">
+          {% if product.metafields.product-page.weight != blank %}
+            {{ product.metafields.product-page.weight }}
+          {% else %}
+            NET WT 00 FL. OZ. / 30 ML
+          {% endif %}
+        </p>
+
+        <!-- price -->
+        <p class="Product-t__price">
+          {{ product.price | money }}
+        </p>
+
+        <!-- Description -->
+        {{ product.content }}
+
+        <!-- bold description -->
+        {% comment %} <p class="Product-t__bold-description">
+          {% if product.metafields.product-page.bold-description != blank %}
+            {{ product.metafields.product-page.bold-description }}
+          {% else %}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          {% endif %}
+        </p> {% endcomment %}
+
+        <!-- description -->
+        {% comment %} <p class="Product-t__description">
+          {% if product.metafields.product-page.description != blank %}
+            {{ product.metafields.product-page.description }}
+          {% else %}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          {% endif %}
+        </p> {% endcomment %}
+
+        <!-- form -->
+          <div class="Product-t__form">
+            {% form 'product', product %}
+
+            <!-- Variant -->
+            <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" style="display: none">
+              {% for variant in product.variants %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} {% unless variant.available %} disabled="disabled" {% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_without_trailing_zeros }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
+              {% endfor %}
+            </select>
+
+
+            {% if product.variants.size > 1 %}
+              <!-- Variants greater than 1 -->
+              <select id="product-select" name="id" data-greater="true">
+                {% for variant in product.variants %}
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}  value="{{ variant.id }}">
+                      {{ variant.title }} - {{ variant.price | money | strip_html }}
+                  </option>
+                {% endfor %}
+              </select>
+
+            {% else %}
+              <!-- Variants less than 1 -->
+              <select name="id" data-less="true" style="display: none">
+                {% for variant in product.variants %}
+                  <option 
+                    {% if variant == first_variant %} 
+                      selected
+                    {% endif %} 
+                    value="{{ variant.id }}" 
+                    data-sku="{{variant.sku}}" 
+                    data-qty="{{ variant.inventory_quantity }}">
+                      {{ variant.title }} - {{ variant.price | money | strip_html }}
+                  </option>
+                {% endfor %}
+              </select> 
+
+            {% endif %}
+
+            <!-- Quantity -->
+            <div class="Product-t__form-inputs">
+              <div class="Product-t__quantity">
+                <div id="Product-t__quantity-minus" class="Product-t__quantity-box">
+                  <p>-</p>
+                </div>
+                <div id="Product-t__quantity-value" class="Product-t__quantity-box">
+                  <input id="quantity" class="Product-t__quantity-input" type="number" min="1" value="1" name="quantity"/>
+                </div>
+                <div id="Product-t__quantity-plus" class="Product-t__quantity-box">
+                  <p>+</p>
+                </div>
+              </div>
+            
+              <!-- Submit -->
+              <button data-soldout="{{ sold_out }}"
+                class="12 productForm-submit clickbtn js-productForm-submit {% if section.settings.enable_payment_button %}add-to-cart-btn-style{% endif %}" 
+                type="submit" 
+                name="checkout" 
+                data-handle="{{product.handle}}" 
+                {% if sold_out %}disabled{% endif %}>
+                  {% unless sold_out %} 
+                    {% for variant in product.variants %}
+                      {% if variant.inventory_quantity == 0 and variant.available == true %} 
+                        PRE ORDER 
+                      {% else %} 
+                        ADD TO CART
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    SOLD OUT
+                  {% endunless %}
+              </button>
+
+            </div>
+
+        {% endform %}
+      </div>
+
+        <!-- tabs - desktop -->
+        <div class="Product-t__tabs--desktop">
+          <div class="Product-t__tabs-inner">
+
+            <div class="Product-t__tabs">
+              <div id="Product-tab-Details" class="Product-t__tab Product-t__tab--active">
+                <p class="Product-t__tab-text">
+                  Details
+                </p>
+                <span></span>
+              </div>
+              <div id="Product-tab-HowToUse" class="Product-t__tab">
+                <p class="Product-t__tab-text">
+                  How To Use
+                </p>
+                <span></span>
+              </div>
+              <div id="Product-tab-Ingredients" class="Product-t__tab">
+                <p class="Product-t__tab-text">
+                  Ingredients
+                </p>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="Product-t__tab-content">
+              <div id="Product-content-Details" class="Product-t__tab-container Product-t__tab-container--active">
+                {% if product.metafields.product-page.tab-details-1 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-1 }}</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-2 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-2 }}</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-3 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-3 }}</p>
+                {% endif %}
+
+                {% if product.metafields.product-page.tab-details-1 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-2 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-3 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+              </div>   
+
+              <div id="Product-content-HowToUse" class="Product-t__tab-container">
+                {% if product.metafields.product-page.tab-how-to-use != blank %}
+                  {% for item in product.metafields.product-page.tab-how-to-use.how-tos %}
+                    <p class="Product-t__tab-htu-headline">
+                      <a href="{{ item.link }}">
+                        {{ item.heading }}
+                      </a>
+                    </p>
+                    <p class="Product-t__tab-htu-text">
+                      {{ item.text }}
+                    </p>
+                  {% endfor %}
+                {% else %}
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+              </div>
+
+              <div id="Product-content-Ingredients" class="Product-t__tab-container">
+                {% if product.metafields.product-page.tab-ingredients != blank %}
+                  <p class="Product-t__tab-ingredient-title">
+                    {{ product.metafields.product-page.tab-ingredients.title }}
+                  </p>
+                  {% for ing in product.metafields.product-page.tab-ingredients.ingredients %}
+                    <div class="Product-t__tab-ingredient">
+                      <div class="Product-t__tab-ingredient-image">
+                        <img src="{{ ing.image }}">
+                      </div>
+                      <div class="Product-t__tab-ingredient-textbox">
+                        <p class="Product-t__tab-ingredient-headline">
+                          {{ ing.heading }}
+                        </p>
+                        <p class="Product-t__tab-ingredient-text">
+                          {{ ing.text }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  {% if product.metafields.product-page.tab-ingredients.full-ingredients != blank %}
+                    <div class="Product-t__tab-ingredient-full-ingredients" data-state="closed">
+
+                      <p class="Product-t__tab-ingredient-heading">
+                        <span class="Product-t__tab-ingredient-arrow">
+                          <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_arrow_drop_down_24px.png?v=1597337994" alt="small down arrow">
+                        </span> Full Ingredients List
+                      </p>
+
+                      <div class="Product-t__tab-ingredient-list">
+                       {% if product.metafields.product-page.tab-ingredients.full-ingredients != blank %}
+                          {% for item in product.metafields.product-page.tab-ingredients.full-ingredients %}
+                            <div class="Product-t__tab-ingredient-list-item">
+                              {% if item.product != blank %}
+                                <span class="Product-t__tab-ingredient-list-item-heading">
+                                  {{ item.product }} -
+                                </span>
+                              {% endif %}
+                              {% if item.ingredients != blank %}
+                                <span class="Product-t__tab-ingredient-list-item-text">
+                                  {{ item.ingredients  }}
+                                </span>
+                              {% endif %}
+                            </div>
+                          {% endfor %}
+                       {% endif %}
+                      </div>
+
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+              </div>   
+            </div>
+
+          </div>
+        </div>
+
+        <!-- accordion - mobile -->
+        <div class="Product-t__accordion-mobile">
+
+          <div id="Product-t-details" class="Product-t__am-row" data-state="closed">
+            <div id="Product-am-details" class="Product-t__am-heading">
+              <span class="Product-t__am-arrow">
+                <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="small down arrow">
+              </span>
+              <p class="Product-t__am-heading-text">
+                Details
+              </p>
+            </div>
+            <div class="Product-t__am-drawer">
+              {% if product.metafields.product-page.tab-details-1 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-1 }}</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-2 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-2 }}</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-3 != blank %}
+                  <p class="Product-t__tab-details-text">{{ product.metafields.product-page.tab-details-3 }}</p>
+                {% endif %}
+
+                {% if product.metafields.product-page.tab-details-1 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-2 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+                {% if product.metafields.product-page.tab-details-3 == blank %}
+                  <p class="Product-t__tab-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+            </div>
+          </div>
+
+          <div id="Product-t-howToUse" class="Product-t__am-row" data-state="closed">
+            <div id="Product-am-howToUse" class="Product-t__am-heading">
+              <span class="Product-t__am-arrow">
+                <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="small down arrow">
+              </span>
+              <p class="Product-t__am-heading-text">
+                How To Use
+              </p>
+            </div>
+            <div class="Product-t__am-drawer">
+              {% if product.metafields.product-page.tab-how-to-use != blank %}
+                  {% for item in product.metafields.product-page.tab-how-to-use.how-tos %}
+                    <p class="Product-t__tab-htu-headline">
+                      <a href="{{ item.link }}">
+                        {{ item.heading }}
+                      </a>
+                    </p>
+                    <p class="Product-t__tab-htu-text">
+                      {{ item.text }}
+                    </p>
+                  {% endfor %}
+                {% else %}
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                {% endif %}
+            </div>
+          </div>
+
+          <div id="Product-t-keyIngredients" class="Product-t__am-row" data-state="closed">
+            <div id="Product-am-keyIngredients" class="Product-t__am-heading">
+              <span class="Product-t__am-arrow">
+                <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="small down arrow">
+              </span>
+              <p class="Product-t__am-heading-text">
+                Key Ingredients
+              </p>
+            </div>
+            <div class="Product-t__am-drawer">
+              {% if product.metafields.product-page.tab-ingredients != blank %}
+                  {% for ing in product.metafields.product-page.tab-ingredients.ingredients %}
+                    <div class="Product-t__tab-ingredient">
+                      <div class="Product-t__tab-ingredient-image">
+                        <img src="{{ ing.image }}">
+                      </div>
+                      <div class="Product-t__tab-ingredient-textbox">
+                        <p class="Product-t__tab-ingredient-headline">
+                          {{ ing.heading }}
+                        </p>
+                        <p class="Product-t__tab-ingredient-text">
+                          {{ ing.text }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div id="Product-t-fullIngredients" class="Product-t__am-row" data-state="closed">
+            <div id="Product-am-fullIngredients" class="Product-t__am-heading">
+              <span class="Product-t__am-arrow">
+                <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="small down arrow">
+              </span>
+              <p class="Product-t__am-heading-text">
+                Full Ingredients List
+              </p>
+            </div>
+            <div class="Product-t__am-drawer">
+              {% if product.metafields.product-page.tab-ingredients.full-ingredients != blank %}
+                {% for item in product.metafields.product-page.tab-ingredients.full-ingredients %}
+                  <div class="Product-t__tab-ingredient-list-item">
+                    {% if item.product != blank %}
+                      <span class="Product-t__tab-ingredient-list-item-heading">
+                        {{ item.product }} -
+                      </span>
+                    {% endif %}
+                    {% if item.ingredients != blank %}
+                      <span class="Product-t__tab-ingredient-list-item-text">
+                        {{ item.ingredients  }}
+                      </span>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="Product-t__icons">
+          {% for icon in product.metafields.product-page.icons.icons %}
+            <div class="Product-t__icon">
+              <div class="Product-t__icon-image">
+                <img src="{{ icon.url }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Product Template",
+    "settings": [
+      
+    ]
+  }
+{% endschema %}

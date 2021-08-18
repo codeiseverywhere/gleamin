@@ -1,0 +1,54 @@
+<section id="Rewards-Hi-User" class="Rewards-Hi-User">
+  <article class="Rewards-hu__content">
+
+    <div class="Rewards-hu__text-box">
+      <h4 class="Rewards-hu__text-name">
+        {{ section.settings.greeting }} {{ customer.first_name }}!
+      </h4>
+      <h4 class="Rewards-hu__text-points">
+        You have <span class="Rewards-hu__text-points-balance swell-point-balance">X</span> Points!
+      </h4>
+    </div>
+
+    <div class="Rewards-hu__button-wrap">
+      <div class="Rewards-hu__button">
+        <a href="#Rewards-Redeem-For-Discounts" class="Rewards-hu__button-link">
+          {{ section.settings.btn-text-1 }}
+        </a>
+      </div>
+      <div class="Rewards-hu__button">
+        <a href="#" class="Rewards-hu__button-link swell-history-link">
+          {{ section.settings.btn-text-2 }}
+        </a>
+      </div>
+    </div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Hi User",
+    "settings": [
+      {
+        "type": "text",
+        "id": "greeting",
+        "label": "User Greeting",
+        "default": "Hi"
+      },
+      {
+        "type": "text",
+        "id": "btn-text-1",
+        "label": "Button 1 Text",
+        "default": "Redeem Now" 
+      },
+      {
+        "type": "text",
+        "id": "btn-text-2",
+        "label": "Button 2 Text",
+        "default": "Rewards History" 
+      }
+    ]
+  }
+{% endschema %}

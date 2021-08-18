@@ -1,0 +1,78 @@
+@import "Accordion.scss";
+@import "HowItWorks.scss";
+@import "HowToApply.scss";
+@import "Ingredients.scss";
+@import "KeySellingPoints.scss";
+@import "MoreProducts.scss";
+@import "Reviews.scss";
+@import "beforeAfter.scss";
+@import "StickyAddToCart.scss";
+
+@media screen and (max-width: 749px) {
+    .Product-qs-minus {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .Product-qs-minus-text {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1;
+        margin: 0;
+    }
+    .Product-qs-plus {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .Product-qs-plus-text {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1;
+        margin: 0;
+    }
+    
+    .Product-qs-value {
+        width: 20%;
+    }
+      
+}
+    
+@media screen and (max-width: 870px) {
+    .Product-quantity-selector {
+        width: 180px;
+    }
+    
+    .pr__widget-wrap .yotpo .filters-dropdown .yotpo-dropdown-button,
+    .pr__widget-wrap .yotpo .filters-dropdown {
+        width: 100%;
+    }
+    
+    .yotpo .yotpo-pager .yotpo-page-element {
+        margin-right: 25px !important;
+    }
+}
+    
+@media screen and (max-width: 768px) {
+    .Product-gi__product-detail {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .Product-details__subscription-link {
+        color: #0077c3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Product-gi-form-button-sold-out p {
+        font-size: 14px;
+    }
+}

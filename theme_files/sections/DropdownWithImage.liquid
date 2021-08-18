@@ -1,0 +1,142 @@
+
+{% if section.settings.enabled == true %}
+<section 
+  id ="dropdown-with-image-{{ section.id }}" 
+  class="dropdown-with-image {% if page.url contains 'real-results' %}dropdown-with-image--negative-margin-bottom{% endif %} {% if page.url contains 'press' %}dropdown-with-image--negative-margin-bottom{% endif %} {% if collection.url contains 'collections' %}dropdown-with-image--negative-margin-bottom{% endif %} {% if canonical_url contains 'search' %}dropdown-with-image--negative-margin-bottom{% endif %}">
+  <div class="dwi__background" style="background-color: {{ section.settings.bg-color }}">
+    <div class="dwi__inner Site__page-width">
+
+      <div class="dwi__image-container">
+      {% comment %} <img src="{{ section.settings.image | img_url: 'master' }}" class="dwi__image" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+        {% include 'responsive-image' image: section.settings.image, classes: 'dwi__image' %} 
+      </div>
+
+      <div class="dwi__content-container">
+
+        <div class="dwi__title-container">
+          <h2 class="dwi__title">
+            {{ section.settings.title }}
+          </h2>
+        </div>
+
+        <div class="dwi__benefits">
+          <ul>
+            {% for block in section.blocks %}
+              <li id="dwi-benefit-{{ block.id }}" class="dwi__benefit">
+                <div class="dwi__benefit-image">
+                  {% comment %}<img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image-alt }}"> {% endcomment %}
+                  {% include 'responsive-image' image: block.settings.image %} 
+                </div>
+                <p class="dwi__benefit-text">
+                  {{ block.settings.text }}
+                </p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="dwi__button">
+          <a href="{{ section.settings.button-link }}" class="dwi__button-link Site__button-main">
+            {{ section.settings.button-text }}
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </section> 
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Dropdown With Image",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Show this section",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Section Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      },
+      {
+        "type": "text",
+        "id": "alt",
+        "label": "Alt tag text for image",
+        "default": "image",
+        "info": "this is optional but good for SEO"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Find the perfect products for your skin type and skin concerns."
+      },
+      {
+        "type": "text",
+        "id": "question",
+        "label": "Question",
+        "default": "my skin is"
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "Take the Skin Quiz"
+      },
+      {
+        "type": "url",
+        "id": "button-link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block_type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Benefit Title",
+            "default": "Benefit"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Icon For Benefit"
+          },
+          {
+            "type": "text",
+            "id": "image-alt",
+            "label": "Image alt text"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Benefit Text",
+            "default": "10% off every order"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Misc",
+        "name": "Dropdown With Image"
+      }
+    ]
+  }
+{% endschema %}

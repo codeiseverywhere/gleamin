@@ -1,0 +1,81 @@
+<section id="Blog-Slider-mobile" class="Blog-Slider-mobile" style="background-color: {{ section.settings.bg-color }}">
+  <article class="Blog-s__content-mobile">
+  
+    <div id="Blog-s__slider-mobile" class="Blog-s__slider-mobile">
+      {% for block in section.blocks %}
+        {% assign article = articles[block.settings.post] %}
+        <div class="Blog-s__slide-mobile">
+          <div class="Blog-s__slide-inner-mobile">
+            {% comment %}<img src="{{ article.image | img_url: 'master' }}" class="Blog-s__slide-image-mobile">{% endcomment %}
+            {% include 'responsive-image' image: article.image, classes: 'Blog-s__slide-image-mobile' %}
+              <div class="Blog-s__slide-mobile-arrow-prev">
+               <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-left-big-white.png?v=1597686340" class="lazyLoad fadeIn">
+                {%- comment -%}{% include 'responsive-image' type: 'link', image: 'https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-left-big-white.png?v=1597686340'%}{%- endcomment -%}
+              </div>
+              <div class="Blog-s__slide-mobile-arrow-next">
+                <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-right-big-white.png?v=1597686355" class="lazyLoad fadeIn">
+                {%- comment -%}{% include 'responsive-image' type: 'link', image: 'https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-right-big-white.png?v=1597686355'%}{%- endcomment -%}
+              </div>
+          </div>
+          <div class="Blog-s__slide-textbox-mobile">
+
+              <span class="Blog-s__slide-label-mobile">
+                <p class="Blog-s__slide-label-text-mobile">
+                  {{ block.settings.label }}
+                </p>
+              </span>
+
+              <div class="Blog-s__slide-title-wrap-mobile">
+                <div class="Blog-s__slide-title-highlight-mobile">
+                  <a href="{{ article.url }}" class="Blog-s__slide-title-mobile">
+                    {{ article.title }}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Slider Mobile",
+    "class": "Blog-Slider-margin-bottom",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Slider Backgeound Color",
+        "default": "#F5F5F5"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Create a name for the block"
+          },
+          {
+            "type": "article",
+            "id": "post",
+            "label": "Pick a Blog Post"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Pick a Label for the blog post"
+          }
+          
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,158 @@
+.Pledge__efforts {
+  width: 100%;
+  height: auto;
+}
+.Pledge__efforts-section-margin-bottom {
+  margin-bottom: 0px !important;
+}
+
+.Pledge__efforts-content {
+  padding: 100px 20px !important;
+  max-width: 1005px !important;
+}
+
+//title
+.Pledge__e-title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+//efforts (5050 sections)
+.Pledge__e-section {
+  width: 100%;
+  height: auto;
+  margin-bottom: 100px;
+}
+.Pledge__e-section:last-child {
+  margin-bottom: 0px;
+}
+.Pledge__e-flex {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-column-gap: 90px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.Pledge__e-side {
+  width: 100%;
+  height: auto;
+}
+//image
+.Pledge__e-image {
+  width: 100%;
+  height: 601px;
+  display: flex;
+}
+.Pledge__e-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+//text
+.Pledge__e-text-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.Pledge__e-text {
+  width: 100%;
+  height: auto;
+}
+.Pledge__e-text-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 42px;
+  margin-bottom: 15px;
+}
+.Pledge__e-text-text {
+  opacity: 0.8;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+
+
+
+@media screen and (max-width: 1100px){
+  
+  .Pledge__efforts-content {
+    padding: 80px 20px !important;
+  }
+  
+  //title
+  .Pledge__e-title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 42px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  //efforts (5050 sections)
+  .Pledge__e-section {
+    width: 100%;
+    height: auto;
+    max-width: 650px;
+    margin: 0px auto;
+    margin-bottom: 80px;
+  }
+  .Pledge__e-section:last-child {
+    margin-bottom: 0px;
+  }
+  .Pledge__e-flex {
+    width: 100%;
+    height: 100%;
+    display: block
+  }
+  .Pledge__e-flex--reverse {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .Pledge__e-side {
+    width: 100%;
+    height: auto;
+  }
+  //image
+  .Pledge__e-image {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    display: flex;
+    margin-bottom: 30px;
+  }
+  .Pledge__e-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  //text
+  .Pledge__e-text-box {
+    width: 100%;
+    height: auto;
+    display: block
+  }
+  .Pledge__e-text {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .Pledge__e-text-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 42px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .Pledge__e-text-text {
+    opacity: 0.8;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+  }
+}

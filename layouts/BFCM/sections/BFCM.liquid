@@ -1,0 +1,111 @@
+
+<section 
+  id="Product-coming-soon" 
+  class="Product-coming-soon">
+  <article class="Product-cs__content">
+
+    <div class="Product-cs__column Product-cs__column--image">
+      <div class="Product-cs__image-wrap">
+          {% include 'responsive-image' image: section.settings.image, classes: 'Product-cs__image' %} 
+      </div>
+    </div>
+
+    <div class="Product-cs__column Product-cs__column--text">
+      <div class="Product-cs__text-box">
+
+        <div class="Product-cs__title-wrap">
+          <h4 class="Product-cs__title">
+              {{ section.settings.title }}
+          </h4>
+        </div>
+
+        <div class="Product-cs__text-wrap">
+          <p class="Product-cs__text">
+          	{{ section.settings.description }}
+          </p>
+        </div>
+
+        <div class="Product-cs__subtext-wrap">
+          <p class="Product-cs__subtext">
+            {{ section.settings.subtext }}
+          </p>
+        </div>
+
+        <div class="Product-cs__form-wrap">
+          <form 
+            id="Product-coming-soon-sign-up-form" 
+            class="Product-cs__form klaviyo_gdpr_embed_RSaJKm"
+            action="//manage.kmail-lists.com/subscriptions/subscribe"
+            novalidate="novalidate">
+
+            <input type="hidden" name="g" value="RSaJKm">
+            <input type="hidden" name="$fields" value="$consent">
+            <input type="hidden" name="$list_fields" value="$consent">
+
+            <input 
+              type="email" 
+              name="email" 
+              id="k_id_email"
+              placeholder="Enter e-mail address here.." 
+              class="Product-cs__input">
+
+            <div class="Product-cs__button-wrap">
+              <button type="submit" class="Product-cs__button">
+                Submit
+              </button>
+            </div>
+
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            KlaviyoSubscribe.attachToForms('#Product-coming-soon-sign-up-form', {
+              hide_form_on_success: false,
+              extra_properties: {
+                $source: '$embed',
+                $method_type: "Klaviyo Form",
+                $method_id: 'embed',
+                $consent_version: 'Embed default text',
+                success: function(){
+                  window.location = 'https://gleamin.com/pages/thank-you?source=bfcm'
+                }
+              }
+            });
+          </script>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Coming Soon",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section title",
+        "default": "Black Friday is Back..."
+      },
+	{
+        "type": "text",
+        "id": "description",
+        "label": "Section description",
+        "default": "Be the first to hear when our Black Friday begins. You don't want to miss this!"
+      },
+      {
+        "type": "text",
+        "id": "subtext",
+        "label": "Section subtext",
+        "default": "Enter your email below to join our exclusive list, and first hear when our promotion begins."
+      },
+	{
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

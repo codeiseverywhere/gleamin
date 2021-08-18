@@ -1,0 +1,136 @@
+<section id="Ingredients-blacklist" class="Ingredients-blacklist">
+  <article class="Ingredients-bl__content Site__page-width">
+
+    <div class="Ingredients-bl__header">
+      <h4 class="Ingredients-bl__header-text">
+        {{ section.settings.section-title }}
+      </h4>
+    </div>
+
+    <div class="Ingredients-bl__grid">
+      {% for block in section.blocks %}
+        <div id="Ingredients-bl-item-{{ block.settings.title }}" class="Ingredients-bl__grid-item">
+          <div class="Ingredients-bl__grid-item-inner">
+
+            <div class="Ingredients-bl__grid-item-init">
+              <p class="Ingredients-bl__grid-item-text">
+                {{ block.settings.no }}
+              </p>
+              <p class="Ingredients-bl__grid-item-text Ingredients-bl__grid-item-text-crossed">
+                {{ block.settings.title }}
+              </p>
+            </div>
+
+            <div class="Ingredients-bl__grid-item-hover">
+              <p class="Ingredients-bl__grid-item-hover-text">
+                {{ block.settings.hover }}
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div id="Ingredients-Full-List-Container" class="Ingredients-bl__full-list Ingredients-bl__full-list--closed">
+
+      <div id="Ingredients-Full-List-Button" class="Ingredients-bl__full-list-button Ingredients-bl__full-list-button--closed">
+        <p class="Ingredients-bl__full-list-button-text Ingredients-bl__full-list-button-text--closed">
+          {{ section.settings.full-list-button-text-closed }}
+        </p>
+        <p class="Ingredients-bl__full-list-button-text Ingredients-bl__full-list-button-text--open">
+          {{ section.settings.full-list-button-text-open }}
+        </p>
+      </div>
+
+      <div id="Ingredients-Full-List-Drawer" class="Ingredients-bl__full-list-drawer">
+        <p class="Ingredients-bl__full-list-drawer-text">
+          {{ section.settings.full-list-drawer-text }}
+        </p>
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Blacklist",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section-title",
+        "label": "section Title",
+        "default": "Ingredient blacklist lorem ipsum"
+      },
+      {
+        "type": "text",
+        "id": "full-list-button-text-closed",
+        "label": "Button Text For Full List When Closed",
+        "default": "Show Full Blacklist"
+      },
+      {
+        "type": "text",
+        "id": "full-list-button-text-open",
+        "label": "Button Text For Full List When Open",
+        "default": "Hide Full Blacklist"
+      },
+      {
+        "type": "textarea",
+        "id": "full-list-drawer-text",
+        "label": "Full List of Blacklist Ingredients",
+        "default": "ALCOHOL, ALUMINUM SALTS, ARTIFICIAL FRAGRANCE, GLUTEN, MINERAL OIL, PARABENS, PEG COMPOUNDS, PETROLATUM, PHTHALATES, PROPYLENE GLYCOL, SULFATES: SLS & SLES, TALC, FORMALDEHYDES, FORMALDEHYDE RELEASING AGENTS, RETINYL PALMITATE, OXYBENZONE, COAL TAR, HYDROQUINONE, TRICLOCARBAN, ETHANOL, ETHYL ALCOHOL, DENAT. ALCOHOL, METHANOL, N-BUTYL ALCOHOL, ISOPROPYL ALCOHOL, SD ALCOHOL, SYNTHETIC COLORANTS/DYES, SOY, NANO PARTICLES, ACRYLATES, STYRENE, PHENOXYETHANOL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "no",
+            "label": "Blacklist No Text (top line)",
+            "default": "No"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "default": "Nasties"
+          },
+          {
+            "type": "text",
+            "id": "hover",
+            "label": "Block Hover Text",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+<script>
+  (function(){
+    window.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('Ingredients-Full-List-Container')
+      const button = document.getElementById('Ingredients-Full-List-Button')
+
+      const drawerHandler = () => {
+        console.log(container.classList)
+        if(container.classList[1] == 'Ingredients-bl__full-list--closed'){
+          container.classList.remove('Ingredients-bl__full-list--closed')
+          container.classList.add('Ingredients-bl__full-list--open')
+        } else {
+          container.classList.remove('Ingredients-bl__full-list--open')
+          container.classList.add('Ingredients-bl__full-list--closed')
+        }
+      }
+
+      button.addEventListener('click', drawerHandler)
+    })
+  })()
+</script>

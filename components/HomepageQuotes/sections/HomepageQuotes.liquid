@@ -1,0 +1,327 @@
+
+
+<section id="homepage-quotes" class="homepage-quotes">
+  <div class="hpq-inner Site__page-width">
+
+    <div class="hpq__desktop">
+      <div class="hpq__d-content">
+        {% for block in section.blocks %}
+          <div class="hpq__card">
+            <a href="{{ block.settings.link }}" class="hpq__card-inner">
+
+              {% comment %}<img src="{{ block.settings.image | img_url: 'master' }}" class="hpq__card-image" {% if block.settings.alt != blank %}alt="{{ block.settings.alt }}"{% endif %}>{% endcomment %}
+              {% include 'responsive-image' image: block.settings.image, classes: 'hpq__card-image' %} 
+
+              <div class="hpq__card-text-wrap">
+                
+                <span class="hpq__card-text-span">
+                  <h3 class="hpq__card-text">
+                     “{{ block.settings.quote }}”
+                  </h3>
+                </span>
+
+                <div class="hpq__card-bottom-row">
+
+                  <h4 class="hpq__card-name">
+                    {{ block.settings.name }}
+                  </h4>
+
+                  <div class="hpq__card-stars-wrap">
+                    {% if stars == '1' %}
+                      {% comment %} <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '1.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      {% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '2' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '2.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %} 
+                      
+
+                    {% elsif block.settings.stars == '3' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '3.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '4' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '4.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %} 
+
+                    {% elsif block.settings.stars == '5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %} 
+                    {% endif %}
+                  </div>
+
+                </div>
+              </div>
+
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="hpq__mobile">
+      <div class="hpq__m-slider">
+        {% for block in section.blocks %}
+          <div class="hpq__slide">
+            <div class="hpq__slide-inner">
+
+              {% comment %}{% endcomment %}
+              {% include 'responsive-image' image: block.settings.image, classes: 'hpq__slide-image' %}
+
+              <div class="hpq__slide-text-wrap">
+
+              <span class="hpq__card-text-span">
+                <h3 class="hpq__slide-quote">
+                  “{{ block.settings.quote }}”
+                </h3>
+              </span>
+                
+                <div class="hpq__slide-bottom-row">
+                  <h4 class="hpq__slide-name">
+                    {{ block.settings.name }}
+                  </h4>
+                  <div class="hpq__slide-star-wrap">
+                    {% if stars == '1' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+
+
+                    {% elsif block.settings.stars == '1.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %}
+
+                    {% elsif block.settings.stars == '2' %}
+                     {% comment %} <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+
+                    {% elsif block.settings.stars == '2.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %}
+
+
+                    {% elsif block.settings.stars == '3' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+
+                    {% elsif block.settings.stars == '3.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %}
+
+
+                    {% elsif block.settings.stars == '4' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+
+                    {% elsif block.settings.stars == '4.5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.half-star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.half-star, classes: 'hpq__card-star' %}
+
+                    {% elsif block.settings.stars == '5' %}
+                      {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>
+                      <img src="{{ section.settings.star | img_url: 'master' }}" class="hpq__card-star" {% if section.settings.alt != blank %}alt="{{ section.settings.alt }}"{% endif %}>{% endcomment %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                      {% include 'responsive-image' image: section.settings.star, classes: 'hpq__card-star' %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="hpq__slide-cta">
+                  <a href="{{ block.settings.link }}" class="hpq__slide-cta-link Site__button-main">
+                    {{ block.settings.link-text }}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="hpq__m-nav-slider-wrap">
+        <div class="hpq__m-nav-slider">
+          {% for block in section.blocks %}
+            <div class="hpq__m-nav-slide"></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "HP Quotes",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "star",
+        "label": "Choose a Star Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "half-star",
+        "label": "Choose a Half Star Image"
+      },
+      {
+        "type": "text",
+        "id": "alt",
+        "label": "Alt tag text for image",
+        "default": "Yellow Star Icon",
+        "info": "this is optional but good for SEO"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Block",
+        "name": "Block",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Slide Image"
+          },
+          {
+            "type": "text",
+            "id": "alt",
+            "label": "Alt tag text for image",
+            "default": "image",
+            "info": "this is optional but good for SEO"
+          },
+          {
+            "type": "text",
+            "id": "quote",
+            "label": "Review Text",
+            "default": "“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.”"
+          },
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Reviewer Name",
+            "default": "Jane D."
+          },
+          {
+            "type": "text",
+            "id": "stars",
+            "label": "Number of stars",
+            "default": "5",
+            "info": "The number of stars should be from 1 - 5, with .5 increments. ex: 4.5"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Slide Link for CTA"
+          },
+          {
+            "type": "text",
+            "id": "link-text",
+            "label": "Text for CTA",
+            "default": "View Product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Misc",
+        "name": "HP Quotes"
+      }
+    ]
+  }
+{% endschema %}

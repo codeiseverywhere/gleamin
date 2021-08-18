@@ -1,0 +1,77 @@
+<section id="Pledge-{{ section.id }}" class="pledge-homepage-section">
+  <article class="Pledge__hp-content Site__page-width">
+    
+    <div class="Pledge__hp-background lazyLoad" data-bg="{{ section.settings.image | img_url: 'master' }}" style="background-image: url();">
+
+        <div 
+          class="Pledge__hp-overlay" 
+          style="opacity: {{ section.settings.overlay | times: 0.01 }}">
+        </div>
+
+      <div class="Pledge__hp-text-box">
+        <h5 class="Pledge__hp-title">
+          {{ section.settings.title }}
+        </h5>
+        <p class="Pledge__hp-text">
+          {{ section.settings.text }}
+        </p>
+        <a href="{{ section.settings.link }}" class="Pledge__hp-cta Site__button-main">
+          {{ section.settings.link-text }}
+        </a>
+      </div>
+
+    </div>
+  
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Homepage Pledge",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Gleamin pledge lorem ipsum"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+      },
+      {
+        "type": "text",
+        "id": "link-text",
+        "label": "Section CTA Text",
+        "default": "Learn More"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Section CTA Link"
+      },
+      {
+        "type": "range",
+        "id": "overlay",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "label": "Level of opacity",
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Background Image"
+      }
+    ],
+    "presets": [
+      {
+        "category": "Pledge",
+        "name": "HP Pledge"
+      }
+    ]
+  }
+{% endschema %}

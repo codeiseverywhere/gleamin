@@ -1,0 +1,76 @@
+
+{% section 'ContactPage-hero' %}
+{% section 'ContactPage-form' %}
+
+
+<script>
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    try {
+      $(document).ready(function () {
+        $(".Contact__h-slider").slick({
+          arrows: false,
+          dots: false,
+          draggable: true,
+          swipe: true,
+          fade: false,
+          cssEase: "linear",
+          centerMode: true,
+          centerPadding: '50px',
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          adaptiveHeight: false,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 0,
+          speed: 6000,
+          pauseOnHover: true,
+          variableWidth: true,
+          responsive: [
+            {
+              breakpoint: 1000,
+              settings: {
+                arrows: false,
+                dots: false,
+                draggable: true,
+                swipe: true,
+                fade: false,
+                cssEase: "linear",
+                centerMode: true,
+                centerPadding: '50px',
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                adaptiveHeight: false,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 0,
+                speed: 5000,
+                pauseOnHover: true,
+                variableWidth: true,
+              },
+            },
+          ],
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+})();
+
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const selectInput = document.querySelector('.Contact__select-input');
+      const selectHandler = () => {
+        selectInput.classList.add('Contact__select-input--touched');
+      }
+      if (selectInput) {
+        selectInput.addEventListener('click', selectHandler)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+})();
+</script>

@@ -1,0 +1,184 @@
+<section id="Pledge-Efforts" class="Pledge__efforts" style="background-color: {{ section.settings.bg-color }}">
+  <article class="Pledge__efforts-content Site__page-width">
+  
+    <h4 class="Pledge__e-title">
+      {{ section.settings.title }}
+    </h4>
+
+    <!-- section 1 -->
+    <div class="Pledge__e-section">
+      <div class="Pledge__e-flex">
+
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-image">
+            {% comment %}<img 
+              src="{{ section.settings.image-1 | img_url: 'master' }}"
+              alt="{% if section.settings.alt-image-1 != blank %}{{ section.settings.alt-image-1 }}{% else %}image{% endif %}">{% endcomment %}
+              {% include 'responsive-image' image: section.settings.image-1 %}
+          </div>
+        </div>
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-text-box">
+            <div class="Pledge__e-text">
+              <h5 class="Pledge__e-text-title">
+                {{ section.settings.title-1 }}
+              </h5>
+              <p class="Pledge__e-text-text">
+                {{ section.settings.text-1 }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- section 2 -->
+    <div class="Pledge__e-section">
+      <div class="Pledge__e-flex Pledge__e-flex--reverse">
+      
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-text-box">
+            <div class="Pledge__e-text">
+              <h5 class="Pledge__e-text-title">
+                {{ section.settings.title-2 }}
+              </h5>
+              <p class="Pledge__e-text-text">
+                {{ section.settings.text-2 }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-image">
+            {% comment %}<img 
+              src="{{ section.settings.image-2 | img_url: 'master' }}"
+              alt="{% if section.settings.alt-image-2 != blank %}{{ section.settings.alt-image-2 }}{% else %}image{% endif %}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.image-2 %}
+
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    <!-- section 3 -->
+    <div class="Pledge__e-section">
+      <div class="Pledge__e-flex">
+      
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-image">
+            {% comment %}<img 
+              src="{{ section.settings.image-3 | img_url: 'master' }}"
+              alt="{% if section.settings.alt-image-3 != blank %}{{ section.settings.alt-image-3 }}{% else %}image{% endif %}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.image-3 %}
+          </div>
+        </div>
+        <div class="Pledge__e-side">
+          <div class="Pledge__e-text-box">
+            <div class="Pledge__e-text">
+              <h5 class="Pledge__e-text-title">
+                {{ section.settings.title-3 }}
+              </h5>
+              <p class="Pledge__e-text-text">
+                {{ section.settings.text-3 }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Efforts",
+    "class": "Pledge__efforts-section-margin-bottom",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Section Background Color",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section title",
+        "default": "Pledge efforts lorem ipsum"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Effort 1"
+      },
+      {
+        "type": "textarea",
+        "id": "title-1",
+        "label": "Effort 1 Title",
+        "default": "10,000 meals with Food Banks LA"
+      },
+      {
+        "type": "textarea",
+        "id": "text-1",
+        "label": "Effort 1 Text",
+        "default": "Gleamin has teamed up with “Food Bank LA” to support and alleviate hunger in our local community. We pledge to donate 10,000 meals to contribute to the 7 million individuals that “Food Bank LA” serves annually. "
+      },
+      {
+        "type": "image_picker",
+        "id": "image-1",
+        "label": "Effort 1 Image"
+      },
+
+
+
+      {
+        "type": "header",
+        "content": "Effort 2"
+      },
+      {
+        "type": "textarea",
+        "id": "title-2",
+        "label": "Effort 2 Title",
+        "default": "Sundays for social justice"
+      },
+      {
+        "type": "textarea",
+        "id": "text-2",
+        "label": "Effort 2 Text",
+        "default": "We are using our Social Media platforms to educate and empower our community to stay woke on social justice. We find it imperative to evolve, and we strive to educate ourselves and the world around us, to encourage action."
+      },
+      {
+        "type": "image_picker",
+        "id": "image-2",
+        "label": "Effort 2 Image"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Effort 3"
+      },
+      {
+        "type": "textarea",
+        "id": "title-3",
+        "label": "Effort 3 Title",
+        "default": "$100 employee donation on their behalf"
+      },
+      {
+        "type": "textarea",
+        "id": "text-3",
+        "label": "Effort 3 Text",
+        "default": "We believe in empowering, educating, and allowing our employees to choose where their footprint leaves a mark. Each year, for every employee, we donate $100 to an organization of their choosing, ultimately, creating a culture of meaning and purpose."
+      },
+      {
+        "type": "image_picker",
+        "id": "image-3",
+        "label": "Effort 3 Image"
+      }
+
+    ]
+  }
+{% endschema %}

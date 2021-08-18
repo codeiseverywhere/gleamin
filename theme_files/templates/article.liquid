@@ -1,0 +1,42 @@
+
+<div id="Article" class="Article">
+
+  {% if canonical_url contains 'how-to-get-rid-of-dark-spots-on-face' or canonical_url contains 'best-dark-spot-remover' or canonical_url contains 'hyperpigmentation-treatment' or canonical_url contains 'best-dark-spot-corrector' or canonical_url contains 'how-to-get-rid-of-hyperpigmentation' %}
+
+  <div class="Article__tending-reads Site__page-width">
+    {{ article.content }}
+  </div>
+
+  {% else %}
+
+  <!-- Desktop -->
+  <div class="Blog-desktop__components">
+    <div class="Blog-d__components-container">
+    
+      <div class="Blog-d__components-column Blog-d__components-column--left">
+        {% include 'Article-articleImage' %}
+        {% include 'Article-articleContent' %}
+        {% include 'Article-returnToBlog' %}
+      </div>
+
+      <div class="Blog-d__components-column Blog-d__components-column--right">
+        {% section 'Article-Intro' %}
+        {% section 'Blog-Sign-Up' %}
+        {% section 'Blog-Popular' %}
+      </div>
+    
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="Blog-mobile__components Article-mobile__components">
+    {% include 'Article-articleImage' %}
+    {% include 'Article-articleContent' %}
+    {% include 'Article-returnToBlog' %}
+    {% section 'Blog-Sign-Up' %}
+    {% section 'Blog-Popular' %}
+  </div>
+
+  {% endif %}
+
+</div>

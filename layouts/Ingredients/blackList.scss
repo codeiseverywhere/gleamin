@@ -1,0 +1,160 @@
+.Ingredients-blacklist {
+  width: 100%;
+  height: auto;
+}
+.Ingredients-bl__content {
+}
+
+
+//Header
+.Ingredients-bl__header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.Ingredients-bl__header-text {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+}
+
+
+//Grid
+.Ingredients-bl__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
+.Ingredients-bl__grid-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, #114b5f, #f5dae0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Ingredients-bl__grid-item-inner {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  padding: 48px 40px;
+  background-color: #fff;
+}
+.Ingredients-bl__grid-item-init {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 2;
+  transition: opacity 0.4s ease-in-out;
+}
+.Ingredients-bl__grid-item-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 48px 40px;
+  background-color: #f2f2f4;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.4s ease-in-out;
+}
+.Ingredients-bl__grid-item-text {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 52px;
+}
+.Ingredients-bl__grid-item-text-crossed {
+  text-decoration: line-through;
+}
+.Ingredients-bl__grid-item-hover-text {
+  font-size: 14px;
+  line-height: 22.4px;
+  font-weight: 400;
+}
+// - grid hover
+.Ingredients-bl__grid-item:hover .Ingredients-bl__grid-item-init {
+  z-index: 1;
+}
+.Ingredients-bl__grid-item:hover .Ingredients-bl__grid-item-hover {
+  opacity: 1;
+}
+
+
+//Full List 
+.Ingredients-bl__full-list {
+  width: 100%;
+  height: auto;
+}
+.Ingredients-bl__full-list-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 4px 10px;
+  margin: 0px auto 15px;
+  cursor: pointer;
+}
+.Ingredients-bl__full-list-button-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18.2px;
+  color: $Color_accent-2;
+  text-decoration: none;
+  opacity: 0;
+  display: none;
+}
+.Ingredients-bl__full-list-drawer {
+  width: 100%;
+  height: auto;
+  max-height: 0px;
+  overflow: hidden;
+}
+.Ingredients-bl__full-list-drawer-text {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: .8;
+  line-height: 25px;text-transform: uppercase;
+}
+
+// open / closed states
+.Ingredients-bl__full-list--closed .Ingredients-bl__full-list-button-text--closed {
+  opacity: 1;
+  display: block;
+}
+.Ingredients-bl__full-list--open .Ingredients-bl__full-list-button-text--open {
+  opacity: 1;
+  display: block;
+}
+.Ingredients-bl__full-list--closed .Ingredients-bl__full-list-drawer {
+  max-height: 0px;
+}
+.Ingredients-bl__full-list--open .Ingredients-bl__full-list-drawer {
+  max-height: 600px;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .Ingredients-bl__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .Ingredients-bl__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+  }
+}

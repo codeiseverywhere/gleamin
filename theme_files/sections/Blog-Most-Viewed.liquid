@@ -1,0 +1,78 @@
+<section id="blog-most-viewed">
+    <div class="Site__page-width">
+        <div class="article-row">
+            {% for block in section.blocks %}
+            {% assign article = articles[block.settings.article] %}
+            <div id="Blog-article-{{ article.handle }}" class="Blog-f__article article-grid-item" data-index="{{ forloop.index }}">
+                <a href="{{ article.url }}" class="Blog-f__article-wrap-link article-grid-link">
+      
+                  <div class="Blog-f__article-image">
+      
+                      {% comment %}<img src="{{ article.image | img_url: 'master' }}">{% endcomment %}
+                      {% include 'responsive-image' image: article.image %}
+      
+                      {% if article.tags.size > 0 %}
+                      <div class="Blog-f__label">
+                        <p class="Blog-f__label-text">
+                          {% for tag in article.tags %}
+                            {% if forloop.first %}
+                              {{ tag }}
+                            {% endif %}
+                          {% endfor %}
+                        </p>
+                      </div>
+                      {% endif %}
+      
+                  </div>
+      
+                  {% if article.tags.size > 0 %}
+                    <div class="Blog-f__label--mobile">
+                      <p class="Blog-f__label-text">
+                        {% for tag in article.tags %}
+                          {% if forloop.first %}
+                            {{ tag }}
+                          {% endif %}
+                        {% endfor %}
+                      </p>
+                    </div>
+                  {% endif %}
+      
+                    <p class="Blog-f__article-title">
+                      {{ article.title }}
+                    </p>
+      
+                  <p class="Blog-f__article-text">
+                    {{ article.excerpt_or_content | strip_html | truncatewords: 25, '...'}}
+                  </p>
+                  
+                  <p class="Blog-f__article-link">
+                    Read More &#8594;
+                  </p>
+                </a>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Blog Most Viewed",
+    "settings": [],
+    "blocks": [
+          {
+            "type": "Article",
+            "name": "Article",
+            "settings": [
+                {
+                    "type": "article",
+                    "id": "article",
+                    "label": "Article",
+                    "info": "Select an article"
+                }
+            ]
+          }
+    ],
+    "max_blocks": 3
+}
+{% endschema %}

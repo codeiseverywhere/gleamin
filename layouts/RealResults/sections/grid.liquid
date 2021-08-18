@@ -1,0 +1,75 @@
+<section id="Real-Results-grid" class="Real-Results-grid">
+  <article class="Real-Results-g__content Site__page-width">
+
+    <div class="Real-Results-g__grid">
+      {% for block in section.blocks %}
+        <div 
+          id="Real-Results-g__grid-item--{{ block.settings.title }}" 
+          class="Real-Results-g__grid-item">
+
+          <div class="Real-Results-g__grid-item-image-wrap">
+            {% comment %}<img src="{{ block.settings.image | img_url: 'master' }}" class="Real-Results-g__grid-item-image">{% endcomment %}
+            {% include 'responsive-image' image: block.settings.image, classes: 'Real-Results-g__grid-item-image' %} 
+          </div>
+
+          <div class="Real-Results-g__grid-item-textbox">
+            <p class="Real-Results-g__grid-item-text">
+              {{ block.settings.quote }}
+            </p>
+            <p class="Real-Results-g__grid-item-name">
+              {{ block.settings.title }}
+            </p>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="Real-Results-g__button-wrap">
+      <div id="Real-Results-g-button" class="Real-Results-g__button Site__button-main">
+        {{ section.settings.button-text }}
+      </div>
+    </div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "More Results"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Block Image"
+          },
+          {
+            "type": "textarea",
+            "id": "quote",
+            "label": "Block Quote",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "default": "Jane Doe"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

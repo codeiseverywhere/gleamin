@@ -1,0 +1,35 @@
+.Track-Order {
+  width: 100%;
+  height: auto;
+}
+.Track-Order__content {
+  height: 100%;
+  padding: 50px 20px !important;
+}
+
+//Header
+.Track-Order__account-header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.Track-Order__account-header-hilight {
+  display: inline;
+  padding: 0 1%;
+  background-color: #fff005;
+}
+.Track-Order__account-header-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0;
+}
+
+//APP Styling
+.pp_tracking_content {
+  width: 100%;
+  max-width: 1180px;
+  padding: 50px 20px !important;
+  margin: 0px auto !important;
+}

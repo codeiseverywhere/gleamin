@@ -1,0 +1,69 @@
+//Footer
+.AjaxCart-footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 425px;
+  height: 162px;
+  padding: 35px 28px;
+  background-color: $Color--grey;
+  box-shadow: 0px -2px 6px #00000010;
+  border-top: .5px solid #00000030;
+  z-index: 10;
+  transition: all .1s ease-in-out;
+
+  &.has-discount {
+    padding-top:25px;
+  }
+}
+.AjaxCart-footer-inner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.AjaxCart-footer-details {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.AjaxCart-footer-details-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #000000;
+  margin: 0;
+}
+.AjaxCart-footer-details-price {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #000000;
+  opacity: 0.8;
+  margin: 0;
+}
+.AjaxCart-footer-checkout {
+  width: 100%;
+  height: 60px;
+  margin-top: 15px;
+}
+.AjaxCart-footer-checkout-link {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 1.4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AjaxCart-footer-checkout-link:hover {
+  background-color: #fff003;
+  color: #000;
+}

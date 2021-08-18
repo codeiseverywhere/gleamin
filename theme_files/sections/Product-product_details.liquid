@@ -1,0 +1,147 @@
+
+{{ Product.metafields.shogun.above }}
+
+<main id="Product-Page--{{ product.handle }}" class="Page Product__page">
+  <article 
+    class="Product__content"
+    syle="background-image: url('{{ section.settings.background-image | img_url: 'master' }}')">
+    <div class="Product__columns">
+
+      <!-- Image Column -->
+      <div class="Product__column Product__column--image">
+        <div class="Product__main-slider-container">
+
+          <!-- main slider -->
+          <div class="Product__main-slider">
+            {% for image in product.images %}
+              <div class="Product__main-slider-slide">
+                <img 
+                  src="{{ image | img_url: 'master' }}" 
+                  alt="{{ image.alt }}" 
+                  class="Product__main-slider-slide-image">
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- main slider nav -->
+          <div class="Product__main-slider-nav-container">
+            <div class="Product__main-slider-nav">
+              {% for image in product.images %}
+                <div class="Product__main-slider-nav-item"></div>
+              {% endfor %}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div class="Product__column Product__column--info">
+        <div class="Product__info-container">
+        
+          <!-- info card -->
+          <div class="Product__info-card">
+            <div class="Product__info-card-inner">
+
+              <!-- tag line -->
+              <h5 class="Product__info-tag-line">
+                {{ prdouct.metafields.product-page.tag-line }}
+              </h5>
+
+              <!-- title -->
+              <h1 class="Product__info-title">
+                {{ product.title }}
+              </h1>
+
+              <!-- description -->
+              <p class="Product__info-description">
+                {{ product.content }}
+              </p>
+
+              <!-- ingredients link -->
+              <a href="#product-ingredients" class="Product__info-ingredients">
+                Ingredients
+              </a>
+
+              <div class="Product__info-form-wrap">
+                {% form 'product', product, data-productid: product.id, id:form_id,class:'Product__info-form', data-cart-form: '' %}
+
+                <div class="Product__info-form-variants">
+
+                </div>
+
+                <div class="Product__info-form-bottom">
+                  <!-- quantity selector -->
+                  <div class="Product__info-form-quantity-selector-wrap">
+
+                    <div 
+                      id="Product-quantity-selector" 
+                      class="Product__info-form-quantity-selector">
+                        <input id="Product-qs-input-main" type="hidden" value="1" name="quantity" />
+                        <div class="Product-qs-inner">
+                          <div id="Product-qs-minus-main" class="Product-qs-minus">
+                            <p class="Product-qs-minus-text">-</p>
+                          </div>
+                          <div class="Product-qs-value">
+                            <p id="Product-qs-value-text-main" class="Product-qs-value-text">1</p>
+                          </div>
+                          <div id="Product-qs-plus-main" class="Product-qs-plus">
+                            <p class="Product-qs-plus-text">+</p>
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+
+                  <!-- button -->
+                  <div class="Product__info-form-button">
+                  {% if product.available %}
+                    <button 
+                      type="submit" 
+                      name="add"
+                      id="AddToCart-{{ section.id }}"
+                      class="Product__info-form-button">
+                        <p class="Product__info-form-button-text">
+                          {{ section.settings.add-to-cart-button-text }}
+                        </p>
+                        <p class="Product__info-form-button-text Product__info-form-button-text--price">
+                          - {{ product.price }}
+                        </p>
+                    </button>
+                  {% else %}
+                    <button 
+                      class="Product__info-form-button Product__info-form-button--sold-out">
+                        <p class="Product__info-form-button-text">
+                          {{ section.settings.add-to-cart-button-text-sold-out }}
+                        </p>
+                    </button>
+                  {% endif %}
+                  </div>
+                </div>
+
+                {% endform %}
+              </div>
+
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+    </div>
+  </article>
+</main>
+
+{% schema %}
+  {
+    "name": "Product Details",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background-image",
+        "label": "Details Section Background Image"
+      }
+    ]
+  }
+{% endschema %}

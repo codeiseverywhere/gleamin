@@ -1,0 +1,43 @@
+
+{% assign currentProduct = product.title %}
+
+<section id="more-products" class="more-products">
+
+  <div class="Product-mp__header">
+    <h4 class="Product-mp__header-text">
+    {{ section.settings.title }}
+    </h4>
+  </div>
+
+  <div class="Product-mp__content">
+    <div class="Product-mp__grid">
+      {% for product in collections[section.settings.collection].products limit: 4 %}
+      {%include 'sca_freegift_price' with product %}
+        {% if product.title != currentProduct %}
+          {% unless product.tags contains 'test' %}
+            {% include 'Collection-grid_item' %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "More Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "You May Also Like"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Secton Collection"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,124 @@
+
+<section 
+  id="Product-coming-soon" 
+  class="Product-coming-soon" 
+  data-product-title="{{ product.title }}"
+  data-product-id="{{ product.id }}">
+  <article class="Product-cs__content">
+
+    <div class="Product-cs__column Product-cs__column--image">
+      <div class="Product-cs__image-wrap">
+        {%  assign has_coming-soon-image = 'false' %}
+        {% for image in product.images %}
+          {% if image.alt == 'coming-soon-image' %}
+            {% assign has_coming-soon-image = 'true' %}
+          {% endif %}
+          {% if has_coming-soon-image == 'true' %}
+            {% comment %}<img src="{{ image | img_url: 'master' }}" class="Product-cs__image">{% endcomment %}
+            {% include 'responsive-image' image: image, classes: 'Product-cs__image' %} 
+
+          {% endif %}
+        {% endfor %}
+        {% if has_coming-soon-image == 'false' %}
+          {% comment %}<img src="{{ product.featured_image | img_url: 'master' }}" class="Product-cs__image">{% endcomment %}
+          {% include 'responsive-image' image: product.featured_image, classes: 'Product-cs__image' %} 
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="Product-cs__column Product-cs__column--text">
+      <div class="Product-cs__text-box">
+
+        <div class="Product-cs__title-wrap">
+          <h4 class="Product-cs__title">
+            {% if product.metafields.coming-soon.title != blank %}
+              {{ product.metafields.coming-soon.title }}
+            {% else %}
+              {{ product.title }}
+            {% endif %}  
+          </h4>
+        </div>
+
+        <div class="Product-cs__text-wrap">
+          <p class="Product-cs__text">
+          {% if product.metafields.coming-soon.description != blank %}
+            {{ product.metafields.coming-soon.description}}
+          {% else %}
+            Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+          {% endif %}
+          </p>
+        </div>
+
+        <div class="Product-cs__subtext-wrap">
+          <p class="Product-cs__subtext">
+            {{ section.settings.subtext }}
+          </p>
+        </div>
+
+        <div class="Product-cs__form-wrap">
+          <form 
+            id="Product-coming-soon-sign-up-form" 
+            class="Product-cs__form klaviyo_gdpr_embed_{{ product.metafields.coming-soon.form-id }}"
+            action="//manage.kmail-lists.com/subscriptions/subscribe"
+            novalidate="novalidate">
+
+            <input type="hidden" name="g" value="{{ product.metafields.coming-soon.form-id }}">
+            <input type="hidden" name="$fields" value="$consent">
+            <input type="hidden" name="$list_fields" value="$consent">
+
+            <input 
+              type="email" 
+              name="email" 
+              id="k_id_email"
+              placeholder="Enter e-mail address here.." 
+              class="Product-cs__input">
+
+            <div class="Product-cs__button-wrap">
+              <button type="submit" class="Product-cs__button">
+                Submit
+              </button>
+            </div>
+
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            KlaviyoSubscribe.attachToForms('#Product-coming-soon-sign-up-form', {
+              hide_form_on_success: false,
+              extra_properties: {
+                $source: '$embed',
+                $method_type: "Klaviyo Form",
+                $method_id: 'embed',
+                $consent_version: 'Embed default text',
+                success: function(){
+                  window.location = 'https://gleamin.com/pages/thank-you?source=coming-soon'
+                }
+              }
+            });
+          </script>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Coming Soon",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section title",
+        "default": "Coming Soon..."
+      },
+      {
+        "type": "text",
+        "id": "subtext",
+        "label": "Section subtext",
+        "default": "Don’t miss it lorem ipsum dolor sit amet…"
+      }
+    ]
+  }
+{% endschema %}

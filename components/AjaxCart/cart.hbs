@@ -1,0 +1,291 @@
+<div class="AjaxCart">
+    <div class="AjaxCart-inner">
+
+        {{!-- Header --}}
+        <hgroup class="AjaxCart-cart_header">
+            <div class="AjaxCart-cart_header-top">
+                <div class="AjaxCart-dismiss" type="button" data-dismiss="offcanvas"
+                    data-target="#{{offcanvas_target_id}}">
+                    <div class="AjaxCart-dismiss-inner">
+                        <span class="AjaxCart-dismiss-bar AjaxCart-dismiss-bar-1"></span>
+                        <span class="AjaxCart-dismiss-bar AjaxCart-dismiss-bar-2"></span>
+                    </div>
+                </div>
+                <div class="AjaxCart-cart_header-icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 32 32" xml:space="preserve" width="32" height="32">
+                        <title>bag 09</title>
+                        <g class="nc-icon-wrapper" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5"
+                            transform="translate(0.5 0.5)" fill="#000000" stroke="#000000">
+                            <polygon fill="none" stroke="#000000" stroke-miterlimit="10"
+                                points="29,31 3,31 6,9 26,9 " />
+                            <path data-color="color-2" fill="none" stroke-miterlimit="10"
+                                d="M11,13V6 c0-2.761,2.239-5,5-5h0c2.761,0,5,2.239,5,5v7" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="AjaxCart-cart_header-bottom">
+                {{!-- Free Shipping --}}
+                {{#if items}}
+                {{#if show_free_shipping }}
+                <div class="AjaxCart-free-shipping">
+
+                    <h4 class="AjaxCart-free-shipping__title">
+                        {{#if has_free_shipping }}
+                        You've earned free shipping!
+                        {{else}}
+                        You are only {{AjaxCart_money amount_remaining__free_shipping money_format }} away from free
+                        shipping!
+                        {{/if}}
+                    </h4>
+
+                    <div class="AjaxCart-free-shipping__bar">
+                        <div class="AjaxCart-free-shipping__bar-progress"
+                            style="width: {{ percent_to_free_shipping }}%">
+                        </div>
+                    </div>
+
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+
+
+        </hgroup>
+
+        <div class="AjaxCart-content" style="height: calc(100vh - {{ header_height }}px - 162px)">
+            {{#if items}}
+            {{!-- Cart Items --}}
+            <div class="AjaCart-item-container">
+                {{#each items as |item delta|}}
+                <div class="AjaxCart-item">
+
+                    <div class="AjaxCart-item_image">
+                        {{#if item.featured_image}}
+                        <img src="{{AjaxCart_img-url item.featured_image.url "200x"}}"
+                            alt="{{item.featured_image.alt}}">
+                        {{/if}}
+                    </div>
+
+                    <div class="AjaxCart-item_details">
+                        <h3 class="AjaxCart-item_title"><a href="{{item.url}}">{{item.product_title}}</a></h3>
+                        {{#if item.options_with_values}}
+                        <div class="AjaxCart-item_options">
+                            {{#each item.options_with_values as |option delta|}}
+                            {{#AjaxCart_not-default-option option}}
+                            <div class="AjaxCart-item_option">
+                                <span class="AjaxCart-item_option_title">{{option.name}}</span>:
+                                <span class="AjaxCart-item_option_value">{{option.value}}</span>
+                            </div>
+                            {{/AjaxCart_not-default-option}}
+                            {{/each}}
+                        </div>
+                        {{/if}}
+                        <div class="AjaxCart-item_quantity_selector" data-ajaxcart-quantity
+                            data-ajaxcart-quantity-lineitem="{{item.id}}">
+                            <input class="AjaxCart-item_quantity" type="number" value="{{item.quantity}}">
+                            <button type="button"
+                                class="AjaxCart-item_quantity_toggle AjaxCart-item_quantity_toggle--increase"
+                                data-ajaxcart-quantitytoggle="1">+</button>
+                            <button type="button"
+                                class="AjaxCart-item_quantity_toggle AjaxCart-item_quantity_toggle--decrease"
+                                data-ajaxcart-quantitytoggle="-1">-</button>
+                        </div>
+                        <button type="button" class="AjaxCart-item_remove" data-ajaxcart-remove
+                            data-ajaxcart-remove-lineitem="{{item.id}}">Remove</button>
+                        {{#each item.line_level_discount_applications as |discount delta| }}
+                        <div class="AjaxCart-item_discount">
+                            {{discount.discount_application.title}}: <span
+                                class="AjaxCart-item_price AjaxCart-item_price--discount">{{AjaxCart_money discount.amount money_format}}</span>
+                            {{#if discount.discount_application.description}}
+                            <div class="AjaxCart-item_discount_description">
+                                {{discount.discount_application.description}}
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{/each}}
+                        <span
+                            class="AjaxCart-item_price AjaxCart-item_price--total">{{AjaxCart_money item.final_line_price money_format}}</span>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+            {{!-- Divider --}}
+            <div class="AjaxCart-divider"></div>
+
+            {{!-- Up Sell Placeholder --}}
+            <div class="AjaxCart-up-sell" data-incartupsell style="display: none;">
+                {{!-- <p class="AjaxCart-up-sell-title">Need a little more?</p>
+                <p class="AjaxCart-up-sell-description">Add a second Vitamin C Clay Mask and Save $10!</p> --}}
+                <div class="AjaxCart-up-sell-widget" data-incartupsell-content></div>
+                {{!-- Divider --}}
+                {{!-- <div class="AjaxCart-divider"></div> --}}
+            </div>
+
+
+
+            {{!-- Old Totals - table  --}}
+            {{!-- <table class="AjaxCart-totals" style="display: none;">
+
+                <tr class="AjaxCart-total AjaxCart-total--subtotal">
+                    <th>Subtotal</th>
+                    <td>{{AjaxCart_money items_subtotal_price money_format}}</td>
+                </tr>
+
+                {{#each cart_level_discount_applications as |discount delta| }}
+                <tr class="AjaxCart-total AjaxCart-total--discount">
+                    <th>Promotion <span class="AjaxCart-total_note">({{discount.title}})</span></th>
+                    <td>{{AjaxCart_money discount.total_allocated_amount money_format}}</td>
+                </tr>
+                {{/each}}
+
+                <tr class="AjaxCart-total AjaxCart-total--tax">
+                    <th>Tax <span class="AjaxCart-total_note">(calculated in checkout)</span></th>
+                    <td>&mdash;</td>
+                </tr>
+
+                <tr class="AjaxCart-total AjaxCart-total--shipping" data-ajaxcart-shipping>
+                    <th>Shipping
+                        <span class="AjaxCart-total_note" data-ajaxcart-shipping-destination></span>
+                        <button type="button" class="AjaxCart-shipping_address_edit_button"
+                            data-ajaxcart-shipping-editbutton>(edit)</button>
+                        <form class="AjaxCart-shipping_address_form" data-ajaxcart-shipping-form>
+                            <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                <select type="text" name="shipping_address[country]"
+                                    data-ajaxcart-shipping-countryinput>
+                                    <option>Country</option>
+                                </select>
+                            </div>
+                            <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                <select type="text" name="shipping_address[province]"
+                                    data-ajaxcart-shipping-provinceinput>
+                                    <option>Province</option>
+                                </select>
+                            </div>
+                            <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                <input type="text" name="shipping_address[zip]" placeholder="Postal Code">
+                            </div>
+                            <div class="AjaxCart-shipping_address_action FormItem FormItem--actions">
+                                <button type="submit" class="FormItem-action FormItem-action--primary">Edit</button>
+                            </div>
+                        </form>
+                    </th>
+                    <td data-ajaxcart-shipping-price>&mdash;</td>
+                </tr>
+            </table> --}}
+
+            {{!-- Totals --}}
+            {{!-- <div class="AjaxCart-totals">
+                <div class="AjaxCart-totals-row">
+                    <p class="AjaxCart-totals-title">
+                        Subtotal
+                    </p>
+                    <p class="AjaxCart-totals-value">
+                        {{AjaxCart_money items_subtotal_price money_format}}
+                    </p>
+                </div>
+                {{#each cart_level_discount_applications as |discount delta| }}
+                <div class="AjaxCart-totals-row">
+                    <p class="AjaxCart-totals-title">
+                        Promotion <span>({{discount.title}})</span>
+                    </p>
+                    <p class="AjaxCart-totals-value">
+                        {{AjaxCart_money discount.total_allocated_amount money_format}}
+                    </p>
+                </div>
+                {{/each}}
+                <div class="AjaxCart-totals-row">
+                    <p class="AjaxCart-totals-title">
+                        Tax <span>(calculated in checkout)</span>
+                    </p>
+                    <p class="AjaxCart-totals-value">
+                        &mdash;
+                    </p>
+                </div>
+                <div class="AjaxCart-totals-row">
+                    <p class="AjaxCart-totals-title">
+                        Shipping
+                        <span style="display: none;">
+                            <button type="button" class="AjaxCart-shipping_address_edit_button"
+                                data-ajaxcart-shipping-editbutton>(edit)</button>
+                            <form class="AjaxCart-shipping_address_form" data-ajaxcart-shipping-form>
+                                <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                    <select type="text" name="shipping_address[country]"
+                                        data-ajaxcart-shipping-countryinput>
+                                        <option>Country</option>
+                                    </select>
+                                </div>
+                                <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                    <select type="text" name="shipping_address[province]"
+                                        data-ajaxcart-shipping-provinceinput>
+                                        <option>Province</option>
+                                    </select>
+                                </div>
+                                <div class="AjaxCart-shipping_address_input FormItem FormItem--stacked">
+                                    <input type="text" name="shipping_address[zip]" placeholder="Postal Code">
+                                </div>
+                                <div class="AjaxCart-shipping_address_action FormItem FormItem--actions">
+                                    <button type="submit" class="FormItem-action FormItem-action--primary">Edit</button>
+                                </div>
+                            </form>
+                        </span>
+                    </p>
+                    <p class="AjaxCart-totals-value">
+                        &mdash;
+                    </p>
+                </div>
+            </div> --}}
+
+            {{else}}
+            {{!-- Cart Empty --}}
+            <div class="AjaxCart-empty_state">
+                <p class="AjaxCart-empty-text">
+                    Your Bag is Empty
+                </p>
+            </div>
+            {{/if}}
+        </div>
+
+        {{!-- Footer --}}
+        {{#if items}}
+        <div id="AjaxCart-footer" class="AjaxCart-footer{{#if total_discount}} has-discount{{/if}}">
+            <div class="AjaxCart-footer-inner">
+                {{#if total_discount}}
+                    <div class="AjaxCart-footer-details">
+                        <p class="AjaxCart-footer-details-text">
+                            Discount:
+                        </p>
+                        <p class="AjaxCart-footer-details-price discount-amount">
+                            {{AjaxCart_money total_discount money_format}}
+                        </p>
+                    </div>
+                {{/if}}
+                <div class="AjaxCart-footer-details">
+                    <p class="AjaxCart-footer-details-text">
+                        Subtotal:
+                    </p>
+                    <p class="AjaxCart-footer-details-price">
+                        {{AjaxCart_money total_price money_format}}
+                    </p>
+                </div>
+                <div class="AjaxCart-footer-checkout">
+                    {{#if has_subscriptions}}
+                    <a href="/cart" class="AjaxCart-footer-checkout-link">
+                        Review Cart
+                    </a>
+                    {{else}}
+                    <a href="/checkout" class="AjaxCart-footer-checkout-link">
+                        Checkout
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+
+    </div>
+</div>

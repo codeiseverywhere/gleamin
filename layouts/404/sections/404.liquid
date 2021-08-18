@@ -1,0 +1,70 @@
+<section id="404" class="_404" data-customer="{{ customer }}">
+  <article class="_404__content">
+    
+    <div class="_404__image-wrap">
+      {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="_404__image">{% endcomment %}
+      {% include 'responsive-image' image: section.settings.image, classes: '_404__image' %}
+    </div>
+
+    <div class="_404__text-box">
+      <div class="_404__title-wrap">
+        <span class="_404__title-highlight">
+          <h3 class="_404__title">
+            {{ section.settings.title }}
+          </h3>
+        </span>
+      </div>
+
+      <div class="_404__text-wrap">
+        <p class="_404__text">
+          {{ section.settings.text }}
+        </p>
+      </div>
+
+        <div class="_404__button">
+            <a href="{{ section.settings.link }}" class="_404__button-link">
+                {{ section.settings.btn-text }}
+            </a>
+        </div>
+    </div>
+
+  </article>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "404",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "404 Page Error"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Button Text",
+        "default": "Shop Mask" 
+      },
+      {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+      }
+    ]
+  }
+{% endschema %}

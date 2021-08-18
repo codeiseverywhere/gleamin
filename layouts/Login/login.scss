@@ -1,0 +1,340 @@
+.Customer-Account-Login {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  margin: 0px auto;
+  padding: 80px 0px 0px;
+}
+.Customer__login-content {
+  width: 100%;
+  height: 100%;
+}
+
+// Header
+.Customer__login-header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+  text-align: center;
+}
+.Customer__login-header-inner {
+  position: relative;
+  display: inline-block;
+}
+.Customer__login-header-hilight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4px;
+  display: inline;
+  height: 12px;
+  width: 110%;
+  z-index: -1;
+  background-color: #fff005;
+}
+.Customer__login-header-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  color: #000;
+  margin: 0;
+}
+
+//Reset Success Message
+.Customer__login-reset-success {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 35px;
+}
+.Customer__login-reset-success-message {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #000;
+  opacity: 0.8;
+}
+
+//Form -- LOGIN
+.Customer__login-form {
+  width: 100%;
+  height: auto;
+}
+.Customer__login-input {
+  width: 100%;
+  height: 40px;
+  padding: 12px 20px;
+  display: block;
+  font-family: $Paragraph-font !important;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: #000;
+  opacity: 0.5;
+  margin-bottom: 15px;
+  border: 1px solid #00000030;
+  border-radius: 0px;
+  outline: #73add2;
+}
+.Customer__login-input--password {
+  margin-bottom: 10px;
+}
+.Customer__login-input:focus {
+  outline: #73add2;
+  border-radius: 0px;
+}
+.Customer__login-input:placeholder-shown,
+.Customer__login-input::placeholder,
+ .Customer__login-input::-webkit-input-placeholder,
+ .Customer__login-input:-ms-input-placeholder,
+ .Customer__login-input:-moz-placeholder,
+ .Customer__login-input::-moz-placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: #000;
+  opacity: 0.5;
+  font-family: $Paragraph-font !important;
+}
+
+//Forgot password link
+.Customer__login-recover-password-link-wrap {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+}
+.Customer__login-recover-password-link {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #73add2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__login-recover-password-link:hover {
+  color: #000;
+}
+
+//Button
+.Customer__button {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-family: $Paragraph-font !important;
+  line-height: 20px;
+  letter-spacing: 1.4px;
+  font-weight: 500;
+  border: 0px solid transparent;
+  padding: 0;
+  border-radius: 0px;
+  margin-bottom: 15px;
+}
+.Customer__button:hover {
+  background-color: #fff005;
+  color: #000;
+}
+//Create account link
+.Customer__login-create-account-link-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.Customer__login-create-account-text {
+  font-family: $Paragraph-font;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #000;
+  opacity: 0.5;
+  margin-right: 10px;
+}
+.Customer__login-create-account-link {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #73add2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__login-create-account-link:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 490px) {
+  .Customer-Account-Login {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0px auto;
+    padding: 45px 20px;
+  }
+  .Customer__login-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Header
+  .Customer__login-header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 33px;
+    text-align: center;
+  }
+  .Customer__login-header-hilight {
+    display: inline;
+    background-color: #fff005;
+    padding: 0% 1%;
+  }
+  .Customer__login-header-text {
+    display: inline;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 46px;
+    color: #000;
+    margin: 0;
+  }
+
+  //Reset Success Message
+  .Customer__login-reset-success {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 35px;
+  }
+  .Customer__login-reset-success-message {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #000;
+    opacity: 0.8;
+  }
+
+  //Form -- LOGIN
+  .Customer__login-form {
+    width: 100%;
+    height: auto;
+  }
+  .Customer__login-input {
+    width: 100%;
+    height: 40px;
+    padding: 12px 20px;
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 1px;
+    color: #000;
+    opacity: 0.5;
+    margin-bottom: 15px;
+    border: 1px solid #00000030;
+    border-radius: 0px;
+    outline: #73add2;
+  }
+  .Customer__login-input--password {
+    margin-bottom: 10px;
+  }
+  .Customer__login-input:focus {
+    outline: #73add2;
+  }
+  .Customer__login-input::placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 1px;
+    color: #000;
+    opacity: 0.5;
+  }
+
+  //Forgot password link
+  .Customer__login-recover-password-link-wrap {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 35px;
+  }
+  .Customer__login-recover-password-link {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #73add2;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .Customer__login-recover-password-link:hover {
+    color: #000;
+  }
+
+  //Button
+  .Customer__button {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.4px;
+    font-weight: 500;
+    border: 0px solid transparent;
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+  .Customer__button:hover {
+    background-color: #fff005;
+    color: #000;
+  }
+  //Create account link
+  .Customer__login-create-account-link-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  .Customer__login-create-account-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #000;
+    opacity: 0.5;
+    margin-right: 10px;
+  }
+  .Customer__login-create-account-link {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #73add2;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .Customer__login-create-account-link:hover {
+    color: #000;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Customer__login-recover-password-link {
+      color: #0077c3;
+  }
+
+  .Customer__login-create-account-link {
+      color: #0077c3;
+  }
+}

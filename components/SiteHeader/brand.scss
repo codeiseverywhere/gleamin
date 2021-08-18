@@ -1,0 +1,26 @@
+.SiteHeader--logo-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.SiteHeader-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 130px;
+  height: auto;
+}
+.SiteHeader-logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+@media screen and (max-width: 900px){
+  .SiteHeader-logo {
+    max-width: 110px;
+  }
+}

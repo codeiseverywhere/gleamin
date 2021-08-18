@@ -1,0 +1,95 @@
+<section id="Customer__address" class="Customer__address">
+  <article class="Customer__address-content">
+
+    {% comment %} Header {% endcomment %}
+    <div class="Customer__address-header">
+      <span class="Customer__address-title-hilight">
+        <h1 class="Customer__address-title-text">
+          {{ section.settings.header }}
+        </h1>
+      </span>
+      <a href="/account" class="Customer__address-account-link">
+        {{ section.settings.return-text }}
+      </a>
+    </div>
+
+    {% comment %} Add New Address {% endcomment %}
+
+    <div class="Customer__address-add-new-row">
+      <span id="Customer__address-add-new-btn" class="Customer__address-btn--add-new">
+      Add New
+      </span>
+      {% include 'AddressBook-addForm' %}
+    </div>
+
+    {% comment %} Columns {% endcomment %}
+    <div class="Customer__addresses">
+      {% paginate customer.addresses by 5 %}
+        {% for address in customer.addresses %}
+          <div id="Customer-address{{ address.id }}" class="Customer__address-address-wrap {% if forloop.last %}Customer__address-address-wrap--last{% endif %}">
+            <div class="Customer__address-details-column">
+              <p class="Customer__account-address-item">
+                {{ customer.name }}
+              </p>
+              <p class="Customer__account-address-item">
+                {{ address.street }}
+              </p>
+              <p class="Customer__account-address-item">
+                {{ address.city }}, {{ customer.default_address.province_code }} {{ address.zip }}
+              </p>
+              <p class="Customer__account-address-item">
+                {{ address.country }}
+              </p>
+            </div>
+            <div class="Customer__address-btns-column">
+              <span id="Customer-btn-edit-{{ forloop.index }}" class="Customer__address-btn Customer__address-btn--edit">
+                Edit Address
+              </span>
+              <span 
+                id="Customer-btn-delete-{{ address.id }}" 
+                data-formId="{{ address.id }}" 
+                data-deleteMessage="Are you sure wish to delete this address?"
+                class="Customer__address-btn Customer__address-btn--delete">
+                Delete Address
+              </span>
+            </div>
+          </div>
+
+          {% include 'AddressBook-editForm' %}
+
+        {% endfor %}
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+
+      {% endpaginate %}
+    </>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "address Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Page Header"
+      },
+      {
+        "type": "text",
+        "id": "header",
+        "label": "Page Header",
+        "default": "My Addresses"
+      },
+      {
+        "type": "text",
+        "id": "return-text",
+        "label": "Return Button Text",
+        "default": "Return to Account"
+      }
+    ]
+  }
+{% endschema %}

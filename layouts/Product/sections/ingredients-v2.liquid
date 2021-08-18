@@ -1,0 +1,288 @@
+<section id="product-ingredients" class="product-ingredients">
+    <div class="pi__inner">
+    
+    {% comment %} Header {% endcomment %}
+      <div class="pi__header">
+        <h4 class="pi__header-title">
+          {{ section.settings.header-title }}
+        </h4>
+        <p class="pi__header-text">
+          {{ section.settings.header-text }}
+        </p>
+      </div>
+
+      {% comment %} Content {% endcomment %}
+      <div class="pi__content">
+        {% for block in section.blocks %}
+          {% assign mod = forloop.index | modulo: 2 %}
+          <div class="pi__content-section {% if mod == 0 %}pi__content-section--grey{% endif %}">
+            <div class="pi__content-section-inner {% if mod == 0 %}pi__content-section-inner--reverse{% endif %}">
+
+              <div class="pi__content-column pi__content-column--info">
+                <div class="pi__content-column-inner">
+
+                  <h4 class="pi__content-column-heading">
+                    {{ block.settings.small-title }}
+                  </h4>
+
+                  <div class="pi__content-column-title-underline">
+                    <h2 class="pi__content-column-title">
+                      {{ block.settings.title }}
+                    </h2>
+                  </div>
+
+                  <ul class="pi__content-column-list">
+                  
+                    {% if block.settings.bullet-1 != blank %}
+                      <li class="pi__content-column-list-item">
+                          {{ block.settings.bullet-1 }}
+                      </li>
+                    {% endif %}
+
+                    {% if block.settings.bullet-2 != blank %}
+                      <li class="pi__content-column-list-item">
+                          {{ block.settings.bullet-2 }}
+                      </li>
+                    {% endif %}
+
+                    {% if block.settings.bullet-3 != blank %}
+                      <li class="pi__content-column-list-item">
+                          {{ block.settings.bullet-3 }}
+                      </li>
+                    {% endif %}
+
+                    {% if block.settings.bullet-4 != blank %}
+                      <li class="pi__content-column-list-item">
+                          {{ block.settings.bullet-4 }}
+                      </li>
+                    {% endif %}
+                    
+                    {% if block.settings.bullet-5 != blank %}
+                      <li class="pi__content-column-list-item">
+                          {{ block.settings.bullet-5 }}  
+                      </li>
+                    {% endif %}
+                  </ul>
+
+                </div>
+              </div>
+
+              <div class="pi__content-column pi__content-column--image">
+                <div class="pi__content-column--image-inner">
+                  <img src="{{ block.settings.image | img_url: 'master' }}" alt="ingredient">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+
+      {% comment %} Footer / Icons {% endcomment %}
+      <div class="pi__footer">
+        <div class="pi__footer-inner">
+        
+          {% if section.settings.icon-1 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-1 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-1 }}</p>
+          </div>
+          {% endif %}
+        
+          {% if section.settings.icon-2 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-2 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-2 }}</p>
+          </div>
+          {% endif %}
+        
+          {% if section.settings.icon-3 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-3 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-3 }}</p>
+          </div>
+          {% endif %}
+        
+          {% if section.settings.icon-4 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-4 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-4 }}</p>
+          </div>
+          {% endif %}
+        
+          {% if section.settings.icon-5 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-5 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-5 }}</p>
+          </div>
+          {% endif %}
+        
+          {% if section.settings.icon-6 != blank %}
+          <div class="pi__footer-icon">
+            <img src="{{ section.settings.icon-6 | img_url: 'master' }}" alt="icon">
+            <p>{{ section.settings.icon-text-6 }}</p>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Ingredients",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "header-title",
+        "label": "Section Header Title",
+        "default": "Ingredients"
+      },
+      {
+        "type": "text",
+        "id": "header-text",
+        "label": "Section Header Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+      },
+      {
+        "type": "header",
+        "content": "Icons"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-1",
+        "label": "Icon 1"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-1",
+        "label": "Text for Icon 1",
+        "default": "Lorem Ipsum"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-2",
+        "label": "Icon 2"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-2",
+        "label": "Text for Icon 2",
+        "default": "Lorem Ipsum"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-3",
+        "label": "Icon 3"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-3",
+        "label": "Text for Icon 3",
+        "default": "Lorem Ipsum"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-4",
+        "label": "Icon 4"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-4",
+        "label": "Text for Icon 4",
+        "default": "Lorem Ipsum"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-5",
+        "label": "Icon 5"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-5",
+        "label": "Text for Icon 5",
+        "default": "Lorem Ipsum"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-6",
+        "label": "Icon 6"
+      },
+      {
+        "type": "text",
+        "id": "icon-text-6",
+        "label": "Text for Icon 6",
+        "default": "Lorem Ipsum"
+      }
+    ],
+    "blocks":[
+      {
+        "type": "block_type",
+        "name": "Block Name",
+        "settings":[
+          {
+            "type": "textarea",
+            "id": "small-title",
+            "label": "Small heading",
+            "default": "Yellow Australian Clay"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Content Title",
+            "default": "Detoxity & Buff"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Ingredient Image"
+          },
+          {
+            "type": "textarea",
+            "id": "bullet-1",
+            "label": "Bullet Point 1",
+            "default": "Lorem Ipsum dolor sit amet",
+            "info": "If this is left blank, no bullet point will show"
+          },
+          {
+            "type": "textarea",
+            "id": "bullet-2",
+            "label": "Bullet Point 1",
+            "default": "Lorem Ipsum dolor sit amet",
+            "info": "If this is left blank, no bullet point will show"
+          },
+          {
+            "type": "textarea",
+            "id": "bullet-3",
+            "label": "Bullet Point 1",
+            "default": "Lorem Ipsum dolor sit amet",
+            "info": "If this is left blank, no bullet point will show"
+          },
+          {
+            "type": "textarea",
+            "id": "bullet-4",
+            "label": "Bullet Point 1",
+            "default": "Lorem Ipsum dolor sit amet",
+            "info": "If this is left blank, no bullet point will show"
+          },
+          {
+            "type": "textarea",
+            "id": "bullet-5",
+            "label": "Bullet Point 1",
+            "default": "Lorem Ipsum dolor sit amet",
+            "info": "If this is left blank, no bullet point will show"
+          }
+          
+        ]
+       }
+     ]
+  }
+{% endschema %}

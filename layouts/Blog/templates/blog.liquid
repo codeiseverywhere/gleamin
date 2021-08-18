@@ -1,0 +1,137 @@
+<div id="Blog" class="Blog blog-page">
+
+  <!-- Desktop -->
+  <div class="Blog-desktop__components">
+    <div class="Blog-d__components-container">
+
+      <div class="Blog-d__components-column Blog-d__components-column--left">
+        {% section 'Blog-Slider' %}
+      </div>
+
+      <div class="Blog-d__components-column Blog-d__components-column--right">
+        {% section 'Blog-Intro' %}
+        {% section 'Blog-Sign-Up' %}
+      </div>
+
+    </div>
+
+    {% section 'Blog-Categories' %}
+
+    <div class="Blog-d__components-container">
+      <div class="Blog-d__components-column Blog-d__components-column--left">
+        {% section 'Blog-Feed' %}
+        <div class="Blog-f__blog-feed-more-btn-wrap">
+          <div class="Blog-f__blog-feed-more-btn Site__button-main">
+            More Blog Posts
+          </div>
+        </div>
+      </div>
+      <div class="Blog-d__components-column Blog-d__components-column--right sidebar-top-padding">
+        {% section 'Blog-Popular' %}
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Mobile -->
+  <div class="Blog-mobile__components">
+    {% section 'Blog-Intro' %}
+    {% section 'Blog-Sign-Up' %}
+    {% section 'Blog-Slider-mobile' %}
+    {% section 'Blog-Categories' %}
+    {% section 'Blog-Feed' %}
+    <div class="Blog-f__blog-feed-more-btn-wrap">
+      <div class="Blog-f__blog-feed-more-btn Site__button-main">
+        More Blog Posts
+      </div>
+    </div>
+    {% section 'Blog-Popular' %}
+  </div>
+
+</div>
+
+<script>
+  (function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    try {
+      $(document).ready(function () {
+        $("#Blog-s__slider").slick({
+          arrows: true,
+          dots: false,
+          draggable: true,
+          swipe: true,
+          fade: true,
+          cssEase: "linear",
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          adaptiveHeight: false,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 8000,
+          pauseOnHover: true
+        });
+        $("#Blog-s__slider-mobile").slick({
+          arrows: true,
+          prevArrow: $('.Blog-s__slide-mobile-arrow-prev'),
+          nextArrow: $('.Blog-s__slide-mobile-arrow-next'),
+          dots: false,
+          draggable: true,
+          swipe: true,
+          fade: true,
+          cssEase: "linear",
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          adaptiveHeight: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 8000,
+          pauseOnHover: true
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    const prevArrow = document.querySelectorAll('button.slick-prev')[0];
+    const nextArrow = document.querySelectorAll('button.slick-next')[0];
+    if (prevArrow) {
+
+      prevArrow.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-left-big-white.png?v=1597686340">'
+    }
+    if (nextArrow) {
+
+      nextArrow.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-right-big-white.png?v=1597686355">'
+    }
+
+  });
+})();
+
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const postInFeed = document.querySelectorAll('.Blog-f__article');
+      const morePostsBtnWrap = document.querySelector('.Blog-f__blog-feed-more-btn-wrap');
+      const morePostsBtn = document.querySelector('.Blog-f__blog-feed-more-btn');
+      if (postInFeed.length > 5) {
+        morePostsBtnWrap.style.display = 'block';
+      }
+      postInFeed.forEach((post) => {
+        const index = post.dataset.index;
+        if (index > 5) {
+          post.style.display = 'none'
+        }
+      });
+      const feedHandler = () => {
+        postInFeed.forEach(post => {
+          post.style.display = 'block';
+        })
+        morePostsBtnWrap.style.display = 'none'
+      }
+      morePostsBtn.addEventListener('click', feedHandler)
+    } catch (err) {
+      console.log('error msg: ', err);
+    }
+  });
+})();
+</script>

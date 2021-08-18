@@ -1,0 +1,84 @@
+<div class="FAQ-sidebar">
+
+  <ul class="FAQ-s__list">
+    {% for block in section.blocks %}
+      <li id="FAQ-{{ block.settings.title }}" class="FAQ-s__list-item">
+        <a href="#{{ block.settings.hash-tag }}" class="FAQ-s__list-item-link">
+          <p>
+            {{ block.settings.title }}
+          </p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="FAQ-s__filter">
+
+    <div class="FAQ-s__filter-header">
+      <p class="FAQ-s__filter-header-text">
+        Filter
+      </p>
+      <div class="FAQ-s__filter-header-icon">
+        {% if section.settings.icon != blank %}
+        <img id="FAQ-icon" src="{{ section.settings.icon | img_url: 'master' }}">
+        {% endif %}
+        {% if section.settings.icon-x != blank %}
+        <img id="FAQ-icon-x" src="{{ section.settings.icon-x | img_url: 'master' }}">
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="FAQ-s__filter-dropdown">
+      <ul class="FAQ-s__list-filter">
+        {% for block in section.blocks %}
+          <li id="FAQ-{{ block.settings.title }}" class="FAQ-s__list-item FAQ-s__list-item--filter">
+            <a href="#{{ block.settings.hash-tag }}" class="FAQ-s__list-item-link">
+              <p>
+                {{ block.settings.title }}
+              </p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Sidebar",
+    "class": "FAQ-section-no-margin FAQ-section-filter-margin",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Filter Icon Hamburger"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon-x",
+        "label": "Filter Icon X"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "block-type",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "List Item Link",
+            "default": "Most Asked Questions"
+          },
+          {
+            "type": "text",
+            "id": "hash-tag",
+            "label": "Anchor link to scroll to the right section"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

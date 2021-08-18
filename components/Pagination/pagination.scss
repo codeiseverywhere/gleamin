@@ -1,0 +1,95 @@
+.pagination-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 0;
+}
+.pagin__nav {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+}
+.pagin__nav-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Arrow
+.pagin__arrow {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+// Prev
+.pagin__prev-item {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.pagin__prev-item--disabled {
+}
+.pagin__prev-link {
+  width: auto;
+  height: auto;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Next
+.pagin__next-item {
+  width: auto;
+  height: 100%;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagin__next-item--disabled {
+}
+.pagin__next-link {
+  width: auto;
+  height: auto;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Parts
+.pagin__part-item {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5px;
+}
+.pagin__part-item:first-child {
+  margin-left: 0;
+}
+.pagin__part-item:last-child {
+  margin-right: 0;
+}
+.pagin__part-link {
+  width: auto;
+  height: auto;
+  margin: 0;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 400;
+}
+.pagin__part-link--active {
+  color: #73add2;
+}

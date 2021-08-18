@@ -1,0 +1,31 @@
+<section id="Article__hero" class="Article__hero">
+  <div class="Article__h-content">
+  
+    <div class="Article__h-image">
+      {% comment %}<img src="{{ article.image.src | img_url: 'master' }}" alt="{{ article.handle }}">{% endcomment %}
+      {% include 'responsive-image' image: article.image.src %}
+    </div>
+
+    <div class="Article__h-textbox">
+      {% if article.tags.size > 0 %}
+        <div class="Article__h-label">
+          <p class="Article__h-label-text">
+            {% for tag in article.tags %}
+              {% if forloop.first %}
+                {{ tag }}
+              {% endif %}
+            {% endfor %}
+          </p>
+        </div>
+        {% endif %}
+      <div class="Article__h-title-wrap {% if article.tags.size > 0 %}Article__h-title-wrap--with-margin{% endif %}">
+        <div class="Article__h-highlight">
+          <h1 class="Article__h-title">
+            {{ article.title }}
+          </h1>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

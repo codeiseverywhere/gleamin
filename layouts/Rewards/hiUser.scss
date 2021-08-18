@@ -1,0 +1,141 @@
+.Rewards-Hi-User {
+  width: 100%;
+  height: auto;
+}
+.Rewards-hu__content {
+  width: 100%;
+  max-width: 1140px;
+  padding: 0px 20px;
+  height: auto;
+  margin: 0px auto;
+}
+
+.Rewards-hu__text-box {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 0px 20px;
+  margin-bottom: 50px;
+}
+.Rewards-hu__text-name {
+  color: #000000;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 42px;
+  margin: 0;
+}
+.Rewards-hu__text-points {
+  color: #000000;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 42px;
+  margin: 0;
+}
+
+.Rewards-hu__button-wrap {
+  width: 100%;
+  height: auto;
+  max-width: 468px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto;
+}
+.Rewards-hu__button {
+  flex-grow: 1;
+  width: 100%;
+  height: 60px;
+}
+.Rewards-hu__button:first-child {
+  margin-right: 18px;
+}
+.Rewards-hu__button-link {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Rewards-hu__button-link:hover {
+  background-color: #fff005;
+  color: #000000;
+}
+
+@media screen and (max-width: 850px) {
+  .Rewards-Hi-User {
+    width: 100%;
+    height: auto;
+  }
+  .Rewards-hu__content {
+    width: 100%;
+    max-width: 1140px;
+    padding: 0px 20px;
+    height: auto;
+    margin: 0px auto;
+  }
+
+  .Rewards-hu__text-box {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 0px 20px;
+    margin-bottom: 35px;
+  }
+  .Rewards-hu__text-name {
+    color: #000000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0;
+  }
+  .Rewards-hu__text-points {
+    color: #000000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0;
+    text-align: center;
+  }
+  .Rewards-hu__text-points-balance {
+  }
+
+  .Rewards-hu__button-wrap {
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    display: block;
+    margin: 0px auto;
+  }
+  .Rewards-hu__button {
+    flex-grow: 1;
+    width: 100%;
+    height: 60px;
+  }
+  .Rewards-hu__button:first-child {
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
+  .Rewards-hu__button-link {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Rewards-hu__button-link:hover {
+    background-color: #fff005;
+    color: #000000;
+  }
+}

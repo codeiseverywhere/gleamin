@@ -1,0 +1,66 @@
+<div id="pagination-snippet" class="pagination-container">
+  <nav role="navigation" class="pagin__nav">
+    <ol class="pagin__nav-list">
+
+      {% comment %} Prev {% endcomment %}
+      {% if paginate.previous %}
+        <li id="pagin__prev-item" class="pagin__prev-item">
+          <a href="{{ paginate.previous.url }}" class="pagin__prev-link">
+            {% comment %}<img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_left_24px.png?v=1593619929" alt="arrow left" class="pagin__arrow">{% endcomment %}
+            {% include 'responsive-image' type: 'link', link: 'https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_left_24px.png?v=1593619929', classes: 'pagin__arrow' %} 
+
+          </a>
+        </li>
+      {% else %}
+        <li id="pagin__prev-item--disabled" class="pagin__prev-item pagin__prev-item--disabled">
+          <span aria-hidden="true" class="pagin__prev-link">
+            <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_left_24px.png?v=1593619929" alt="arrow left" class="pagin__arrow">
+          </span>
+        </li>
+      {% endif %}
+
+
+      {% comment %} Parts {% endcomment %}
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <li class="pagin__part-item">
+            <a href="{{ part.url }}" class="pagin__part-link">
+              {{ part.title }}
+            </a>
+          </li>
+        {% else %}
+          {% if part.title == paginate.current_page %}
+            <li class="pagin__part-item">
+              <p class="pagin__part-link pagin__part-link--active">
+                {{ part.title }}
+              </p>
+            </li>
+          {% else %}
+            <li class="pagin__part-item">
+              <p class="pagin__part-link">
+                {{ part.title }}
+              </p>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+
+      {% comment %} Next {% endcomment %}
+      {% if paginate.next %}
+        <li id="pagin__next-item" class="pagin__next-item">
+          <a href="{{ paginate.next.url }}" class="pagin__next-link">
+            <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="arrow right" class="pagin__arrow">
+          </a>
+        </li>
+      {% else %}
+        <li id="pagin__next-item--disabled" class="pagin__next-item pagin__next-item--disabled">
+          <span aria-hidden="true" class="pagin__next-link">
+            <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/ic_keyboard_arrow_right_24px.png?v=1593619938" alt="arrow right" class="pagin__arrow">
+          </span>
+        </li>
+      {% endif %}
+
+    </ol>
+  </nav>
+</div>

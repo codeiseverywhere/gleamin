@@ -1,0 +1,109 @@
+<section id="Subscription" class="Subscription">
+  <article class="Subscription__content Site__page-width">
+
+    {% comment %} Header {% endcomment %}
+    <div class="Subscription__header">
+      <span class="Subscription__title-hilight">
+        <h1 class="Subscription__title">
+          {{ section.settings.title }}
+        </h1>
+      </span>
+      <a href="/account" class="Subscription__account-link">
+        {{ section.settings.return-text }}
+      </a>
+    </div>
+
+    {% comment %} Subscriptions {% endcomment %}
+    <div class="Subscription__items">
+      
+      <div id="Subscription__items-header" class="Subscription__items-header">
+        <h5 class="Subscriptions__items-header-text">
+          {{ section.settings.subheader }}
+        </h5>
+        <div id="arrow" class="Subscription__items-header-arrow-wrap Subscription__arrow-flip">
+          <img src="{{ section.settings.arrow | img_url: 'master' }}" class="Subscription__items-header-arrow" alt="arrow image">
+        </div>
+      </div>
+
+      <ul id="Subscription__items-list" class="Subscription__items-list Subscription__items-list--open" data-state="open">
+        {% for i in (1..3) %}
+          <li id="Subscription__item-{{  }}" class="Subscription__item">
+            <div class="Subscription__item-details-wrap">
+
+              <div class="Subscriptions__item-group">
+                <p class="Subscription__item-title">
+                  Product
+                </p>
+                <p class="Subscription__item-value">
+                  Mask
+                </p>
+              </div>
+
+              <div class="Subscriptions__item-group">
+                <p class="Subscription__item-title">
+                  Frequency
+                </p>
+                <p class="Subscription__item-value">
+                  Every {{ i }} Weeks
+                </p>
+              </div>
+
+              <div class="Subscriptions__item-group">
+                <p class="Subscription__item-title">
+                  Total
+                </p>
+                <p class="Subscription__item-value">
+                  $35.99
+                </p>
+              </div>
+
+            </div>
+
+            <div class="Subscriptions__item-change-wrap">
+              <a class="Subscription__item-change">
+                Change Subscription
+              </a>
+              <a class="Subscription__item-change">
+                Cancel Subscription
+              </a>
+            </div>
+
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Subscriptions",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Page Title",
+        "default": "My Account"
+      },
+      {
+        "type": "text",
+        "id": "return-text",
+        "label": "Return Button Text",
+        "default": "Return to Account"
+      },
+      {
+        "type": "text",
+        "id": "subheader",
+        "label": "Page Subtitle",
+        "default": "Subscriptions"
+      },
+      {
+        "type": "image_picker",
+        "id": "arrow",
+        "label": "Mobile Dropdown Arrow"
+      }
+    ]
+  }
+{% endschema %}

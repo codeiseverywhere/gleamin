@@ -1,0 +1,38 @@
+<section id="Blog-Intro" class="Blog-Section-sidebar">
+    <article class="Blog-i__content">
+    
+      <h4 class="Blog-i__title">
+        {%- if article.tags.size > 0 -%}
+            {{article.tags.first}}
+        {% endif %}
+      </h4>
+  
+      <div class="Blog-i__textbox">
+        <p class="Blog-i__text">
+          {{ section.settings.text }}
+        </p>
+      </div>
+  
+    </article>
+  </section>
+  
+  {% schema %}
+    {
+      "name": "Intro",
+      "class": "Blog-sections-margin",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "Gleamin Blog"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Section Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+        }
+      ]
+    }
+  {% endschema %}

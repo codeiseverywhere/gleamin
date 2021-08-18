@@ -1,0 +1,86 @@
+<section id="product-how-to-apply" class="product-how-to-apply">
+    <div class="phta__content-section">
+        <div class="phta__content-section-inner">
+
+            <div class="phta__content-column phta__content-column--image">
+                <img src="{{ section.settings.main_image | img_url: 'master' }}" class="phta__image-cover"
+                    alt="how to apply">
+            </div>
+
+            <div class="phta__content-column phta__content-column--info">
+                <div class="phta__content-column-inner">
+
+                    <h4 class="phta__content-column-title">
+                        {{ section.settings.title }}
+                    </h4>
+
+                    <p class="phta__content-column-description">
+                        {{ section.settings.main_description }}
+                    </p>
+
+                    <ul class="phta__content-image-row">
+                        {% for block in section.blocks %}
+                        <div class="phta__content-image-item">
+                            <img src="{{ block.settings.howto_image | img_url: 'master' }}" alt="how to apply">
+                            <h5>{{block.settings.howto_text}}</h5>
+                        </div>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "How To Apply",
+    "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title",
+        "info": "Section title",
+        "placeholder": "Title"
+    },
+    {
+        "type": "textarea",
+        "id": "main_description",
+        "label": "Description",
+        "default": "Description",
+        "info": "Section description"
+    },
+    {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Section Image"
+    }
+    ],
+    "blocks" : [
+        {
+            "type": "Image",
+            "name": "How To",
+            "settings":[
+              {
+                "type": "image_picker",
+                "id": "howto_image",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id": "howto_text",
+                "label": "Text",
+                "default": "Lorem",
+                "info": "Text under image",
+                "placeholder": "Lorem Ipsum"
+               }
+            
+            ]
+        }
+    ]
+    
+  }
+{% endschema %}

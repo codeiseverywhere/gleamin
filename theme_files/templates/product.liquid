@@ -1,0 +1,81 @@
+
+{% comment %}
+  Shogun
+  - above and below meta tags are located in the section file itself.
+    {{ product.metafields.shogun.above }}
+    {{ product.metafields.shogun.below }}
+{% endcomment %}
+
+{% section 'Product-sticky_add_to_cart' %}
+
+{% section 'Product-template' %}
+
+{% comment %} {% section 'Product-beforeAfter' %} {% endcomment %}
+
+{% section 'HomePageBeforeAfter' %}
+
+{% section 'Product-ingredients-v2' %}
+
+{% section 'Product-how_to_apply' %}
+
+{% comment %}{% section 'Product-how_it_works' %}{% endcomment %}
+
+{% section 'Product-reviews' %}
+
+{% section 'Product-more_products' %}
+
+{% section 'DropdownWithImage' %}
+
+{% comment %}{% section 'InstagramApp' %}{% endcomment %}
+
+<script text="text/javascript">
+ var _learnq = _learnq || [];
+ var item = {
+   Name: {{ product.title|json }},
+   ProductID: {{ product.id|json }},
+   Categories: {{ product.collections|map:'title'|json }},
+   ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+   URL: "{{ shop.secure_url }}{{ product.url }}",
+   Brand: {{ product.vendor|json }},
+   Price: {{ product.price|money|json }},
+   CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+ };
+
+ _learnq.push(['track', 'Viewed Product', item]);
+
+ _learnq.push(['trackViewedItem', {
+   Title: item.Name,
+   ItemId: item.ProductID,
+   Categories: item.Categories,
+   ImageUrl: item.ImageURL,
+   Url: item.URL,
+   Metadata: {
+     Brand: item.Brand,
+     Price: item.Price,
+     CompareAtPrice: item.CompareAtPrice
+   }
+ }]);
+  
+ document.getElementById("AddToCart-Product-template_quickview").addEventListener('click',function (){
+ 		_learnq.push(['track', 'Added to Cart', item]);
+ });
+  
+//  const pdp-add-to-cart = document.querySelectorAll(".Product-details__add-to-cart");
+  
+//  for (let i = 0; i < pdp-add-to-cart.length, i++) {
+//    pdp-add-to-cart[i].addEventListener('click', function() {
+//      _learnq.push(['track', 'Added to Cart', item]);
+//    });
+//  }
+</script>
+
+<script type="text/javascript">
+  $('.btn--add-to-cart' ).click(function() {
+  		trackable('addToCart', {
+          productId: {{ product.id }},
+  			quantity: 1,
+  			value: {{ product.price | money_without_currency }},
+  			currency: 'USD',
+		});
+  })
+</script>

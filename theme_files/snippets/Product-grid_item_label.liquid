@@ -1,0 +1,29 @@
+{% comment %} 
+- the product labels below recognize the tags:
+"Best Sellers", "New".
+- if the products price is less than the product.compare_price the label will read "Sale" and takes priority over the other tags.
+{% endcomment %}
+<div id="Product-grid-item-label-{{ product.id }}" class="Product-grid-item-label">
+  {% if product.price < product.compare_at_price %}
+    <div class="Product-gil__inner">
+      <p class="Product-gil__text">Sale</p>
+    </div>
+  {% else %}
+    {% for tag in product.tags %}
+      {% if tag == 'Best Seller' %}
+        <div class="Product-gil__inner" data-tag="{{ tag }}">
+          <p class="Product-gil__text">Bestseller</p>
+        </div>
+      {% elsif tag == 'New' %}
+        <div class="Product-gil__inner">
+          <p class="Product-gil__text">New</p>
+        </div>
+      {% else %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+
+

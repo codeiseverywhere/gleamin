@@ -1,0 +1,199 @@
+.Refer-referrals {
+  width: 100%;
+  height: auto;
+}
+.Refer-r__content {
+}
+
+//Header
+.Refer-r__header {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.Refer-r__highlight {
+  display: inline;
+  width: 100%;
+  height: auto;
+  background-color: $Color--primary;
+}
+.Refer-r__header-text {
+  display: inline;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 52px;
+}
+
+//Table
+.Refer-r__table-wrap {
+  width: 100%;
+  max-width: 750px;
+  margin: 0px auto;
+}
+.swell-referral-table {
+  width: 100%;
+}
+.swell-referral-table thead {
+  width: 100%;
+}
+.swell-referral-table thead tr {
+  width: 100%;
+  border-bottom: 1px solid #000000;
+}
+.swell-referral-table thead tr th{
+  text-align: left;
+  padding-bottom: 10px;
+  padding-left: 30px;
+}
+
+.Refer-r__table-spacer {
+
+}
+
+.swell-referral-table tbody {
+  width: 100%;
+  margin-top: 15px;
+}
+.swell-referral-table tbody tr {
+  width: 100%;
+}
+.swell-referral-table tbody tr td {
+  padding: 15px 20px 0px 30px;
+}
+.swell-referral-table tbody tr td {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  opacity: .8;
+  font-family: $Paragraph-font;
+}
+
+//Footer
+.Refer-r__footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+}
+.Refer-r__balance {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+  color: #212222;
+  margin-bottom: 35px;
+}
+.Refer-r__balance span {
+}
+.Refer-r__redeem-button {
+  margin: 0px auto;
+  width: 225px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 1.4px;
+}
+
+@media screen and (max-width: 768px){
+  .Refer-referrals {
+    width: 100%;
+    height: auto;
+  }
+  .Refer-r__content {
+  }
+  
+  //Header
+  .Refer-r__header {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .Refer-r__highlight {
+    display: inline;
+    width: 100%;
+    height: auto;
+    background-color: $Color--primary;
+  }
+  .Refer-r__header-text {
+    display: inline;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+  
+  //Table
+  .Refer-r__table-wrap {
+    width: 100%;
+    max-width: 750px;
+    margin: 0px auto;
+  }
+  .swell-referral-table {
+    width: 100%;
+  }
+  .swell-referral-table thead {
+    width: 100%;
+  }
+  .swell-referral-table thead tr {
+    width: 100%;
+    border-bottom: 1px solid #000000;
+  }
+  .swell-referral-table thead tr th{
+    text-align: left;
+    padding-bottom: 10px;
+    padding-left: 0px;
+  }
+  
+  .Refer-r__table-spacer {
+  
+  }
+  
+  .swell-referral-table tbody {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .swell-referral-table tbody tr {
+    width: 100%;
+  }
+  .swell-referral-table tbody tr td {
+    padding: 15px 0px 0px 0px;
+  }
+  .swell-referral-table tbody tr td {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    opacity: .8;
+    word-break: break-all;
+  }
+  
+  //Footer
+  .Refer-r__footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .Refer-r__balance {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 42px;
+    color: #212222;
+    margin-bottom: 35px;
+  }
+  .Refer-r__balance span {
+  }
+  .Refer-r__redeem-button {
+    margin: 0px auto;
+    width: 225px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1.4px;
+  }
+}

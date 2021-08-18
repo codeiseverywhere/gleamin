@@ -1,0 +1,97 @@
+$AjaxCart--background_color: $Color--white;
+
+$AjaxCart--width: 320px;
+
+$AjaxCart--gutter_width: $Grid--gutter_width;
+
+$AjaxCart-cart_header--spacing: 5px;
+
+$AjaxCart-cart_title--font_size: 20px;
+$AjaxCart-cart_title--line_height: 1.2;
+
+$AjaxCart-dismiss--size: 14px;
+$AjaxCart-dismiss--misalignment: (
+    ($AjaxCart-cart_title--font_size * $AjaxCart-cart_title--line_height) -
+      $AjaxCart-dismiss--size
+  ) / 2;
+$AjaxCart-dismiss--color: $Font-color--black;
+
+//contrast($AjaxCart--background_color, $Font-color--black, $Font-color--white);
+
+body.cart-open,
+body.acsb-keynav.cart-open {
+  overflow:hidden!important;
+}
+
+.AjaxCart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 425px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0px 10px #00000020;
+  z-index: 1111;
+
+  /* &:before {
+    content:'';
+    background-color:#999;
+    width:100%;
+    height:100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  } */
+
+}
+.AjaxCart-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+//Content
+// - holds cart items, dividers, up sell, totals and empty
+.AjaxCart-content {
+  width: 100%;
+  // height: calc(100vh - 67px - 162px);
+  //height is calculated in MiniCart.js > MiniCart.prototype.update_cart
+  overflow-y: auto;
+  padding: 30px 0px 70px;
+}
+
+// Divider
+.AjaxCart-divider {
+  width: calc(100% - 56px);
+  height: 1px;
+  background-color: #00000030;
+  margin: 0px auto 50px;
+}
+
+//Empty
+.AjaxCart-empty_state {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AjaxCart-empty-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  opacity: .8;
+}
+
+@import "header.scss";
+@import "free-shipping.scss";
+@import "item.scss";
+@import "upsell.scss";
+@import "totals.scss";
+// @import "shipping.scss";
+@import "footer.scss";
+@import "load_animation.scss";

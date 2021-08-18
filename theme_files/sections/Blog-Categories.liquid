@@ -1,0 +1,68 @@
+<section id="blog-categories-row">
+    <div class="Site__page-width">
+
+        <div class="blog-categories-links">
+            <a href="/blogs/glow-life"class="category-text-link{% if current_tags == blank %} current{% endif %}">All Posts</a>
+            {% for block in section.blocks %}
+                    <a href="{{block.settings.url}}" class="category-text-link{% if block.settings.title == current_tags.first %} current{% endif %}">{{block.settings.title}}</a>
+            {% endfor %}
+        </div>
+
+        <div class="blog-categories-mobile">
+            <h5>Category:</h5>
+            <span class="dropdown-el">
+                <span>{% if current_tags == blank %}All Posts{% else %}{{current_tags.first}}{% endif %}</span>
+                {% if current_tags %}<a href="/blogs/glow-life">All Posts</a>{% endif %}
+                {% for block in section.blocks %}
+                {%if block.settings.title != current_tags.first %}
+                    <a href="{{block.settings.url}}">{{block.settings.title}}</a>
+                {% endif %}    
+                {% endfor %}
+            </span>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+
+      $(document).ready(function () {
+        $('.dropdown-el').unbind('click').bind('click', function (e) {
+            e.stopPropagation();
+            console.log('psych!')
+            $(this).toggleClass('expanded');
+        });
+        $(document).click(function() {
+            $('.dropdown-el').removeClass('expanded');
+        });
+      })
+
+</script>
+
+
+{% schema %}
+{
+    "name": "Blog Categories",
+    "settings": [],
+    "blocks": [
+          {
+            "type": "Text",
+            "name": "Category",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Lorem"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link",
+                    "default": "/"
+                }
+            ]
+          }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+.Customer__order-column--details {
+  width: 100%;
+  max-width: 323px;
+  margin-left: 31px;
+}
+
+.Customer__order-info-block {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.Customer__order-info-block:last-child {
+  margin-bottom: 0px;
+}
+
+.Customer__order-payment-status-wrap {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+.Customer__order-payment-status {
+  margin: 0;
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 600;
+}
+.Customer__order-payment-status span {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1000px) {
+  .Customer__order-column--details {
+    width: 100%;
+    max-width: 768px;
+    margin-left: 0px;
+    margin: 0px auto;
+  }
+}

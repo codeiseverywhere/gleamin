@@ -1,0 +1,71 @@
+<div class="Customer__account-column Customer__account-column--details">
+
+  <div class="Customer__account-info-block">
+  
+    <div class="Customer__account-subheader">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.address }}
+      </h4>
+    </div>
+    
+      <div class="Customer__account-address-info">
+        <p class="Customer__account-address-item">
+          {{ customer.name }}
+        </p>
+        <p class="Customer__account-address-item">
+          {{ customer.default_address.street }}
+        </p>
+        <p class="Customer__account-address-item">
+          {{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}
+        </p>
+        <p class="Customer__account-address-item">
+          {{ customer.default_address.country }}
+        </p>
+        <div class="Customer__account-address-form-wrap">
+          <a  href="/account/addresses" class="Customer__account-button">
+            {% if customer.addresses.size > 1 %}
+              View Addresses ({{ customer.addresses.size }})
+            {% else %}
+              View Address
+            {% endif %}
+          </a>
+        </div>
+      </div>
+
+  </div>  
+
+  <div class="Customer__account-info-block">
+    <div class="Customer__account-subheader">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.reward }}
+      </h4>
+    </div>
+    <div class="Customer__account-rewards-info">
+      
+      <p>Gleamin Rewards has been shut down effective June 24, 2021.</p>
+    </div>
+    
+  </div>
+
+  <div class="Customer__account-info-block">
+    <div class="Customer__account-subheader">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.subscription }}
+      </h4>
+    </div>
+    <div class="Customer__account-subscription-button-wrap">
+      <a href="/tools/recurring/login/" class="Customer__account-button">
+        Manage Subscriptions
+      </a>
+    </div>
+  </div>
+
+  <div class="Customer__account-info-block">
+    <div class="Customer__account-subscription-button-wrap">
+      <a href="/account/logout" class="Customer__account-button">
+        Log Out of Account
+      </a>
+    </div>
+  </div>
+
+</div>

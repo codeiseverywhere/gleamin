@@ -1,0 +1,81 @@
+<section id="blog-page-categories">
+    <div class="Site__page-width">
+
+        <div class="js-blog-categories-carousel swiper-container">
+            <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                {% assign blog = blogs[block.settings.blog] %}
+                    <div class="item-category-banner swiper-slide">
+                        <a href="{{ blog.url }}" class="category-link">
+                            <img src="{{ block.settings.image | img_url : '400x' }}" alt="" class="category-bg-image">
+                            <div class="category-overlay">
+                                <h5 class="category-card_title">{{ block.settings.category_title }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+    </div>
+</section>
+
+<script>
+    var swiper = new Swiper('.js-blog-categories-carousel', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      slidesPerGroup: 4,
+      loop: true,
+      mousewheel: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+
+
+{% schema %}
+{
+    "name": "Blog Categories",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Discover Our Journal"
+        }
+    ],
+    "blocks": [
+          {
+            "type": "Category",
+            "name": "Category",
+            "settings": [
+                {
+                    "type": "blog",
+                    "id": "blog",
+                    "label": "Blog",
+                    "info": "Choose a blog"
+                },
+                {
+                    "type": "text",
+                    "id": "category_title",
+                    "label": "Blog Title",
+                    "default": "Category"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Category Image"
+                }
+            ]
+          }
+    ]
+}
+{% endschema %}

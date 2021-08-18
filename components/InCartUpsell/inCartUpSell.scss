@@ -1,0 +1,89 @@
+.AjaxCart-up-sell-widget {
+  border: 1px solid transparent;
+  margin-bottom: 50px;
+}
+.AjaxCart-up-sell .AjaxCart-divider {
+  width: 100%;
+}
+.Product--in_cart_upsell {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  background-color: #f2f2f2;
+}
+
+// this is only for when the BOGO free mask offer is in play, the upgrade feature adds a upgrade offer for each product (mask) in the cart, and because the free mask is a vairant of the main mask product it adds to. also, because the free gift is add to the top of the line_items, the first upgrade offer should be hidden so the when clicked, the Duo repalces the paid mask. 
+.Product--in_cart_upsell:first-child {
+  // display: none;
+}
+
+.Product--in_cart_upsell--inner {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+}
+
+.Product--in_cart_upsell-top {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Product--in_cart_upsell--textbox {
+  width: 100%;
+  height: auto;
+  text-align: left;
+  padding-right: 10px;
+}
+.Product--in_cart_upsell--title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.Product--in_cart_upsell--description {
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  opacity: .5;
+}
+
+.Product--in_cart_upsell--image {
+  width: 100%;
+  flex-grow: 1;
+  max-width: 80px;
+  display: flex;
+  overflow: hidden;
+}
+.Product--in_cart_upsell--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.Product--in_cart_upsell--button {
+  height: auto !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 10px 20px !important;
+}
+.Product--in_cart_upsell--button {
+  height: auto !important;
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 20px !important;
+}
+.Product--in_cart_upsell--button p, .Product--in_cart_upsell--button span {
+  font-size: 13px !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-transform: uppercase;
+}

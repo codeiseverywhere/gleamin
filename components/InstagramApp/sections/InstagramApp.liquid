@@ -1,0 +1,47 @@
+
+<section id="instagram-app" class="instagram-app">
+  <div class="ia-inner Site__page-width">
+
+    <div class="ia__header">
+      <div class="ia__title-wrap">
+        <h3 class="ia__title">
+          {{ section.settings.title }}
+        </h3>
+      </div>
+      <h4 class="ia__sub-title">
+        {{ section.settings.sub-title }}
+      </h4>
+    </div>
+
+    <div class="ia__content">
+      <div id="insta-feed"></div>  
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Instagram App",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "#Gleamin"
+      },
+      {
+        "type": "text",
+        "id": "sub-title",
+        "label": "Section Sub Title",
+        "default": "to join in on the fun."
+      }
+    ],
+    "presets": [
+      {
+        "category": "Misc",
+        "name": "Instagram App"
+      }
+    ]
+  }
+{% endschema %}

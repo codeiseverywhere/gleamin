@@ -1,0 +1,51 @@
+<section id="Rewards__Earn-Points" class="Rewards__Earn-Points">
+  <article class="Rewards-ep__content">
+
+    <div class="Rewards-ep__header">
+      <h4 class="Rewards-ep__title">
+        {{ section.settings.title }}
+      </h4>
+    </div>
+
+    <div class="Rewards-ep__columns-container">
+      
+        <div class="Rewards-ep__column-image">
+          <div class="Rewards-ep__image-wrap">
+            {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="Rewards-ep__image"> {% endcomment %}
+            {% include 'responsive-image' image: section.settings.image, classes: 'Rewards-ep__image' %}
+          </div>
+        </div>
+
+        <div class="Rewards-ep__column-grid">
+          <div class="Rewards-ep__grid campaigns {% if customer %}Rewards-ep__grid--customer logged-in{% endif %}">
+
+            {% comment %} - campaigns - {% endcomment %}
+
+          </div>
+        </div>
+
+    </div>
+
+    
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "How To Earn Points",
+    "settings":[
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "How to earn points"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,45 @@
+.FAQ-content-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-gap: 53px;
+  margin-bottom: 100px;
+}
+
+.FAQ-accordion-wrap {
+  width: 100%;
+}
+
+.FAQ-section-no-margin {
+  margin-bottom: 0px;
+}
+
+.FAQ-section-accordion-margin {
+  margin-bottom: 50px !important;
+}
+.FAQ-section-accordion-margin:last-child {
+  margin-bottom: 0px !important;
+}
+
+@media screen and (max-width: 850px) {
+  .FAQ-content-container {
+    height: auto;
+    display: block;
+  }
+
+  .FAQ-accordion-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .FAQ-section-filter-margin {
+    margin-bottom: 30px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .FAQ-content-container {
+    height: auto;
+    display: block;
+    mask-border-repeat: 80px;
+  }
+}

@@ -1,0 +1,1320 @@
+<section id="Subscribe" class="Subscribe">
+  <article class="Subscribe__content">
+  
+    <!-- Indicator -->
+    <div class="Subscribe__indicator">
+      <span class="Subscribe__indicator-line"></span>
+      <div id="Subscribe-indicator-1" class="Subscribe__indicator-circle"></div>
+      <div id="Subscribe-indicator-2" class="Subscribe__indicator-circle"></div>
+      <div id="Subscribe-indicator-3" class="Subscribe__indicator-circle"></div>
+    </div>
+
+    <!-- Steps Container -->
+    <div class="Subscribe__steps-main-container">
+    
+      <!-- Step 1 - Product -->
+      <div id="Subscribe-Step-1" class="Subscribe__step-container" data-name="Product">
+      
+        <div id="Subscribe-Step-Header-1" class="Subscribe__step-header">
+          <h4 class="Subscribe__step-header-title">
+            {{ section.settings.header-1-title }}
+          </h4>
+          {% if section.settings.header-1-text != blank %}
+            <p class="Subscribe__step-header-text">{{ section.settings.header-1-text }}</p>
+          {% endif %}
+          <!-- desktop -->
+          <div class="Subscribe__step-header-benefits">
+            {% if section.settings.benefit-1-text != blank or section.settings.benefit-1-image != blank %}
+              <div class="Subscribe__step-header-benefit">
+                {% comment %}<img src="{{ section.settings.benefit-1-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.benefit-1-image %} 
+
+                <p>{{ section.settings.benefit-1-text }}</p>
+              </div>
+            {% endif %}
+            
+            {% if section.settings.benefit-2-text != blank or section.settings.benefit-2-image != blank %}
+              <div class="Subscribe__step-header-benefit">
+                {% comment %}<img src="{{ section.settings.benefit-2-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.benefit-2-image %} 
+                <p>{{ section.settings.benefit-2-text }}</p>
+              </div>
+            {% endif %}
+            {% if section.settings.benefit-3-text != blank or section.settings.benefit-3-image != blank %}
+              <div class="Subscribe__step-header-benefit">
+                {% comment %}<img src="{{ section.settings.benefit-3-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.benefit-3-image %} 
+                <p>{{ section.settings.benefit-3-text }}</p>
+              </div>
+            {% endif %}
+          </div>
+          
+        </div>
+
+        <div class="Subscribe__step-content Subscribe__step-content--product">
+          <div class="Subscribe__step-collection-products {% if collections.recharge-products.products.size == 1 %}Subscribe__step-collection-products--single{% endif %}">
+            {% for product in collections.recharge-products.products %}
+            {%include 'sca_freegift_price' with product %}
+              <!-- product card -->
+              <div 
+                id="Subscribe-product--{{ product.handle }}"
+                class="Subscribe__product-card {% if forloop.last %}Subscribe__product-card--last{% endif %}"
+                data-title="{{ product.title }}"
+                data-handle="{{ product.handle }}"
+                data-price="{{ sca_price  | money_without_currency }}"
+                data-variant_id="{{ product.variants[0].id }}">
+                <div class="Subscribe__product-card-inner">
+
+                  <div class="Subscribe__product-card-marker">
+                    {% comment %}<img src="{{ section.settings.check-mark | img_url: 'master' }}">{% endcomment %}
+                    {% include 'responsive-image' image: section.settings.check-mark %} 
+                  </div>
+
+                  <div class="Subscribe__product-card-image">
+                    {% comment %}<img src="{{ product.featured_image | img_url: 'master' }}">{% endcomment %}
+                    {% include 'responsive-image' image: product.featured_image %} 
+                  </div>
+
+                  <div class="Subscribe__product-card-textbox">
+                    <p class="Subscribe__product-card-title">
+                      {{ product.title }}
+                    </p>
+                    <p class="Subscribe__product-card-subtitle">
+                      {{ product.title }}
+                    </p>
+                    <div class="Subscribe__product-card-pricebox">
+
+                    {% assign productPrice = sca_price  %}
+                    {% assign rawDiscount = productPrice | times: 0.15 %}
+                    {% assign discountPrice = productPrice | minus: rawDiscount %}
+
+                      <p class="Subscribe__product-card-price Subscribe__product-card-price--og">
+                        {{ sca_price  | money_without_trailing_zeros }}
+                      </p>
+                      <p class="Subscribe__product-card-price">
+                        {{ discountPrice | floor | money_without_trailing_zeros }}
+                      </p>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+            {% endfor %}
+          </div>
+        </div>
+      
+      </div>
+
+      <!-- Step 2 - Frequency -->
+      <div id="Subscribe-Step-2" class="Subscribe__step-container" data-name="Frequency">
+      
+        <div id="Subscribe-Step-Header-2" class="Subscribe__step-header">
+          <h4 class="Subscribe__step-header-title">
+            {{ section.settings.header-2-title }}
+          </h4>
+          {% if section.settings.header-2-text != blank %}
+            <p class="Subscribe__step-header-text">{{ section.settings.header-2-text }}</p>
+          {% endif %}
+        </div>
+
+        <div class="Subscribe__step-content Subscribe__step-content--frequency">
+        
+          <!-- Frequency Options -->
+          <div class="Subscribe__step-frequency-options" data-frequency="{{ section.settings.frequency }}">
+
+            <!-- option 1 -->
+            <div 
+              id="Subscribe-frequency-option-1"
+              class="Subscribe__step-frequency-option"
+              data-interval="{{ section.settings.frequency-option-1-interval }}"
+              data-frequency="{{ section.settings.frequency }}">
+              <div class="Subscribe__step-frequency-option-inner">
+
+              <div class="Subscribe__step-frequency-option-marker">
+               {% comment %} <img src="{{ section.settings.check-mark | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.check-mark %} 
+              </div>              
+
+              <div class="Subscribe__step-frequency-option-image">
+               {% comment %} <img src="{{ section.settings.frequency-option-1-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.frequency-option-1-image %} 
+                {% if section.settings.recommended-option == "1" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label">
+                    *Most Popular
+                  </p>
+                {% endif %}
+              </div>
+
+              <div class="Subscribe__step-frequency-option-textbox">
+                {% if section.settings.recommended-option == "1" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label Subscribe__step-frequency-option-recommended-label--mobile">
+                    *Most Popular
+                  </p>
+                {% endif %}
+                <p class="Subscribe__step-frequency-option-title">
+                  Delivery Every {{ section.settings.frequency-option-1-interval }} {% if section.settings.frequency-option-1-interval == '1' %}{{ section.settings.frequency | remove: 's' }} {% else %}{{ section.settings.frequency }}{% endif %}
+                </p>
+                <p class="Subscribe__step-frequency-option-description">
+                  {{ section.settings.frequency-option-1-desc }}
+                </p>
+              </div>
+              
+              </div>
+            </div>
+
+            <!-- option 2 -->
+            <div 
+              id="Subscribe-frequency-option-2"
+              class="Subscribe__step-frequency-option"
+              data-interval="{{ section.settings.frequency-option-2-interval }}"
+              data-frequency="{{ section.settings.frequency }}">
+              <div class="Subscribe__step-frequency-option-inner">
+
+              <div class="Subscribe__step-frequency-option-marker">
+                {% comment %}<img src="{{ section.settings.check-mark | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.check-mark %} 
+              </div>              
+
+              <div class="Subscribe__step-frequency-option-image">
+               {% comment %} <img src="{{ section.settings.frequency-option-2-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.frequency-option-2-image %} 
+                {% if section.settings.recommended-option == "2" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label">
+                    *Most Popular
+                  </p>
+                {% endif %}
+              </div>
+
+              <div class="Subscribe__step-frequency-option-textbox">
+                {% if section.settings.recommended-option == "2" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label Subscribe__step-frequency-option-recommended-label--mobile">
+                    *Most Popular
+                  </p>
+                {% endif %}
+                <p class="Subscribe__step-frequency-option-title">
+                  Delivery Every {{ section.settings.frequency-option-2-interval }} {{ section.settings.frequency }}
+                </p>
+                <p class="Subscribe__step-frequency-option-description">
+                  {{ section.settings.frequency-option-2-desc }}
+                </p>
+              </div>
+              
+              </div>
+            </div>
+
+            <!-- option 3 -->
+            <div 
+              id="Subscribe-frequency-option-3"
+              class="Subscribe__step-frequency-option Subscribe__step-frequency-option--last"
+              data-interval="{{ section.settings.frequency-option-3-interval }}"
+              data-frequency="{{ section.settings.frequency }}">
+              <div class="Subscribe__step-frequency-option-inner">
+
+              <div class="Subscribe__step-frequency-option-marker">
+                {% comment %}<img src="{{ section.settings.check-mark | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.check-mark %} 
+              </div>              
+
+              <div class="Subscribe__step-frequency-option-image">
+                {% comment %}<img src="{{ section.settings.frequency-option-3-image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.frequency-option-3-image %} 
+                {% if section.settings.recommended-option == "3" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label">
+                    *Most Popular
+                  </p>
+                {% endif %}
+              </div>
+
+              <div class="Subscribe__step-frequency-option-textbox">
+                {% if section.settings.recommended-option == "3" %}
+                  <p class="Subscribe__step-frequency-option-recommended-label Subscribe__step-frequency-option-recommended-label--mobile">
+                    *Most Popular
+                  </p>
+                {% endif %}
+                <p class="Subscribe__step-frequency-option-title">
+                  Delivery Every {{ section.settings.frequency-option-3-interval }} {{ section.settings.frequency }}
+                </p>
+                <p class="Subscribe__step-frequency-option-description">
+                  {{ section.settings.frequency-option-3-desc }}
+                </p>
+              </div>
+              
+              </div>
+            </div>
+
+
+          </div>
+        
+        </div>
+      
+      </div>
+
+      <!-- Step 3 - Summary / ATC -->
+      <div id="Subscribe-Step-3" class="Subscribe__step-container" data-name="Summary">
+      
+        <div id="Subscribe-Step-Header-3" class="Subscribe__step-header">
+          <h4 class="Subscribe__step-header-title">
+            {{ section.settings.header-3-title }}
+          </h4>
+          {% if section.settings.header-3-text != blank %}
+            <p class="Subscribe__step-header-text">{{ section.settings.header-3-text }}</p>
+          {% endif %}
+        </div>
+
+        <div class="Subscribe__step-content Subscribe__step-content--summary">
+          <div class="Subscribe__step-summary-inner">
+
+            <!-- products -->
+              <div class="Subscribe__step-summary-products">
+                {% for product in collections.recharge-products.products %}
+
+                {%include 'sca_freegift_price' with product %}
+
+                  <!-- product card -->
+                  <div 
+                    id="Subscribe-product--{{ product.handle }}"
+                    class="Subscribe__step-summary-product"
+                    data-title="{{ product.title }}"
+                    data-handle="{{ product.handle }}"
+                    data-price="{{ sca_price | money_without_currency }}"
+                    data-currency="{{ sca_price | money }}"
+                    data-variant_id="{{ product.variants[1].id }}">
+                    {% assign productPrice = sca_price %}
+                    {% assign rawDiscount = productPrice | times: 0.15 %}
+                    {% assign discountPrice = productPrice | minus: rawDiscount %}
+                    <div class="Subscribe__step-summary-product-inner">
+
+                      <div class="Subscribe__step-summary-product-image">
+                        {% comment %}<img src="{{ product.featured_image | img_url: 'master' }}">{% endcomment %}
+                        {% include 'responsive-image' image: product.featured_image %} 
+                      </div>
+
+                      <div class="Subscribe__step-summary-product-textbox">
+                        <a href="{{ product.url }}" class="Subscribe__step-summary-product-title">
+                          {{ product.title }}
+                        </a>
+                        <p class="Subscribe__step-summary-product-subtitle">
+                          {{ product.title }}
+                        </p>
+                        <div class="Subscribe__step-summary-product-pricebox">
+                          <p class="Subscribe__step-summary-product-price Subscribe__product-card-price--og">
+                            {{ sca_price | money_without_trailing_zeros }}
+                          </p>
+                          <p class="Subscribe__step-summary-product-price">
+                            {{ discountPrice | floor | money_without_trailing_zeros }}
+                          </p>
+                        </div>
+                        <p class="Subscribe__step-summary-product-frequency-text">
+                          <span>Frequency: </span>
+                          <span class="Subscribe__step-summary-product-frequency-interval"></span>
+                          <span class="Subscribe__step-summary-product-frequency-unit"></span>
+                          
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                {% endfor %}
+              </div>
+
+            <!-- info -->
+              <div class="Subscribe__step-summary-info">
+                
+                <!-- totals -->
+                <div class="Subscribe__step-summary-info-totals">
+                  <div class="Subscribe__step-summary-info-totals-row">
+                    <p class="Subscribe__step-summary-info-totals-label">Subtotal</p>
+                    <p id="Subscribe-summary-subtotal" class="Subscribe__step-summary-info-totals-value">
+                      {{ shop.currency.symbol }} <span id="Subscribe-summary-subtotal-value"></span>
+                    </p>
+                  </div>
+                  <div class="Subscribe__step-summary-info-totals-row">
+                    <p class="Subscribe__step-summary-info-totals-label">Subscription <span>(save 15%)</span></p>
+                    <p id="Subscribe-summary-discount" class="Subscribe__step-summary-info-totals-value">
+                      - {{ shop.currency.symbol }}<span id="Subscribe-summary-discount-value"></span>
+                    </p>
+                  </div>
+                  <div class="Subscribe__step-summary-info-totals-row">
+                    <p class="Subscribe__step-summary-info-totals-label">Total</p>
+                    <p id="Subscribe-summary-total" class="Subscribe__step-summary-info-totals-value">
+                      {{ shop.currency.symbol }} <span id="Subscribe-summary-total-value"></span>
+                    </p>
+                  </div>
+                  <div class="Subscribe__step-summary-info-totals-row">
+                    <p class="Subscribe__step-summary-currency-note">
+                      Subscribe from anywhere in the world! All subscriptions are processed in USD.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ATC -->
+                <div 
+                  id="Subscribe-atc-button" 
+                    class="Subscribe__step-summary-info-button Site__button-main">
+                  {{ section.settings.add-to-cart-text }}
+                </div>
+                {% comment %} 
+                  {% for product in collections.recharge-products.products %}
+                    <div id="Subscribe-product-form--{{ product.handle }}" class="Subscribe__ATC-form" style="display: none;">
+
+                      {% form 'product', product, data-productid: product.id, class: Subscribe__form %}
+                        
+                        {% include 'Subscribe-modified-subscription-product' %}
+
+                        <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" style="display: none">
+                          {% for variant in product.variants %}
+                            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} {% unless variant.available %} disabled="disabled" {% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_without_trailing_zeros }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
+                          {% endfor %}
+                        </select>
+
+
+                        <input id="Subscribe-quantity-input" type="hidden" value="1" name="quantity" />
+
+                        {% if product.available %}
+                            <button 
+                              id="AddToCart-{{ section.id }}" 
+                              type="submit" 
+                              name="add" 
+                              class="Subscribe__step-summary-info-button Site__button-main {% if forloop.first %}Subscribe__summary-show-button{% endif %}">
+                              Add to Cart
+                            </button>
+                          {% else %}
+                            <button type="button" class="btn btn--add-to-cart btn--disabled  Subscribe__step-summary-info-button Site__button-main" disabled="disabled">
+                              {{ 'products.product.sold_out' | t }}
+                            </button>
+                          {% endif %}
+
+                      {% endform %}
+                    </div>
+                  {% endfor %} 
+                {% endcomment %}
+                
+
+                <!-- value props -->
+                <div class="Subscribe__step-summary-info-value-props">
+                  {% for block in section.blocks %}
+                    <div class="Subscribe__step-summary-info-vp">
+                      {% comment %}<img src="{{ block.settings.step-3-value-image | img_url: 'master' }}">{% endcomment %}
+                      {% include 'responsive-image' image: block.settings.step-3-value-image %} 
+                      <p class="Subscribe__step-summary-info-vp-text">
+                        {{ block.settings.step-3-value-text }}
+                      </p>
+                    </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="Subscribe__nav-buttons">
+
+      <div id="Subscribe-prev-button" class="Subscribe__nav-button Subscribe__nav-button--previous">
+        <div class="Subscribe__nav-button--prev-inner">
+          {% if section.settings.prev-button-image != blank %}
+            {% comment %}<img src="{{ section.settings.prev-button-image | img_url: 'master' }}">{% endcomment %}
+            {% include 'responsive-image' image: section.settings.prev-button-image %} 
+          {% endif %}
+          <p>{{ section.settings.prev-button-text }}</p>
+        </div>
+      </div>
+
+      <div id="Subscribe-next-button" class="Subscribe__nav-button Subscribe__nav-button--next Subscribe__nav-button--next--full">
+        <div class="Subscribe__nav-button--next--relative">
+          <div class="Subscribe__nav-button--next-inner">
+            <p>{{ section.settings.next-button-text }}</p>
+            {% if section.settings.next-button-image != blank %}
+              {% comment %}<img src="{{ section.settings.next-button-image | img_url: 'master' }}">{% endcomment %}
+              {% include 'responsive-image' image: section.settings.next-button-image %} 
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Subscribe Content",
+    "settings":[
+
+      {
+        "type": "header",
+        "content": "Recharge Products",
+        "info": "Select the collection that has all the products you offer subscriptions on. if no collection exists, please create one and assign it here."
+      },
+      {
+        "type": "collection",
+        "id": "recharge-collection",
+        "label": "Collection"
+      },
+
+
+
+
+      {
+        "type": "header",
+        "content": "Navigation Buttons",
+        "info": "Set the text and arrow images. Images for arrows are optional. You can set HTML code with the button text that will display an arrow. ex: Left Arrow &#8592; , Right Arrow  &#8594;"
+      },
+      {
+        "type": "text",
+        "id": "prev-button-text",
+        "label": "Previous Button Text",
+        "default": "Previous"
+      },
+      {
+        "type": "text",
+        "id": "next-button-text",
+        "label": "Next Button Text",
+        "default": "Next"
+      },
+      {
+        "type": "image_picker",
+        "id": "prev-button-image",
+        "label": "Previous Button Arrow"
+      },
+      {
+        "type": "image_picker",
+        "id": "next-button-image",
+        "label": "Next Button Arrow"
+      },
+
+
+
+      {
+        "type": "header",
+        "content": "STEP 1: Products"
+      },
+      {
+        "type": "text",
+        "id": "header-1-title",
+        "label": "Step 1 Header Title",
+        "default": "Step 1: Choose your product(s)."
+      },
+	  {
+        "type": "text",
+        "id": "header-1-text",
+        "label": "Step 1 Header Text",
+        "default": "Tell us how often we should deliver your products. You can adjust your order frequency, pause, or cancel anytime.",
+        "info": "optional*"
+      },
+      {
+        "type": "image_picker",
+        "id": "benefit-1-image",
+        "label": "Step 1 Benefit 1 Image"
+      },
+      {
+        "type": "text",
+        "id": "benefit-1-text",
+        "label": "Step 1 Benefit 1 Text",
+        "default": "10% off every order! "
+      },
+      {
+        "type": "image_picker",
+        "id": "benefit-2-image",
+        "label": "Step 1 Benefit 2 Image"
+      },
+      {
+        "type": "text",
+        "id": "benefit-2-text",
+        "label": "Step 1 Benefit 2 Text",
+        "default": "Modify or cancel your subscription anytime"
+      },
+      {
+        "type": "image_picker",
+        "id": "benefit-3-image",
+        "label": "Step 1 Benefit 3 Image"
+      },
+      {
+        "type": "text",
+        "id": "benefit-3-text",
+        "label": "Step 1 Benefit 3 Text",
+        "default": "SMS routine reminders!"
+      },
+      {
+        "type": "image_picker",
+        "id": "check-mark",
+        "label": "Product Card Check Mark"
+      },
+
+
+
+
+      {
+        "type": "header",
+        "content": "STEP 2: Frequency"
+      },
+      {
+        "type": "text",
+        "id": "header-2-title",
+        "label": "Step 2 Header Title",
+        "default": "Step 2: Choose your frequency."
+      },
+      {
+        "type": "text",
+        "id": "header-2-text",
+        "label": "Step 2 Header Text",
+        "default": "Tell us how often we should deliver your products. You can adjust your order frequency, pause, or cancel anytime.",
+        "info": "optional*"
+      },
+      {
+        "type": "select",
+        "id": "frequency",
+        "label": "Choose a frequency",
+        "options": [
+          {
+            "value": "weeks",
+            "label": "Weeks"
+          },
+          {
+            "value": "months",
+            "label": "Months"
+          }
+        ],
+        "default": "months"
+      },
+      {
+        "type": "select",
+        "id": "recommended-option",
+        "label": "Choose which option should have the recommended label",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          }
+        ],
+        "default": "2"
+      },
+      
+      {
+        "type": "header",
+        "content": "option 1",
+        "info": "set the content for frequency option 1"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-1-interval",
+        "label": "Frequency Interval for Option 1",
+        "default": "2",
+        "info": "This is the interval value for the first option in step 2. ex. 1 week, 2 week, 3 week"
+      },
+      {
+        "type": "image_picker",
+        "id": "frequency-option-1-image",
+        "label": "Image for Frequency Option 1"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-1-desc",
+        "label": "Description for Frequency Option 1",
+        "default": "Good for if you use your mask at least three times a week."
+      },
+
+      {
+        "type": "header",
+        "content": "option 2",
+        "info": "set the content for frequency option 2"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-2-interval",
+        "label": "Frequency Interval for Option 2",
+        "default": "3",
+        "info": "This is the interval value for the second option in step 2. ex. 1 week, 2 week, 3 week"
+      },
+      {
+        "type": "image_picker",
+        "id": "frequency-option-2-image",
+        "label": "Image for Frequency Option 2"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-2-desc",
+        "label": "Description for Frequency Option 2",
+        "default": "Good for if you use your mask at least three times a week."
+      },
+
+      {
+        "type": "header",
+        "content": "option 3",
+        "info": "set the content for frequency option 3"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-3-interval",
+        "label": "Frequency Interval for Option 3",
+        "default": "4",
+        "info": "This is the interval value for the third option in step 2. ex. 1 week, 2 week, 3 week"
+      },
+      {
+        "type": "image_picker",
+        "id": "frequency-option-3-image",
+        "label": "Image for Frequency Option 1"
+      },
+      {
+        "type": "text",
+        "id": "frequency-option-3-desc",
+        "label": "Description for Frequency Option 3",
+        "default": "Good for if you use your mask at least three times a week."
+      },
+
+
+
+
+      {
+        "type": "header",
+        "content": "STEP 3: Summary"
+      },
+      {
+        "type": "text",
+        "id": "header-3-title",
+        "label": "Step 3 Header Title",
+        "default": "Step 3: Add to bad!"
+      },
+      {
+        "type": "text",
+        "id": "header-3-text",
+        "label": "Step 3 Header Text",
+        "info": "optional*"
+      },
+      {
+        "type": "text",
+        "id": "add-to-cart-text",
+        "label": "Add To Cart Text",
+        "default": "Add to Bag"
+      },
+      {
+        "type": "header",
+        "content": "Step 3 Value Props",
+        "info": "Max of 5"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "limit": 8,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "step-3-value-image",
+            "label": "Value Prop Image"
+          },
+          {
+            "type": "text",
+            "id": "step-3-value-text",
+            "label": "Value Prop Text",
+            "default": "10% off every order!"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign subscriptions_are_assumed = true %}
+{% include 'Cart-subscription-cart-footer' %}
+
+<script>
+/* Overview of Subscribe App */
+/*
+  This App/widget is made up of 4 controllers:
+    ~ dataController, UIController, rechargeAPIController, mainController
+  The Main Controller:
+    ~ is responsible for directing the flow/function of the app and holds all event listeners and all functions that the event listeners call.
+    ~ the main controller calls function that live in the other 3 controllers. 
+  The Data Controller:
+    ~ is responsible for holding and updating the data for the app. 
+    ~ so when a user clicks on one of the product cards in step one, a function in the data controller will be called that updates the selected products array. 
+  The UI Controller:
+    ~ is responsible for handing everything regarding changes made to the UI of the app.
+    ~ adding classes to the different cards in step one and two. showing buttons, etc. 
+  The Recharge API Controller:
+    ~ is responsible for interfacing with the Recharge API and making the AJAX call to add the product(s) to the cart. 
+    ~ there really isnt much in terms of an API interaction as that has more to with the customer portal on another page. 
+*/
+/* Overview of Subscribe App */
+
+
+(function () {
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+
+      // - GLOBAL VARIABLES -
+      //UI Elements
+      // - navigation
+      const indicatorCircles = document.querySelectorAll('.Subscribe__indicator-circle');
+      const steps = document.querySelectorAll('.Subscribe__step-container');
+      const prevBtn = document.getElementById('Subscribe-prev-button');
+      const nextBtn = document.getElementById('Subscribe-next-button');
+      // - select a product
+      const productCards = document.querySelectorAll('.Subscribe__product-card');
+      // - select a frequency
+      const frequencyContainer = document.querySelector('.Subscribe__step-frequency-options');
+      const frequencyOptions = document.querySelectorAll('.Subscribe__step-frequency-option');
+      // - summary
+      const summaryProductCards = document.querySelectorAll('.Subscribe__step-summary-product');
+      const summarySubtotal = document.getElementById('Subscribe-summary-subtotal-value')
+      const summaryDiscount = document.getElementById('Subscribe-summary-discount-value');
+      const summaryTotal = document.getElementById('Subscribe-summary-total-value');
+      const summaryQuantity = document.getElementById('Subscribe-quantity-input');
+      const summaryID = document.getElementById('Subscribe-variant-id');
+      const summaryProductFormsWraps = document.querySelectorAll('.Subscribe__ATC-form');
+      const summaryProductForms = document.querySelectorAll('.Subscribe__form');
+      const summaryFormButtons = document.querySelectorAll('.Subscribe__step-summary-info-button');
+      const summaryFrequencyInterval = document.querySelectorAll('.Subscribe__step-summary-product-frequency-interval');
+      const summaryFrequencyUnit = document.querySelectorAll('.Subscribe__step-summary-product-frequency-unit');
+      const ATCBtn = document.getElementById('Subscribe-atc-button');
+
+
+      // -- Steps Data Controller --
+      const SubsDataController = (function () {
+
+        //init state
+        let currentStep = 1;
+        let selectedProducts = [];
+        let frequencyInterval;
+        let frequencyUnitType;
+        let currency = $;
+        let quantity = 1;
+        let subtotal = 0;
+
+        return {
+          logCurrentData: function () {
+            console.log('currentStep: ', currentStep);
+            console.log('selectedProducts: ', selectedProducts);
+            console.log('frequencyInterval: ', frequencyInterval);
+            console.log('frequencyUnitType: ', frequencyUnitType);
+            console.log('quantity: ', quantity);
+            console.log('subtotal: ', subtotal);
+          },
+          getCurrentStep: function () {
+            return currentStep;
+          },
+          updateCurrentStep: function (newValue) {
+            currentStep = newValue;
+            SubsUIController.updateView();
+          },
+          //products 
+          setInitialProduct: function () {
+            this.updateSelectedProducts(productCards[0])
+          },
+          getSelectedProducts: function () {
+            return selectedProducts;
+          },
+          checkSelectedProducts: function (id) {
+            const filtered = selectedProducts.filter(product => product.id == id);
+            return filtered;
+          },
+          updateSelectedProducts: function (product) {
+
+            const productObj = {
+              id: product.id,
+              title: product.dataset.title,
+              price: product.dataset.price,
+              handle: product.dataset.handle,
+              variant_id: '18976093306969',
+            }
+
+            if (selectedProducts.length == 0) {
+              selectedProducts.push(productObj)
+              SubsUIController.updateView(productObj.id, 'add');
+            } else {
+              const products = this.checkSelectedProducts(productObj.id)
+              if (products.length > 0) {
+                const index = selectedProducts.findIndex(product => product.id == products[0].id)
+                selectedProducts.splice(index, 1);
+                SubsUIController.updateView(productObj.id, 'remove');
+              } else {
+                selectedProducts.push(productObj);
+                SubsUIController.updateView(productObj.id, 'add');
+              }
+            }
+
+          },
+          //frequency
+          setInitialFrequencyUnitType: function () {
+            frequencyUnitType = frequencyContainer.dataset.frequency;
+          },
+          getFrequencyInterval: function () {
+            return frequencyInterval;
+          },
+          updateFrequencyInterval: function (frequency) {
+            frequencyInterval = frequency;
+          },
+          //summary
+          updateSubtotal: function () {
+            let prices = [];
+            let sum;
+            const products = this.getSelectedProducts();
+            products.forEach(product => {
+              const num = parseFloat(product.price);
+              prices.push(num)
+            })
+            if (prices.length > 1) {
+              sum = prices.reduce(function (a, b) {
+                return a + b;
+              }, 0);
+            } else if (prices.length == 1) {
+              sum = parseFloat(prices[0]).toFixed(2)
+            }
+            subtotal = sum;
+          },
+          getSubtotal: function () {
+            return subtotal;
+          },
+          getCurrency: function () {
+            return currency;
+          },
+          //addToCart
+          getQuantity: function () {
+            return quantity;
+          },
+          getInterval: function () {
+            return frequencyInterval;
+          },
+          getUnitType: function () {
+            return frequencyUnitType;
+          },
+          getSelectedProductForms: function () {
+
+          }
+        }
+
+      })();
+
+      // -- Steps UI Controller --
+      const SubsUIController = (function () {
+
+        return {
+          initializeView: function (id) {
+            const currentStep = SubsDataController.getCurrentStep();
+            this.updateStep(currentStep);
+            this.updateIndicator(currentStep);
+            this.updateButtons(currentStep);
+            this.selectProductCard(id);
+            SubsUIController.updateSelectedFrequencyOption();
+          },
+          updateView: function (id, prodCard) {
+            const currentStep = SubsDataController.getCurrentStep();
+            this.updateStep(currentStep);
+            this.updateIndicator(currentStep);
+            this.updateButtons(currentStep);
+            if (id != null && prodCard == 'add') {
+              this.selectProductCard(id);
+            } else if (id != null && prodCard == 'remove') {
+              this.unselectProduct(id)
+            }
+          },
+          scrollTop: function () {
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'smooth'
+            });
+          },
+          updateStep: function (currentStep) {
+            steps.forEach(step => {
+              const stepID = step.id.split('-')[2];
+              if (stepID == currentStep) {
+                step.style.display = 'block';
+              } else {
+                step.style.display = 'none';
+              }
+            })
+          },
+          updateIndicator: function (currentStep) {
+            indicatorCircles.forEach(circle => {
+              const circleID = circle.id.split('-')[2];
+              if (currentStep == circleID) {
+                circle.classList.add('Subscribe__indicator-circle--active')
+              } else {
+                circle.classList.remove('Subscribe__indicator-circle--active')
+              }
+            })
+          },
+          updateButtons: function (currentStep) {
+            let viewWidth = window.innerWidth;
+            if (viewWidth < 950) {
+              if (currentStep == 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.classList.add('Subscribe__nav-button--next--full');
+              } else {
+                prevBtn.style.display = 'block';
+                nextBtn.classList.remove('Subscribe__nav-button--next--full');
+              }
+              if (currentStep == 3) {
+                nextBtn.style.display = "none"
+              } else {
+                nextBtn.style.display = "block"
+              }
+            } else {
+              if (currentStep == 1) {
+                prevBtn.style.display = 'none';
+              } else {
+                prevBtn.style.display = 'block';
+              }
+              if (currentStep == 3) {
+                nextBtn.style.display = "none"
+              } else {
+                nextBtn.style.display = "block"
+              }
+            }
+
+          },
+          //product cards
+          selectProductCard: function (id) {
+            productCards.forEach(product => {
+              const productID = product.id;
+              if (productID == id) {
+                product.classList.add('Subscribe__product-card--selected')
+              }
+            })
+          },
+          unselectProduct: function (id) {
+            productCards.forEach(product => {
+              const productID = product.id;
+              if (productID == id) {
+                product.classList.remove('Subscribe__product-card--selected')
+              }
+            })
+          },
+          //frequency options
+          updateSelectedFrequencyOption: function () {
+            const interval = SubsDataController.getFrequencyInterval();
+            frequencyOptions.forEach(option => {
+              const optionInterval = option.dataset.interval;
+              if (optionInterval == interval) {
+                option.classList.add('Subscribe__step-frequency-option--selected');
+              } else {
+                option.classList.remove('Subscribe__step-frequency-option--selected');
+              }
+            })
+          },
+          //summary content
+          updateSummaryView: function () {
+            const selectedProducts = SubsDataController.getSelectedProducts();
+            const unit = SubsDataController.getUnitType()
+            const interval = SubsDataController.getInterval()
+            this.updateSummaryProductCards(selectedProducts);
+            this.updateSummaryTotals();
+            this.updateSummaryForms(selectedProducts);
+            this.updateSummaryFrequency(unit, interval);
+          },
+          updateSummaryProductCards: function (products) {
+            summaryProductCards.forEach(product => {
+              product.style.display = "none"
+            });
+            products.forEach(product => {
+              const productID = product.id;
+              summaryProductCards.forEach(prod => {
+                if (productID == prod.id) {
+                  prod.style.display = 'block';
+                }
+              })
+            })
+          },
+          updateSummaryTotals: function () {
+            const subtotal = SubsDataController.getSubtotal();
+            const currency = summaryProductCards[0].dataset.currency.split('')[0];
+            let discount;
+            let total;
+            discount = subtotal * .15;
+            total = subtotal - discount;
+            summarySubtotal.innerHTML = currency + parseFloat(subtotal).toFixed(2)
+            summaryDiscount.innerHTML = currency + parseFloat(discount).toFixed(2)
+            summaryTotal.innerHTML = currency + parseFloat(total).toFixed(2)
+          },
+          updateSummaryForms: function (products) {
+            products.forEach(product => {
+              const productID = product.id.split('--')[1];
+              summaryProductFormsWraps.forEach(form => {
+                const formID = form.id.split('--')[1];
+                if (productID == formID) {
+                  form.style.display = 'block';
+                  SubsRechargeController.updateFormInterval(form)
+                  SubsRechargeController.updateFormUnitType(form)
+                }
+              })
+            })
+          },
+          updateSummaryFrequency: function(unit, interval){
+            summaryFrequencyInterval.forEach(item => {
+              item.innerHTML = interval
+            })
+            let newUnit = unit;
+            if(interval == 1){
+              if(unit == 'months'){
+                newUnit = 'month'
+              } else if (unit = 'weeks'){
+                newUnit = 'week'
+              }
+            }
+            summaryFrequencyUnit.forEach(item => {
+              item.innerHTML = newUnit
+            });
+          }
+        }
+
+      })()
+
+      // -- Recharge API Controller -- 
+      const SubsRechargeController = (function () {
+
+        return {
+          init: function () {
+            console.log('Recharge Controller Initialized');
+          },
+          checkSelectedProducts: function () {
+            const products = SubsDataController.getSelectedProducts();
+            const qty = SubsDataController.getQuantity();
+            const frequency = SubsDataController.getFrequencyInterval();
+            const unitType = SubsDataController.getUnitType();
+            let data = []
+            products.forEach(product => {
+              //you can find a variant id map for each subscription product in > Metafields Guru App > original_to_hidden_variant_map field.
+              let varID;
+              //single mask id ==> recharge discount_variant_id
+              if(product.variant_id == '18976093306969'){
+                varID = 40184221565121
+              };
+              //duo mask id ==> recharge discount_variant_id
+              if(product.variant_id == '21549923205209'){
+                varID = 40184221597889
+              };
+              const prodData = {
+                "quantity": qty,
+                "id": varID,
+                "properties": {
+                  "shipping_interval_frequency": frequency,
+                  "shipping_interval_unit_type": unitType
+                }
+              }
+              data.push(prodData)
+            })
+            this.addToCart(data)
+          },
+          updateSummaryInputs: function () {
+            const selectedProducts = SubsDataController.getSelectedProducts();
+            const qty = SubsDataController.getQuantity();
+            summaryQuantity.value = qty;
+            summaryID.value = selectedProducts[0].id
+          },
+          updateFormInterval: function (form) {
+            const interval = SubsDataController.getInterval();
+            const unitType = SubsDataController.getUnitType();
+            const formSelect = form.querySelector('#rc_container').getElementsByTagName('option');
+            formSelect.forEach(input => {
+              if (input.value == interval) {
+                input.selected = 'selected';
+              }
+            })
+          },
+          updateFormUnitType: function (form) {
+            const unitTypes = form.querySelector('#rc_container').getElementsByTagName('input');
+            unitTypes.forEach(input => {
+              const id = input.id;
+              const splitID = id.split('-')[0];
+              if (splitID == 'rc_shipping_interval_unit_type') {
+                input.name = 'properties[shipping_interval_unit_type]';
+              }
+            })
+            const selects = form.querySelector('#rc_container').getElementsByTagName('select');
+            selects.forEach(select => {
+              const selectID = select.id;
+              if (selectID == 'rc_duplicate_selector') {
+                select.name = "id";
+              }
+            })
+          },
+          submitNextForm: function () {
+            console.log('fired btn 0');
+            if (summaryProductForms.length > 1) {
+              for (let i = 0; i < summaryProductForms.length; i++) {
+                if (i !== 0) {
+                  console.log(summaryProductForms[i]);
+                  summaryProductForms[i].submit();
+                }
+              }
+            }
+
+          },
+          addToCart: function (data) {
+
+            console.log(data);
+
+            $.post('/cart/add.js', {
+              items: data
+            })
+              //NOTE: This must be .always() since even if the HTTP request
+              //succeeds jQuery will fail to parse it and throw an error
+              .always(function () {
+                //NOTE: Someone attempted to short-circuit the cart page by
+                //linking the user directly to Shopify checkout. This is the
+                //wrong approach. You *must* include the Recharge cart footer
+                //script and then call Recharge's cartSubmit after the fact.
+
+                //Oh, and we still have to check the active currency ourselves.
+                if (Shopify.currency.active !== "USD") {
+                  alert("Unfortunately, subscription products can only be purchased in USD. You will now be changed to USD to complete your order.");
+
+                  var maybe_param_loc = window.location.search.indexOf("currency=");
+
+                  if (window.location.search == "") {
+                    window.location.search = "?currency=USD";
+                  } else if (maybe_param_loc !== 1) {
+                    //Code assumes all currency codes are 3 characters long.
+                    window.location.search = window.location.search.splice(0, maybe_param_loc)
+                      + "currency=USD&"
+                      + window.location.search.splice(maybe_param_loc + 13);
+                  } else {
+                    window.location.search = window.location.search + "&currency=USD";
+                  }
+                  return;
+                }
+                cartSubmit(ReCharge.cart_options, ReCharge.customer);
+              })
+              .fail(err => {
+                console.log('Subscribe Page Error: ', err)
+              })
+
+            // $.ajax({
+            //   type: 'POST',
+            //   url: 'cart/add.js',
+            //   data: data,
+            //   dataType: 'json',
+            //   success: function (data, textStatus, jqXHR) {
+            //     Shopify.onItemAdded(data);
+            //   },
+            //   error: function (jqXHR, textStatus, errorThrown) {
+            //     Shopify.onError(jqXHR, textStatus);
+            //   }
+            // });
+          },
+        }
+
+      })()
+
+      // -- Steps Main Controller --
+      const SubsMainController = (function (SubsDataController, SubsUIController, SubsRechargeController) {
+
+        const loadEventListeners = function () {
+          //product cards
+          if (productCards) {
+            productCards.forEach(card => {
+              card.addEventListener('click', (e) => productCardHandler(card))
+            })
+          }
+          //frequency options
+          if (frequencyOptions) {
+            frequencyOptions.forEach(option => {
+              option.addEventListener('click', (e) => frequencyOptionHandler(option))
+            })
+          }
+          //nav buttons
+          if (prevBtn) {
+            prevBtn.addEventListener('click', prevButtonHandler)
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener('click', nextButtonHandler)
+          }
+          //add to cart button
+          if (summaryFormButtons) {
+            summaryFormButtons[0].addEventListener('click', SubsRechargeController.submitNextForm())
+          }
+          if (ATCBtn) {
+            ATCBtn.addEventListener('click', addToCartHandler);
+          }
+        }
+
+        //product cards Handler
+        const productCardHandler = (data) => {
+          SubsDataController.updateSelectedProducts(data)
+        }
+        //frequency option Handler
+        const frequencyOptionHandler = (data) => {
+          const interval = data.dataset.interval;
+          SubsDataController.updateFrequencyInterval(interval);
+          SubsUIController.updateSelectedFrequencyOption();
+          SubsDataController.logCurrentData();
+        }
+        //nav button Handlers
+        const nextButtonHandler = () => {
+          const selectedProducts = SubsDataController.getSelectedProducts();
+          if (selectedProducts.length > 0) {
+            let currentStep = SubsDataController.getCurrentStep();
+            if (currentStep < 3) {
+              SubsDataController.updateCurrentStep(++currentStep);
+              SubsUIController.scrollTop();
+            }
+            if (currentStep == 3) {
+              SubsDataController.updateSubtotal();
+              SubsUIController.updateSummaryView();
+              SubsDataController.logCurrentData();
+            }
+          }
+        }
+        const prevButtonHandler = () => {
+          let currentStep = SubsDataController.getCurrentStep();
+          if (currentStep > 1) {
+            SubsDataController.updateCurrentStep(--currentStep);
+            SubsUIController.scrollTop();
+          }
+        }
+        //add to cart Handler
+        const addToCartHandler = () => {
+          SubsRechargeController.checkSelectedProducts();
+        }
+
+        //initialize widget
+        const initializeWidget = function () {
+          SubsDataController.setInitialProduct();
+          SubsDataController.setInitialFrequencyUnitType();
+          //below, sets what interval option is selected on initializing
+          // instead of hardcoding value, let's use value set via the customizer which updates the "recommended" label
+          SubsDataController.updateFrequencyInterval(frequencyOptions[{{ section.settings.recommended-option | minus: 1}}].dataset.interval);
+          SubsUIController.initializeView();
+          SubsDataController.logCurrentData();
+        }
+
+        return {
+          init: function () {
+            console.log('fired');
+            loadEventListeners();
+            initializeWidget();
+          }
+        }
+
+      })(SubsDataController, SubsUIController, SubsRechargeController);
+
+      SubsMainController.init();
+
+    } catch (err) {
+      console.log('subscribe: ', err);
+    }
+  })
+})();
+
+
+</script>

@@ -1,0 +1,86 @@
+.SiteHeader--block--currency {
+  max-height: 38px;
+  display: block;
+}
+
+.shopify-currency-form {
+  display: none;
+}
+
+.SiteHeader--nav-currency{
+  position: relative;
+  width: auto;
+  min-width: 74px;
+  height: auto;
+  min-height: 35px;
+  border: 1px solid #000;
+  background-color: #fff;
+  padding: 0px 0px;
+  z-index: 10;
+  overflow: hidden;
+}
+@media screen and (max-width: 900px){
+  .SiteHeader--nav-currency--desktop {
+    display: none;
+  }
+  .SiteHeader--nav-currency--mobile {
+    display: inline-block;
+    margin-bottom: 25px;
+  }
+}
+
+
+//current
+.SiteHeader--nc-current {
+  width: 100%;
+  height: 35px;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.SiteHeader--nc-current-text {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  line-height: 1;
+}
+.SiteHeader--nc-current div {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: -5px;
+  margin-top: 2px;
+  width: 22px;
+}
+.SiteHeader--nc-current div img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+//list
+.SiteHeader--nc-list {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  max-height: 0px;
+}
+.SiteHeader--nav-currency--open {
+  max-height: none;
+}
+.SiteHeader--nc-item {
+  width: 100%;
+  height: auto;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+.SiteHeader--nc-item:hover {
+  background-color: $Color-body-highlight;
+}
+.SiteHeader--nc-wrap {
+  width: 100%;
+  height: 100%;
+}

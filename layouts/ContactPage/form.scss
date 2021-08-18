@@ -1,0 +1,128 @@
+.Contact__form-wrap {
+  width: 100%;
+  height: auto;
+}
+.Contact__content {
+  width: 100%;
+  max-width: 490px;
+  height: auto;
+  padding: 0px 20px;
+  margin: 0px auto;
+}
+
+//form items
+.Contact__form-row {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.Contact__form-row input {
+  width: 100%;
+  height: 40px;
+  border-style:solid;
+  border: 1px solid #00000030;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+}
+.Contact__form-row input::placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  opacity: .5;
+}
+
+.Contact__form-row select {
+  width: 100%;
+  height: 40px;
+  border-style:solid;
+  border: 1px solid #00000090;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+}
+.Contact__form-row select::placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  opacity: .5;
+}
+.Contact__form-row select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.Contact__select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+}
+.Contact__form-row select:focus .Contact__select-arrow {
+  transform: rotate(180deg);
+}
+.Contact__select-input{
+  opacity: .3;
+}
+.Contact__select-input--touched{
+  opacity: 1;
+  border: 1px solid #00000030 !important;
+}
+
+.Contact__form-row textarea {
+  width: 100%;
+  max-width: 450px;
+  height: 120px;
+  border-style:solid;
+  border: 1px solid #00000030;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+}
+.Contact__form-row textarea::placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  opacity: .5;
+}
+
+//button
+.Contact__button {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  margin-top: 35px;
+  border: none;
+}
+
+.Contact__form-under-text {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .8;
+  max-width: 300px;
+  text-align: center;
+  margin: 10px auto 0px;
+}

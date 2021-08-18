@@ -1,0 +1,352 @@
+.Customer__register {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  margin: 0px auto;
+  padding: 50px 0px;
+}
+.Customer__register-content {
+  width: 100%;
+  height: 100%;
+}
+
+// Header
+.Customer__register-header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+  text-align: center;
+}
+.Customer__register-header-inner {
+  position: relative;
+  display: inline-block;
+}
+.Customer__register-header-hilight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4px;
+  display: inline;
+  height: 12px;
+  width: 110%;
+  z-index: -1;
+  background-color: #fff005;
+}
+.Customer__register-header-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  color: #000;
+  margin: 0;
+}
+
+// Form
+.Customer__register-form {
+  width: 100%;
+  height: auto;
+}
+.Customer__register-input {
+  width: 100%;
+  height: 40px;
+  padding: 12px 20px;
+  display: block;
+  font-family: $Paragraph-font !important;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: #000;
+  opacity: 0.5;
+  margin-bottom: 15px;
+  border: 1px solid #00000030;
+  border-radius: 0px;
+  outline: #73add2;
+}
+.Customer__register-input--password {
+  margin-bottom: 10px;
+}
+.Customer__register-input:focus {
+  outline: #73add2;
+}
+.Customer__register-input:placeholder-shown,
+.Customer__register-input::placeholder,
+ .Customer__register-input::-webkit-input-placeholder,
+ .Customer__register-input:-ms-input-placeholder,
+ .Customer__register-input:-moz-placeholder,
+ .Customer__register-input::-moz-placeholder {
+  font-family: $Paragraph-font !important;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: #000;
+  opacity: 0.5;
+}
+
+//Checkboxes
+.Customer__register-checkbox-wrap {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+}
+.Customer__register-checkbox-row {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Customer__register-checkbox-row:last-child {
+  margin-bottom: 0px;
+}
+.Customer__register-checkbox-box {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border: 1px solid #00000030;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.Customer__register-checkbox-x {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.checked .Customer__register-checkbox-x {
+  display: flex;
+}
+.Customer__register-x-bar {
+  width: 100%;
+  height: 1px;
+  background-color: #73add2;
+  position: absolute;
+}
+.Customer__register-x-bar-1 {
+  transform: rotate(45deg);
+}
+.Customer__register-x-bar-2 {
+  transform: rotate(-45deg);
+}
+.Customer__register-checkbox-text {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #000;
+  opacity: 0.8;
+  margin: 0;
+}
+
+//Button
+.Customer__register-button {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  font-family: $Paragraph-font !important;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 1.4px;
+  font-weight: 500;
+  border: 0px solid transparent;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.Customer__register-button:hover {
+  background-color: #fff005;
+  color: #000;
+}
+
+//Login Link
+.Customer__register-login-link {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #73add2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__register-login-link:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 490px) {
+  .Customer__register {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0px auto;
+    padding: 45px 20px;
+  }
+  .Customer__register-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Header
+  .Customer__register-header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 33px;
+    text-align: center;
+  }
+  .Customer__register-header-hilight {
+    display: inline;
+    background-color: #fff005;
+    padding: 0% 1%;
+  }
+  .Customer__register-header-text {
+    display: inline;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 46px;
+    color: #000;
+    margin: 0;
+  }
+
+  // Form
+  .Customer__register-form {
+    width: 100%;
+    height: auto;
+  }
+  .Customer__register-input {
+    width: 100%;
+    height: 40px;
+    padding: 12px 20px;
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 1px;
+    color: #000;
+    opacity: 0.5;
+    margin-bottom: 15px;
+    border: 1px solid #00000030;
+    border-radius: 0px;
+    outline: #73add2;
+  }
+  .Customer__register-input--password {
+    margin-bottom: 10px;
+  }
+  .Customer__register-input:focus {
+    outline: #73add2;
+  }
+  .Customer__register-input::placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 1px;
+    color: #000;
+    opacity: 0.5;
+  }
+
+  //Checkboxes
+  .Customer__register-checkbox-wrap {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 35px;
+  }
+  .Customer__register-checkbox-row {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .Customer__register-checkbox-row:last-child {
+    margin-bottom: 0px;
+  }
+  .Customer__register-checkbox-box {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    border: 1px solid #00000030;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  .Customer__register-checkbox-x {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .checked .Customer__register-checkbox-x {
+    display: flex;
+  }
+  .Customer__register-x-bar {
+    width: 100%;
+    height: 1px;
+    background-color: #73add2;
+    position: absolute;
+  }
+  .Customer__register-x-bar-1 {
+    transform: rotate(45deg);
+  }
+  .Customer__register-x-bar-2 {
+    transform: rotate(-45deg);
+  }
+  .Customer__register-checkbox-text {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #000;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  //Button
+  .Customer__register-button {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.4px;
+    font-weight: 500;
+    border: 0px solid transparent;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .Customer__register-button:hover {
+    background-color: #fff005;
+    color: #000;
+  }
+
+  //Login Link
+  .Customer__register-login-link {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #73add2;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .Customer__register-login-link:hover {
+    color: #000;
+  }
+}

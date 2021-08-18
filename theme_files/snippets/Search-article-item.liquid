@@ -1,0 +1,25 @@
+<div id="Search-Article-{{ article.handle }}" class="Product-grid-item">
+  <span data-id="{{ item.object_type }}{{ item.handle }}"></span>
+  <div class="Product-gi-inner">
+
+  {% comment %} {% include 'Search-search-label' %} {% endcomment %}
+
+    <a href="{{ article.url }}" class="Product-gi__image-wrap">
+      <img src="{{ article.image | img_url: 'original' }}" class="Product-gi__image">
+      {% comment %} {% include 'responsive-image' image: page.image, classes: 'Product-gi__image', type: 'page' %}  {% endcomment %}
+    </a>
+
+    <div class="Product-gi__info-wrap">
+
+      <div class="Product-gi__details">
+        <a href="{{ article.url }}" class="Product-gi__product-title">
+          {{ article.title }}
+        </a>
+        <p class="p-small Product-gi__product-detail">
+          {{ article.description }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

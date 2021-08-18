@@ -1,0 +1,62 @@
+//Header
+.AjaxCart-cart_header {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 20px 28px 0px;
+}
+.AjaxCart-cart_header-top {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.AjaxCart-dismiss {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+}
+.AjaxCart-dismiss-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AjaxCart-dismiss-bar {
+  width: 100%;
+  height: 1px;
+  border-radius: 0px;
+  background-color: #00000080;
+  position: absolute;
+}
+.AjaxCart-dismiss-bar-1 {
+  transform: rotate(45deg);
+}
+.AjaxCart-dismiss-bar-2 {
+  transform: rotate(-45deg);
+}
+.AjaxCart-dismiss:hover .AjaxCart-dismiss-bar {
+  background-color: $Color_accent-2;
+}
+.AjaxCart-cart_header-icon {
+  width: 20px;
+  height: auto;
+  display: flex;
+}
+.AjaxCart-cart_header-icon svg {
+  opacity: .5;
+}
+
+.AjaxCart-cart_header-bottom {
+  width: 100%;
+  height: auto;
+}

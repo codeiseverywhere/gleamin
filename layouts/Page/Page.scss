@@ -1,0 +1,178 @@
+.Page__static-content {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 100px 0px 0px;
+}
+
+@media screen and (max-width: 767px){
+  .Page__static-content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 80px 0px 0px;
+  }
+}
+
+//header
+.Page__static-header {
+  width: auto;
+  height: auto;
+  text-align: center;
+  margin: 0px auto;  
+  margin-bottom: 15px;
+}
+.Page__static-header-hilight {
+  display: inline;
+  width: 100%;
+  height: auto;
+  background-color: $Color-body-highlight;
+}
+.Page__static-header-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+}
+
+.Page__static-body {
+  width: 100%;
+  height: auto;
+}
+.Page__static-body p, .Page__static-body h2, .Page__static-body h3, .Page__static-body h4, .Page__static-body h5, .Page__static-body h6 {
+  font-size: 18px;
+  line-height: 32px;
+  color: $Color--black;
+}
+.Page__static-body p {
+  opacity: .8;
+}
+
+
+.Page__static-content .rte {
+  color: #3f3f3f;
+  margin-bottom: 35px
+}
+
+.Page__static-content .rte:last-child {
+  margin-bottom: 0
+}
+
+.Page__static-content .rte h1,.Page__static-content .rte .h1,.Page__static-content .rte h2,.Page__static-content .rte .h2,.Page__static-content .rte h3,.Page__static-content .rte .h3,.Page__static-content .rte h4,.Page__static-content .rte .h4,.Page__static-content .rte h5,.Page__static-content .rte .h5,.Page__static-content .rte h6,.Page__static-content .rte .h6 {
+  margin-top: 55px;
+  margin-bottom: 27.5px
+}
+
+.Page__static-content .rte h1:first-child,.Page__static-content .rte .h1:first-child,.Page__static-content .rte h2:first-child,.Page__static-content .rte .h2:first-child,.Page__static-content .rte h3:first-child,.Page__static-content .rte .h3:first-child,.Page__static-content .rte h4:first-child,.Page__static-content .rte .h4:first-child,.Page__static-content .rte h5:first-child,.Page__static-content .rte .h5:first-child,.Page__static-content .rte h6:first-child,.Page__static-content .rte .h6:first-child {
+  margin-top: 0
+}
+
+.Page__static-content .rte li {
+  margin-bottom: 4px;
+  list-style: inherit
+}
+
+.Page__static-content .rte li:last-child {
+  margin-bottom: 0
+}
+
+.Page__static-content .rte-setting {
+  margin-bottom: 19.44444px
+}
+
+.Page__static-content .rte-setting:last-child {
+  margin-bottom: 0
+}
+
+.Page__static-content p {
+  color: #000;
+  margin: 0 0 19.44444px
+}
+
+@media only screen and (max-width: 749px) {
+  .Page__static-content p {
+      font-size:0.9375em
+  }
+}
+
+.Page__static-content p:last-child {
+  margin-bottom: 0
+}
+
+.Page__static-content li {
+  list-style: none
+}
+
+.Page__static-content .fine-print {
+  font-size: 0.875em;
+  font-style: italic
+}
+
+.Page__static-content .txt--minor {
+  font-size: 80%
+}
+
+.Page__static-content .txt--emphasis {
+  font-style: italic
+}
+
+.Page__static-content .address {
+  margin-bottom: 55px
+}
+
+.Page__static-content .mega-title,.mega-subtitle {
+  color: #fff
+}
+
+.Page__static-content .hero .mega-title,.hero .mega-subtitle {
+  text-shadow: 0 0 4px rgba(0,0,0,0.4)
+}
+
+@media only screen and (min-width: 750px) {
+  .Page__static-content .mega-title,.mega-subtitle {
+      text-shadow:0 0 4px rgba(0,0,0,0.4)
+  }
+}
+
+.Page__static-content .mega-title {
+  margin-bottom: 8px
+}
+
+.Page__static-content .mega-title--large {
+  font-size: 2.1875em
+}
+
+@media only screen and (min-width: 750px) {
+  .Page__static-content .mega-title--large {
+      font-size:4.1875em
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .Page__static-content .mega-subtitle {
+      font-size:1.25em;
+      margin: 0 auto
+  }
+
+  .Page__static-content .text-center .mega-subtitle {
+      max-width: 75%
+  }
+}
+
+.Page__static-content .mega-subtitle p {
+  color: #fff
+}
+
+.Page__static-content .mega-subtitle a {
+  color: #fff;
+  border-bottom: 1px solid currentColor
+}
+
+.Page__static-content .mega-subtitle a:hover,.Page__static-content .mega-subtitle a:focus {
+  color: #e6e6e6
+}
+
+.Page__static-content .mega-subtitle--large {
+  font-size: 1.125em;
+  font-weight: 600
+}

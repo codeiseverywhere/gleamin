@@ -1,0 +1,40 @@
+<section id="Press-awards" class="Press-awards">
+  <article class="Press-a__contnet">
+
+    {% for block in section.blocks %}
+      <div class="Press-a__award">
+        <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt }}" class="Press-a__image">
+      </div>
+    {% endfor %}
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Awards",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "award",
+        "name": "award",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Award Image"
+          },
+          {
+            "type": "text",
+            "id": "alt",
+            "label": "Award Image Alt Tag",
+            "default": "Logo for.."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

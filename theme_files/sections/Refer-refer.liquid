@@ -1,0 +1,29 @@
+<section id="Refer-intro" class="Refer-intro">
+  <div class="Refer-i__content">
+
+    <div class="Refer-i__image-container">
+      {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}">{% endcomment %}
+      {% include 'responsive-image' image: section.settings.image %}
+    </div>
+
+    <div class="Refer-i__text-container">
+      <div class="Refer-i__text-box swell-referral">
+        <i class="fa fa-spin fa-spinner spinner-icon"></i>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Refer Intro",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

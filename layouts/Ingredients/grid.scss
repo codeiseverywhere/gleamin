@@ -1,0 +1,212 @@
+.Ingredients-grid {
+  width: 100%;
+  height: auto;
+}
+.Ingredients-g__content {
+}
+.Ingredients-g__grid {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+  grid-gap: 30px;
+}
+
+.Ingredients-g__grid-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00000030;
+  padding: 54px 20px;
+  transition: border 0.4s ease-in-out;
+}
+.Ingredients-g__grid-item-inner {
+  width: 100%;
+}
+
+.Ingredients-g__grid-item-init {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.Ingredients-g__grid-item-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #f2f2f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.Ingredients-g__grid-item:hover {
+  border: 1px solid #00000000;
+}
+.Ingredients-g__grid-item:hover .Ingredients-g__grid-item-hover {
+  opacity: 1;
+}
+
+.Ingredients-g__image-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+.Ingredients-g__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.Ingredients-g__text-wrap {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.Ingredients-g__name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  margin-bottom: 5px;
+}
+.Ingredients-g__benefit {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  opacity: 0.8;
+}
+.Ingredients-g__name--hover {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  margin-bottom: 5px;
+}
+.Ingredients-g__benefit--hover {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  opacity: 0.5;
+  margin-bottom: 5px;
+}
+.Ingredients-g__description--hover {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1176px) {
+  .Ingredients-g__image-wrap {
+    width: 100%;
+    height: 20vw;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Ingredients-g__grid {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .Ingredients-g__grid {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+  .Ingredients-g__grid-item {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #00000030;
+    padding: 35px 8.4px;
+  }
+  .Ingredients-g__grid-item-inner {
+    width: 100%;
+  }
+  .Ingredients-g__grid-item-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px 5px;
+    background-color: #f2f2f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .Ingredients-g__image-wrap {
+    width: 100%;
+    height: 24vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .Ingredients-g__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .Ingredients-g__text-wrap {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .Ingredients-g__name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    margin-bottom: 5px;
+  }
+  .Ingredients-g__benefit {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    opacity: 0.8;
+  }
+}
+  
+@media screen and (max-width: 768px) {
+  .Ingredients-g__benefit {
+      font-size: 14px;
+  }
+  
+  .Ingredients-g__description--hover {
+      font-size: 14px;
+  }
+}

@@ -1,0 +1,102 @@
+.Rewards-How-It-Works {
+  width: 100%;
+  height: auto;
+}
+.Rewards-hiw__content {
+  width: 100%;
+  max-width: 1140px;
+  height: 100%;
+  margin: 0px auto;
+}
+
+// Header
+.Rewards-hiw__header {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 0px 20px;
+  margin-bottom: 50px;
+}
+.Rewards-hiw__title {
+  color: #000;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+  margin: 0;
+}
+
+// Steps
+.Rewards-hiw__blocks {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.Rewards-hiw__block {
+  width: 100%;
+  max-width: 181px;
+  height: auto;
+  margin: 0px 20px 0px;
+}
+.Rewards-hiw__block:last-child {
+  margin: 0px 20px 0px;
+}
+
+.Rewards-hiw__count-wrap {
+  width: 84px;
+  height: 84px;
+  background-color: #fff005;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  margin: 0px auto;
+  margin-bottom: 25px;
+}
+.Rewards-hiw__count-number {
+  color: #000000;
+  font-family: $Headline-large-font;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+}
+
+.Rewards-hiw__headline-wrap {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.Rewards-hiw__headline {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 31px;
+  margin: 0;
+}
+
+.Rewards-hiw__text-wrap {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.Rewards-hiw__text {
+  opacity: 0.8;
+  color: #000000;
+  font-size: 14px;
+  line-height: 19px;
+  margin: 0;
+}
+
+@media screen and (max-width: 662px){
+  .Rewards-hiw__block {
+    width: 100%;
+    max-width: 181px;
+    height: auto;
+    margin: 0px 20px 50px;
+  }
+  .Rewards-hiw__block:last-child {
+    margin: 0px 20px 0px;
+  }
+}

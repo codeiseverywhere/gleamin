@@ -1,0 +1,71 @@
+<section id="Rewards-How-It-Works" class="Rewards-How-It-Works">
+  <article class="Rewards-hiw__content">
+    
+    <div class="Rewards-hiw__header">
+      <h4 class="Rewards-hiw__title">
+        {{ section.settings.title }}
+      </h4>
+    </div>
+
+    <div class="Rewards-hiw__blocks">
+      {% for block in section.blocks %}
+        <div class="Rewards-hiw__block">
+
+          <div class="Rewards-hiw__count-wrap">
+            <h2 class="Rewards-hiw__count-number">
+              {{ forloop.index }}
+            </h2>
+          </div>
+
+          <div class="Rewards-hiw__headline-wrap">
+            <h5 class="Rewards-hiw__headline">
+              {{ block.settings.headline }}
+            </h5>
+          </div>
+
+          <div class="Rewards-hiw__text-wrap">
+            <p class="Rewards-hiw__text">
+              {{ block.settings.text }}
+            </p>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "How It Works",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "How it works lorem ipsum"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Step",
+        "name": "Step",
+        "settings": [
+          {
+            "type": "text",
+            "id": "headline",
+            "label": "Step Headline",
+            "default": "Headline Title"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Step Text",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

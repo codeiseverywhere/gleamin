@@ -1,0 +1,253 @@
+
+<div class="Customer__order-column Customer__order-column--order">
+
+  <div class="Customer__order-general-info">
+    <h5 class="Customer__order-order-number">
+      Order {{ order.order_number | prepend: '#' }}
+    </h5>
+    <p class="Customer__order-order-date-placed">
+      Placed on {{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}
+    </p>
+  </div>
+
+  <div class="Customer__order-table-wrap">
+    <table class="Customer__order-table">
+
+      <thead class="Customer__order-table-head">
+        <tr>
+          <th><p>Product</p></th>
+          <th><p>SKU</p></th>
+          <th><p>Price</p></th>
+          <th><p>Qty</p></th>
+          <th><p>Total</p></th>
+        </tr>
+      </thead>
+
+      <tbody class="Customer__order-table-body">
+        {% for line_item in order.line_items %}
+          <tr id="{{ line_item.key }}" class="responsive-table-row">
+            <td data-label="{{ 'customer.order.product' | t }}">
+              <p class="Customer__order-product-title" {% if line_item.fulfillment %}style="margin-bottom: 15px"{% endif %}>
+                {{ line_item.title | link_to: line_item.product.url }}
+              </p>
+              {% if line_item.fulfillment %}
+                <div class="Customer__order-fulfillment-box">
+                  <p class="Customer__order-fulfilled">
+                    Fullfilled on {{ line_item.fulfillment.created_at | date: format: 'month_day_year' }}
+                  </p>
+                  {% if line_item.fulfillment.tracking_number %}
+                    <a href="{{ line_item.fulfillment.tracking_url }}" target="_blank" class="Customer__order-tracking">
+                    Track Shipment
+                    </a>
+                    <p class="Customer__order-tracking-number">
+                      {{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}
+                    </p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </td>
+            <td data-label="{{ 'customer.order.sku' | t }}">
+              <p class="Customer__order-table-data-text">
+                {{ line_item.sku }}
+              </p>
+            </td>
+            <td data-label="{{ 'customer.order.price' | t }}">
+              <p class="Customer__order-table-data-text">
+                {{ line_item.price | money_without_trailing_zeros  }}
+              </p>
+            </td>
+            <td data-label="{{ 'customer.order.quantity' | t }}">
+              <p class="Customer__order-table-data-text">
+                {{ line_item.quantity }}
+              </p>
+            </td>
+            <td data-label="{{ 'customer.order.total' | t }}">
+              <p class="Customer__order-table-data-text">
+                {{ line_item.quantity | times: line_item.price | money_without_trailing_zeros  }}
+              </p>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+      <tfoot>
+        <tr class="responsive-table-row">
+          <td colspan="4">
+            Subtotal</td>
+          <td data-label="{{ 'customer.order.subtotal' | t }}">
+            {{ order.subtotal_price | money_without_trailing_zeros  }}
+          </td>
+        </tr>
+
+        {% for discount in order.discounts %}
+          <tr>
+            <td colspan="4">
+              {{ discount.code }} Discount
+            </td>
+            <td data-label="{{ 'customer.order.discount' | t }}">
+              {{ discount.savings | money_without_trailing_zeros }}
+            </td>
+          </tr>
+        {% endfor %}
+
+        {% if order.shipping_methods.size > 0 %}
+          {% for shipping_method in order.shipping_methods %}
+            <tr>
+              <td colspan="4">
+                Shipping ({{ shipping_method.title }})
+              </td>
+              <td data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">
+                {{ shipping_method.price | money_without_trailing_zeros  }}
+              </td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="4">
+              Shipping
+            </td>
+            <td data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">
+              Free
+            </td>
+          </tr>
+        {% endif %}
+
+        {% for tax_line in order.tax_lines %}
+          <tr>
+            <td colspan="4">
+              Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)
+            </td>
+            <td data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">
+              {{ tax_line.price | money_without_trailing_zeros }}
+            </td>
+          </tr>
+        {% endfor %}
+
+        <tr>
+          <td colspan="4">
+            Estimated Total
+          </td>
+          <td data-label="{{ 'customer.order.total' | t }}">
+            {{ order.total_price | money_without_trailing_zeros  }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="Customer__order-table-mobile">
+      {% for line_item in order.line_items %}
+
+        {% comment %} Product {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-mobile-header">
+            Product
+          </p>
+        </div>
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-product-title">
+            {{ line_item.title | link_to: line_item.product.url }}
+          </p>
+          {% if line_item.fulfillment %}
+            <div class="Customer__order-fulfillment-box">
+              <p class="Customer__order-fulfilled">
+                Fullfilled on {{ line_item.fulfillment.created_at | date: format: 'month_day_year' }}
+              </p>
+              {% if line_item.fulfillment.tracking_number %}
+                <a href="{{ line_item.fulfillment.tracking_url }}" target="_blank" class="Customer__order-tracking">
+                Track Shipment
+                </a>
+                <p class="Customer__order-tracking-number">
+                  {{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}
+                </p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% comment %} SKU {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-mobile-header">
+            SKU
+          </p>          
+        </div>
+        <div class="Customer__order-mobile-row">
+          {% if line_item.sku != blank %}
+            <p class="Customer__order-table-data-text">
+              {{ line_item.sku }}
+            </p>
+          {% else %}
+            <p class="Customer__order-table-data-text">
+              No SKU
+            </p>
+          {% endif %}
+        </div>
+
+        {% comment %} Price {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-mobile-header">
+            Price
+          </p>
+        </div>
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-table-data-text">
+            {{ line_item.price | money_without_trailing_zeros  }}
+          </p>
+        </div>
+
+        {% comment %} Qty {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-mobile-header">
+            Qty
+          </p>
+        </div>
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-table-data-text">
+            {{ line_item.quantity }}
+          </p>
+        </div>
+
+        {% comment %} Total {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-mobile-header">
+            Total
+          </p>
+        </div>
+        <div class="Customer__order-mobile-row">
+          <p class="Customer__order-table-data-text">
+            {{ line_item.quantity | times: line_item.price | money_without_trailing_zeros }}
+          </p>
+        </div>
+
+        {% comment %} Sub, Ship, Est. {% endcomment %}
+        <div class="Customer__order-mobile-row">
+          <div class="Customer__order-mobile-row-flex">
+            <p class="Customer__order-mobile-header">
+              Subtotal
+            </p>
+            <p class="Customer__order-table-data-text">
+              {{ order.subtotal_price | money_without_trailing_zeros  }}
+            </p>
+          </div>
+          <div class="Customer__order-mobile-row-flex">
+            <p class="Customer__order-mobile-header">
+              Shipping
+            </p>
+            <p class="Customer__order-table-data-text">
+              {{ order.subtotal_price | money_without_trailing_zeros  }}
+            </p>
+          </div>
+          <div class="Customer__order-mobile-row-flex">
+            <p class="Customer__order-mobile-header">
+              Estimated Total
+            </p>
+            <p class="Customer__order-table-data-text">
+              {{ order.subtotal_price | money_without_trailing_zeros  }}
+            </p>
+          </div>
+          
+          
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,146 @@
+<section id="Blog-Sign-Up" class="Blog-Section-sidebar Blog-d__column-right-max-width Blog-Sign-Up">
+  <article class="Blog-su__content">
+
+    <div class="Blog-p__image-wrap Article-p__image-wrap--mobile">
+      {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}">{% endcomment %}
+      {% include 'responsive-image' image: section.settings.image %}
+
+    </div>
+  
+    <h4 class="Blog-su__title">
+      {{ section.settings.title }}
+    </h4>
+
+    <div class="Blog-su__input-wrap">
+      <form 
+            id="blog_email_signup" 
+            class="SiteFooter-block__email-email-box" 
+            action="//manage.kmail-lists.com/subscriptions/subscribe"
+            novalidate="novalidate">
+
+              <input type="hidden" name="g" value="NFDRmY">
+              <input type="hidden" name="$fields" value="$consent">
+              <input type="hidden" name="$list_fields" value="$consent">
+
+              <input 
+                type="email" 
+                name="email" 
+                id="k_id_email" 
+                class="Blog-su__input" 
+                placeholder="{{ section.settings.placeholder }}">
+
+              <button type="submit" class="Blog-su__button">
+                <div class="Blog-su__button-inner">
+                  {{ section.settings.button-text }}
+                </div>
+              </button>
+      </form>
+      <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            try{
+
+              KlaviyoSubscribe.attachToForms('#blog_email_signup', {
+                hide_form_on_success: true,
+                extra_properties: {
+                  $source: '$embed',
+                  $method_type: "Klaviyo Form",
+                  $method_id: 'embed',
+                  $consent_version: 'Embed default text'
+                },
+                success: function(){
+                  const message = document.getElementById('blog-form-success-message');
+                  message.style.display = 'block';
+                }
+              });
+            } catch (err){
+              console.log(err)
+            }
+          </script>
+    </div>
+
+    <div id="blog-form-success-message" class="Blog-su__success-message">
+      <p class="Blog-su__success-message-text">
+        You're in! Check your email for a confirmation email.
+      </p>
+    </div>
+
+    <div class="Blog-su__social-icons">
+      {% for block in section.blocks %}
+        <div class="Blog-su__social-icon-wrap">
+          <a href="{{ block.settings.link }}" target="_blank" class="Blog-su__social-icon-link">
+            {% comment %}<img id="Blog-icon" src="{{ block.settings.icon | img_url: 'master' }}">{% endcomment %}
+            {% include 'responsive-image' image: block.settings.icon, id: 'Blog-icon' %}
+            {% comment %}<img id="Blog-icon-hover" src="{{ block.settings.icon-hover | img_url: 'master' }}">{% endcomment %}
+            {% include 'responsive-image' image: block.settings.icon-hover, id: 'Blog-icon-hover' %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Sign Up",
+    "class": "Blog-sections-margin",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Want more? Sign up our newsletter. Unsubscribe anytime."
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Input Placeholder",
+        "default": "Enter e-mail address here.."
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Submit Button Text",
+        "default": "Subscribe"
+      },
+      {
+        "type": "header",
+        "content": "Article Page Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image to be displayed above content"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Icon Link"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Social Icon Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon-hover",
+            "label": "Social Icon Image Hover"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

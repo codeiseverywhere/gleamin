@@ -1,0 +1,199 @@
+.SiteHeader--nav-menu-item {
+  width: auto;
+  height: 100%;
+}
+.SiteHeader--nav-menu-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SiteHeader--nav-menu-text {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+//
+//
+//
+//Menu Left
+.SiteHeader--menu-left .SiteHeader--nav-menu {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SiteHeader--menu-left .SiteHeader--nav-menu-item {
+  margin-right: 20px;
+}
+.SiteHeader--menu-left .SiteHeader--nav-menu-item:last-child {
+  margin-right: 0px;
+}
+.SiteHeader--menu-left .SiteHeader--nav-menu-text {
+  color: $SiteHeader--top-row-text-color;
+  font-weight: 400;
+}
+.SiteHeader--menu-left .SiteHeader--nav-menu-text:hover {
+  color: $Color_accent-2;
+}
+//
+//
+//
+//Menu Bottom
+.SiteHeader--bottom-row .SiteHeader--nav-menu {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  padding: 0px 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.SiteHeader--menu-bottom {
+  width: 100%;
+  height: 100%;
+}
+.SiteHeader--menu-bottom .SiteHeader--nav-menu-item {
+  flex: 0 0 auto;
+  margin: 0px 25px;
+  @media screen and (max-width:767px) {
+    margin: 0px 15px;
+  }
+}
+.SiteHeader--menu-bottom .SiteHeader--nav-menu-item:first-child {
+  margin-left: auto;
+}
+.SiteHeader--menu-bottom .SiteHeader--nav-menu-item:last-child {
+  margin-right: auto;
+  padding-right: 15px;
+}
+
+@media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+  .SiteHeader--menu-bottom .SiteHeader--nav-menu-item--last-mobile {
+    margin-right: auto;
+  }
+}
+
+.SiteHeader--menu-bottom .SiteHeader--nav-menu-text {
+  color: $SiteHeader--bottom-row-text-color;
+  font-weight: 500;
+  margin: 0;
+}
+.SiteHeader--menu-bottom
+  .SiteHeader--nav-menu-item:hover
+  .SiteHeader--nav-menu-text {
+  color: $Color_accent-2;
+}
+
+@media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+  .SiteHeader--menu-left .SiteHeader--nav-menu {
+    display: none;
+  }
+  .SiteHeader--menu-left .SiteHeader--block:first-child {
+    margin-left: 0px;
+  }
+  .SiteHeader--menu-bottom .SiteHeader--nav-menu-item--hide-mobile {
+    display: none;
+  }
+}
+
+// Bottom Menu -- Drop Down
+.SiteHeader--nav-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  max-height: 0px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.SiteHeader--nav-menu-dropdown-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.SiteHeader--nav-menu-dropdown-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 0px;
+  @media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+    flex-wrap: wrap;
+  }
+}
+.SiteHeader--nav-menu-dropdown-item {
+  width: 100%;
+  max-width: 150px;
+  height: 100%;
+  margin: 0px 25px;
+  @media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+    width: 50%;
+    margin: 0px 10px 20px;
+  }
+}
+.SiteHeader--nav-menu-dropdown-image-wrap {
+  width: 100%;
+  max-height: 150px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SiteHeader--nav-menu-dropdown-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.SiteHeader--nav-menu-dropdown-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: #212222;
+  text-align: center;
+}
+
+//On Hover Drop Down
+.SiteHeader--nav-menu-item:hover .SiteHeader--nav-menu-text-hover {
+  text-decoration: none;
+}
+.SiteHeader--nav-menu-item:hover .SiteHeader--nav-menu-dropdown {
+  max-height: 300px;
+  box-shadow: 4px 4px 15px #00000015;
+}
+
+
+@media (hover: none)  {
+  .SiteHeader--nav-menu-item.tapped .SiteHeader--nav-menu-text-hover {
+    text-decoration: underline;
+  }
+  .SiteHeader--nav-menu-item.tapped .SiteHeader--nav-menu-dropdown {
+    max-height: 300px;
+    box-shadow: 4px 4px 15px #00000015;
+    @media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+      max-height: 460px;
+    }
+  }
+}
+
+
+
+/* @media screen and (max-width: $SiteHeader-mobile-breakpoint) {
+  .SiteHeader--nav-menu-dropdown {
+    display: none;
+  }
+  .SiteHeader--nav-menu-item:hover .SiteHeader--nav-menu-text-hover {
+    text-decoration: none;
+  }
+} */

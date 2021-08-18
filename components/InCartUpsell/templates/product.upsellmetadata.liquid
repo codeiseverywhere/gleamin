@@ -1,0 +1,8 @@
+{% layout none %}
+{
+    "upsell": {
+        "products": {{ product.metafields.global.upsell_products | json }},
+        "variants": {{ product.metafields.global.upsell_variants | json }},
+        "product_offers": {{ product.metafields.global.upsell_product_offers | json }}
+    }
+}

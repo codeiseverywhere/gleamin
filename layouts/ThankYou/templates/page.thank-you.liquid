@@ -1,0 +1,49 @@
+{% section 'ThankYou-hero' %}
+
+<script>
+(function () {
+  try {
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let paramValue;
+      const params = window.location.href;
+      const myParams = params.split('?')[1];
+      const value = myParams.split('=')[1];
+      paramValue = value;
+
+      const referralTitle = document.getElementById('ThankYou-title-referral');
+      const contactTitle = document.getElementById('ThankYou-title-contact');
+      const subscriptionTitle = document.getElementById('ThankYou-title-subscription');
+      const comingSoonTitle = document.getElementById('ThankYou-title-coming-soon');
+    const bfcmTitle = document.getElementById('ThankYou-title-bfcm');
+
+      const referralText = document.getElementById('ThankYou-referral');
+      const contactText = document.getElementById('ThankYou-contact');
+      const subscriptionText = document.getElementById('ThankYou-subscription');
+      const comingSoonText = document.getElementById('ThankYou-coming-soon');
+    const bfcmText = document.getElementById('ThankYou-bfcm');
+
+      console.log(paramValue);
+
+      if (paramValue == 'referral') {
+        referralText.style.display = 'block'
+        referralTitle.style.display = 'inline'
+      } else if (paramValue == 'contact') {
+        contactText.style.display = 'block'
+        contactTitle.style.display = 'inline'
+      } else if (paramValue == 'subscription') {
+        subscriptionText.style.display = 'block'
+        subscriptionTitle.style.display = 'inline'
+      } else if (paramValue == 'coming-soon') {
+        comingSoonText.style.display = 'block'
+        comingSoonTitle.style.display = 'inline'
+      } else if (paramValue == 'bfcm') {
+        bfcmText.style.display = 'block'
+        bfcmTitle.style.display = 'inline'
+      }
+    })
+  } catch (err) {
+    console.log('thank you page err: ', err);
+  }
+}());
+</script>

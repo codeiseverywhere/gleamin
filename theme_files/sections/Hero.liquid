@@ -1,0 +1,353 @@
+<style>
+@media screen and (max-width: 1023px){
+   .Hero__nav {
+    width: 100%;
+    height: 64vw;
+  }
+
+  
+
+  {% if section.blocks.count > 3 %}
+    .Hero__nav-item {
+      width: 25px;
+      height: 3px;
+      margin: 0px 10px 25px;
+    }
+  {% endif %}
+}
+
+.Hero-cta-hover:hover {
+  color: {{ section.settings.cta-hover-color }};
+  background-color: {{ section.settings.cta-hover-bg-color }};
+}
+
+.vid_hero {
+  display: flex;
+    align-items: center;
+}
+
+.Hero__Video {
+  width: 63%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1023px){
+  .Hero__Video {
+    width: 100%;
+  }
+}
+
+.Hero__Video_Overlay {
+	position: absolute;
+    height: 100%;
+    width: 100%;
+  	top: 0;
+}
+  
+  .Hero__Video_Image {
+  	position: absolute;
+    height: 100%;
+    width: 100%;
+  	top: 0;
+    object-fit: cover;
+    z-index: 10;
+  }
+  
+  @media screen and (min-width:767px) {
+    .Hero__Video_Overlay {
+    	display: none;
+    }
+    
+    .Hero__Video_Image {
+    	display: none;
+    }
+  }  
+  
+  
+  .Hero__mobile-image-container {
+  	position: relative;
+  }
+  
+
+</style>
+
+{% assign showVideo = false %}
+{% if section.settings.video_url != "" %}
+  {% assign showVideo = true %}
+{% endif %}
+
+
+
+
+<section id="x-hero" class="Hero {% if showVideo == true %}has-vid{% endif %}" data-autoplay="{{ section.settings.autoplay }}">
+  <div class="Hero__inner">
+
+    <div class="Hero__slides Hero__slides--desktop">
+
+        {% if showVideo == false %}
+           {% if section.blocks.size > 1 %}
+              <div class="Hero__nav">
+                <div class="Hero__nav-inner">
+                  <!-- nav desktop -->
+                  <div class="Hero__nav-items">
+                    {% for block in section.blocks %}
+                        <div id="x-hero-nav-item-{{ forloop.index }}" class="Hero__nav-item {% if forloop.first %}Hero_nav-item-selected{% endif %}"></div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+        {% endif %}
+       
+        {% if showVideo == false %}
+          {% for block in section.blocks %}
+            <div id="x-hero-slide-{{ forloop.index }}" class="Hero__slide {% if forloop.first %}Hero-selected-slide{% endif %}">
+              <div class="Hero-slide-inner">
+              
+                <!-- image desktop -->
+                <div class="Hero-slide__image-container">
+                    {% include 'responsive-image' image: block.settings.image, classes: 'Hero-slide__image Hero-slide-large-image' %} 
+                    {% comment %} {% include 'responsive-image' image: block.settings.mobile-image, classes: 'Hero-slide__image Hero-slide-mobile-image' %} {% endcomment %}
+                </div>
+
+                <div class="Hero-slide__text-container">
+                  <div class="Hero-slide__text-box">
+                      <div class="Hero-text-box__title-box">
+                        <h1 class="Hero-text-box__title">{{ block.settings.title }}</h1>
+                      </div>
+                      <div class="Hero-text-box__text-box">
+                        <p class="Hero-text-box__text">{{ block.settings.text }}</p>
+                      </div>
+                      <div class="Hero-text-box__cta-box">
+                        <a href="{{ block.settings.cta-link }}" class="Hero-text-box__cta Site__button-main">{{ block.settings.cta-text }}</a>
+                      </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+
+        {% else %}
+
+          {% assign block = section.blocks[0] %}
+          <div class="vid_hero">
+            <video id="hero_video" class="Hero__Video" controls autoplay muted>
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+            </video>
+
+            <div class="Hero-slide__text-container">
+              <div class="Hero-slide__text-box">
+                  <div class="Hero-text-box__title-box">
+                    <h1 class="Hero-text-box__title">{{ block.settings.title }}</h1>
+                  </div>
+                  <div class="Hero-text-box__text-box">
+                    <p class="Hero-text-box__text">{{ block.settings.text }}</p>
+                  </div>
+                  <div class="Hero-text-box__cta-box">
+                    <a href="{{ block.settings.cta-link }}" class="Hero-text-box__cta Site__button-main">{{ block.settings.cta-text }}</a>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+
+      {% endif %}
+    </div>
+
+    <div class="Hero__mobile-slider-wrap">
+      <div class="Hero__mobile-image-container {% if showVideo == true %}Hero__video-container{% endif %}">
+        
+        {% if showVideo == false %}
+          <div class="Hero__mobile-nav">
+            <div class="Hero__mobile-nav-inner">
+              {% for block in section.blocks %}
+                <div class="Hero__mobile-nav-item"></div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="Hero__mobile-slider">
+            {% for block in section.blocks %}
+              <div class="Hero__mobile-slide">
+                <div class="Hero__mobile-slide-inner">
+                  {% include 'responsive-image' image: block.settings.mobile-image %} 
+                </div>
+              </div>
+            {% endfor %}       
+          </div>
+        {% else %}
+
+          <img id="play-pause-button" src="{{ section.settings.mobile_video_cover | img_url: 'master' }}" class="Hero__Video_Image">
+          <video id="hero_mobile_video" class="Hero__Video lazyload" controls autoplay muted preload>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+
+        {% endif %} 
+
+      </div>
+
+      <div class="Hero__mobile-text-container">
+        {% for block in section.blocks %}
+          {% if forloop.first %}
+            <div class="Hero-slide__text-box">
+                <div class="Hero-text-box__title-box">
+                  <h1 class="Hero-text-box__title">{{ block.settings.title }}</h1>
+                </div>
+                <div class="Hero-text-box__text-box">
+                  <p class="Hero-text-box__text">{{ block.settings.text }}</p>
+                </div>
+                <div class="Hero-text-box__cta-box">
+                  <a href="{{ block.settings.cta-link }}" class="Hero-text-box__cta Site__button-main">{{ block.settings.cta-text }}</a>
+                </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% if showVideo == true %}
+  <script>
+
+    $('#play-pause-button').click(function () {
+    var mediaVideo = $("#hero_mobile_video").get(0);
+    if (mediaVideo.paused) {
+        mediaVideo.play();
+        mediaVideo.muted = !mediaVideo.muted;
+        $('#play-pause-button').hide()	
+        
+    } else {
+        mediaVideo.pause();
+    }
+    });
+
+  </script>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "X Hero",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Enable Autoplay",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "cta-hover-color",
+        "label": "Slide CTA Text Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "cta-hover-bg-color",
+        "label": "Slide CTA Background Color",
+        "default": "#FFF003"
+      },
+      {
+        "type": "text",
+        "id": "video_url",
+        "label": "Video URL",
+        "default": "/"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_video_cover",
+        "label": "Mobile video image"
+      }
+
+
+    ],
+    "blocks": [
+      {
+        "type": "Side",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Slide Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "mobile-image",
+            "label": "Slide Image Mobile"
+          },
+          {
+            "type": "text",
+            "id": "alt",
+            "label": "Alt tag text for image",
+            "default": "image",
+            "info": "this is optional but good for SEO"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Slide Title",
+            "default": "Achieve an instant bare-faced glow!",
+            "info": "** for optimal results on mobile ** ensure the title is 2 rows in length. "
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Slide Text",
+            "default": "A transformative blend of natural ingredients to even skin tone & fade dark spots."
+          },
+          {
+            "type": "text",
+            "id": "cta-text",
+            "label": "Slide CTA Text",
+            "default": "Shop Mask"
+          },
+          {
+            "type": "url",
+            "id": "cta-link",
+            "label": "Slide CTA Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Hero",
+        "name": "Hero"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  (function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    $(document).ready(function () {
+      $(".Hero__mobile-slider").slick({
+        arrows: false,
+        draggable: true,
+        swipe: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+        asNavFor: ".Hero__mobile-nav-inner",
+      });
+      $(".Hero__mobile-nav-inner").slick({
+        slidesToShow: "auto",
+        asNavFor: ".Hero__mobile-slider",
+        dots: false,
+        arrows: false,
+        centerMode: true,
+        focusOnSelect: true,
+        useTransform: false,
+      });
+    });
+  });
+})();
+</script>

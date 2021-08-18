@@ -1,0 +1,48 @@
+.SimplePages__header {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+.SimplePage__header-highlight {
+  display: inline;
+  width: 100%;
+  height: auto;
+  background-color: $Color-body-highlight;
+}
+.SimplePages__header-text {
+  font-size: 40px;
+  line-height: 52px;
+  font-weight: 700;
+  letter-spacing: .45px;
+}
+
+@media screen and (max-width: 768px){
+  .SimplePages__header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 17px;
+  }
+  .SimplePages__header-text {
+    font-size: 34px;
+    line-height: 45px;
+    font-weight: 700;
+    letter-spacing: .45px;
+  }
+}
+
+.SimplePages__headline {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: .45px;
+  margin-bottom: 30px;
+}
+.SimplePages__text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  opacity: .8;
+}
+.SimplePages__text:last-child {
+  margin-bottom: 0px;
+}

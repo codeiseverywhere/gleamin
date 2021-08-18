@@ -1,0 +1,187 @@
+.Cart__footer {
+  width: 100%;
+  height: auto;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+//Notes
+.Cart__notes {
+  flex-grow: 1;
+  max-width: 450px;
+  height: 121px;
+}
+.Cart__notes-input {
+  width: 100%;
+  height: 100%;
+  padding: 22px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  border: 1px solid #000000;
+  resize:vertical;
+  max-height: 250px;
+  font-family: $Paragraph-font;
+}
+.Cart__notes-input::placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #00000050;
+  font-family: $Paragraph-font;
+}
+
+//Summary
+.Cart__summary {
+  width: 100%;
+  max-width: 361px;
+  height: auto;
+  margin-left: 50px;
+}
+.Cart__summary-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.Cart__summary-row--last {
+  margin-top: 70px;
+  margin-bottom: 15px;
+}
+.Cart__summary-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.Cart__summary-label span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+.Cart__sumarry-value {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.Cart__summary .afterpay-paragraph {
+  text-align: center;
+  padding: 0px 5px;
+  }
+
+//Button
+.Cart__summary-checkout {
+  width: 100%;
+}
+.Cart__summary-button {
+  width: 100%;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+}
+.Cart__summary-additional-buttons {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px){
+  .Cart__footer {
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    display: block
+  }
+  
+  
+  //Notes
+  .Cart__notes {
+    width: 100%;
+    max-width: 100%;
+    height: 120px;
+  }
+  .Cart__notes-input {
+    width: 100%;
+    height: 100%;
+    padding: 22px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    border: 1px solid #000000;
+    resize:vertical;
+    max-height: 150px;
+  }
+  .Cart__notes-input::placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #00000050;
+  }
+  
+  //Summary
+  .Cart__summary {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-left: 0px;
+    margin: 50px 0px 0px;
+  }
+  .Cart__summary-row {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .Cart__summary-row--last {
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  .Cart__summary-label {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+  .Cart__summary-label span {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .Cart__sumarry-value {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+  .Cart__summary .afterpay-paragraph {
+    text-align: center;
+    }
+  
+  //Button
+  .Cart__summary-checkout {
+    width: 100%;
+  }
+  .Cart__summary-button {
+    width: 100%;
+    height: 60px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    border: 1px solid #000000;
+  }
+}
+
+
+//Additional Payment Buttons
+.Cart__form-wrap div[data-shopify-buttoncontainer] {
+  display: block !important;
+  margin-bottom: 5px !important;
+}
+.Cart__form-wrap div[data-shopify-buttoncontainer] [data-testid] {
+  height: 60px !important;
+  border-radius: 0px !important;
+}

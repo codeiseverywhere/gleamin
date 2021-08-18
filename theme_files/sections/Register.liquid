@@ -1,0 +1,170 @@
+
+<section id="Customer__register" class="Customer__register">
+  <article class="Customer__register-content">
+
+    {% comment %} Header {% endcomment %}
+    <div class="Customer__register-header">
+      <div class="Customer__register-header-inner">
+        <span class="Customer__register-header-hilight"></span>
+        <h1 class="Customer__register-header-text">
+          {{ section.settings.header }}
+        </h1>
+      </div>
+    </div>
+
+
+    {% comment %} Form {% endcomment %}
+    <div class="Customer__register-form">
+      {% form 'create_customer' %}
+
+        {{ form.errors | default_errors }}
+
+        <input type="text"
+          name="customer[first_name]"
+          id="FirstName"
+          class="Customer__register-input {% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+          autofocus
+          {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+
+        <input type="text"
+          name="customer[last_name]"
+          id="LastName"
+          class="Customer__register-input {% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+          {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+
+        <input type="email"
+          name="customer[email]"
+          id="Email"
+          class="Customer__register-input {% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.email' | t }}"
+          value="{% if form.email %}{{ form.email }}{% endif %}"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off">
+
+        <input type="password"
+          name="customer[password]"
+          id="CreatePassword"
+          class="Customer__register-input {% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.password' | t }}">
+
+        <div class="Customer__register-checkbox-wrap">
+
+          <div class="Customer__register-checkbox-row">
+            <div id="Customer-checkbox-0" class="Customer__register-checkbox-box">
+              <div class="Customer__register-checkbox-x">
+                <div class="Customer__register-x-bar Customer__register-x-bar-1"></div>
+                <div class="Customer__register-x-bar Customer__register-x-bar-2"></div>
+              </div>
+            </div>
+            <p class="Customer__register-checkbox-text">
+              {{ section.settings.terms }}
+            </p>
+          </div>
+            <input type="hidden" id="customer-terms" name="terms-and-conditions" value="">
+
+          <div class="Customer__register-checkbox-row">
+            <div id="Customer-checkbox-1" class="Customer__register-checkbox-box checked">
+              <div class="Customer__register-checkbox-x">
+                <div class="Customer__register-x-bar Customer__register-x-bar-1"></div>
+                <div class="Customer__register-x-bar Customer__register-x-bar-2"></div>
+              </div>
+            </div>
+            <p class="Customer__register-checkbox-text">
+              {{ section.settings.signUp }}
+            </p>
+          </div>
+            <input type="hidden" id="customer-email-sign-up" name="email-updates" value="checked">
+
+        </div>
+        
+        {% comment %} ^^  https://community.shopify.com/c/Shopify-Design/Adding-fields-to-customer-registration-form/td-p/399382 {% endcomment %}
+
+        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="Customer__register-button">
+
+        <a href="/account/login" class="Customer__register-login-link">Already have an account?</a>
+
+      {% endform %}
+    </div>
+
+  </article>
+</section>
+
+
+<script>
+  (function(){
+    window.addEventListener("DOMContentLoaded", () => {
+      const boxes = document.querySelectorAll('.Customer__register-checkbox-box');
+      const inputTerms= document.getElementById('customer-terms');
+      const inputSignUp = document.getElementById('customer-email-sign-up');
+
+
+      const handler = (id) => {
+        boxes.forEach(box => {
+          const boxId = box.id.split('-')[2];
+          if (boxId == id) {
+            if (box.classList.length == 1) {
+              box.classList.add('checked');
+              if (boxId == 0){
+                inputTerms.value = 'checked'
+              } else if (boxId == 1) {
+                inputSignUp.value = 'checked'
+              }
+            } else {
+              box.classList.remove('checked');
+              if (boxId == 0){
+                inputTerms.value = ''
+              } else if (boxId == 1) {
+                inputSignUp.value = ''
+              }
+            }
+          }
+
+          
+
+        })
+      }
+
+      boxes.forEach(box => {
+        box.addEventListener('click', (e) => handler(box.id.split('-')[2]))
+      });
+
+    });
+  }());
+</script>
+
+<style>
+  .shopify-section--register {
+    margin-bottom: 0px !important;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Register",
+    "class": "shopify-section--register",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header",
+        "label": "Page Header",
+        "default": "Create An Account"
+      },
+      {
+        "type": "text",
+        "id": "terms",
+        "label": "Form Terms and Conditions Text",
+        "default": "I agree to the Terms and Conditions and Privacy Policy"
+      },
+      {
+        "type": "text",
+        "id": "signUp",
+        "label": "Form Sign Up Text",
+        "default": "Sign up for email updates on stuff you'll probably want to know about, including products, launches, and events. Unsunscribe anytime."
+      }
+    ]
+  }
+{% endschema %}

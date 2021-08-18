@@ -1,0 +1,66 @@
+<div class="Customer__order-column Customer__order-column--details">
+
+  <div class="Customer__order-info-block">
+
+    <div class="Customer__account-subheader">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.billing }} Address
+      </h4>
+    </div>
+
+    <div class="Customer__order-payment-status-wrap">
+      <p class="Customer__order-payment-status">
+        Payment Satus: <span>{{ order.fulfillment_status_label }}</span>
+      </p>
+    </div>
+
+    <div class="Customer__order-billing-address-info">
+      <p class="Customer__account-address-item">
+        {{ customer.name }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.street }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.country }}
+      </p>
+    </div>
+
+  </div>
+
+  <div class="Customer__order-info-block">
+
+    <div class="Customer__account-subheader">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.shipping }} Address
+      </h4>
+    </div>
+
+    <div class="Customer__order-payment-status-wrap">
+      <p class="Customer__order-payment-status">
+        Fulfillment Satus: <span>{{ order.financial_status_label }}</span>
+      </p>
+    </div>
+
+    <div class="Customer__order-billing-address-info">
+      <p class="Customer__account-address-item">
+        {{ customer.name }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.street }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}
+      </p>
+      <p class="Customer__account-address-item">
+        {{ customer.default_address.country }}
+      </p>
+    </div>
+
+
+  </div>
+
+</div>

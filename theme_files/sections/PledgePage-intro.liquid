@@ -1,0 +1,40 @@
+<section id="Pledge-Intro" class="Pledge__intro">
+  <article class="Pledge__intro-content Site__page-width">
+  
+    <div class="Pledge__i-header">
+
+      <div class="Pledge__i-header-highlight">
+        <h1 class="Pledge__i-header-text">
+          {{ section.settings.title }}
+        </h1>
+      </div>
+
+      <p class="Pledge__i-text">
+        {{ section.settings.text }}
+      </p>
+      
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Intro",
+    "class": "Pledge__intro-section-margin-bottom",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Intro Title",
+        "default": "Bigger than beauty"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Intro Text",
+        "default": "We are in business to improve, empower, and motivate our community to live a healthy and impactful life. While we aim to unite our community through our superfood skincare, we recognize our responsibility, now more than ever, to provide resources and support to organizations that unite us all."
+      }
+    ]
+  }
+{% endschema %}

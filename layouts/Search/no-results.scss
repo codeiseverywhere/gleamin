@@ -1,0 +1,19 @@
+//No Results
+.Search__form-header--no-results {
+  display: block !important;
+}
+.Search__results-headline--no-results {
+  text-align: left;
+  margin-bottom: 80px;
+}
+.Search__form-wrap--no-results {
+  max-width: 455px;
+  margin: 0px auto
+}
+
+@media screen and (max-width: 767px){
+  .Search__results-headline--no-results {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+}

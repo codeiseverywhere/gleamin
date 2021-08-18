@@ -1,0 +1,115 @@
+
+{% section 'Press-hero' %}
+
+{% section 'Press-award' %}
+
+{% section 'Press-quotes' %}
+
+{% section 'Press-sourceGrid' %}
+
+{% section 'DropdownWithImage' %}
+
+<script>
+  (function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    try {
+      $(document).ready(function () {
+        $(".Press-q__slider--main").slick({
+          asNavFor: ".Press-q__slider--nav",
+          arrows: false,
+          dots: false,
+          draggable: false,
+          swipe: false,
+          fade: true,
+          cssEase: "linear",
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          adaptiveHeight: false,
+          infinite: false,
+          autoplay: true,
+          autoplaySpeed: 10000,
+          pauseOnHover: true,
+          responsive: [
+            {
+              breakpoint: 1000,
+              settings: {
+                asNavFor: ".Press-q__slider--nav",
+                arrows: false,
+                centerMode: false,
+                draggable: true,
+                swipe: true,
+                fade: true,
+                cssEase: "linear",
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                adaptiveHeight: false,
+                infinite: false,
+                autoplay: false,
+                autoplaySpeed: 10000,
+                pauseOnHover: true,
+              },
+            },
+          ],
+        });
+        $(".Press-q__slider--nav").slick({
+          slidesToShow: "auto",
+          asNavFor: ".Press-q__slider--main",
+          dots: false,
+          arrows: false,
+          centerMode: true,
+          focusOnSelect: true,
+          useTransform: false,
+          pauseOnHover: true,
+          infinite: false,
+          responsive: [
+            {
+              breakpoint: 1000,
+              settings: {
+                asNavFor: ".Press-q__slider--main",
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: false,
+                arrows: false,
+                centerMode: true,
+                focusOnSelect: true,
+                pauseOnHover: true,
+                infinite: false,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                asNavFor: ".Press-q__slider--main",
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: false,
+                arrows: false,
+                centerMode: true,
+                focusOnSelect: true,
+                infinite: false,
+              },
+            },
+            {
+              breakpoint: 550,
+              settings: {
+                asNavFor: ".Press-q__slider--main",
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+                arrows: false,
+                centerMode: true,
+                centerPadding: "100px",
+                focusOnSelect: true,
+                infinite: false,
+              },
+            },
+          ],
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+})();
+
+</script>

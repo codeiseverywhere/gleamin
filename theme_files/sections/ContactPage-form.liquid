@@ -1,0 +1,138 @@
+
+<section id="Contact-form" class="Contact__form-wrap">
+  <div class="Contact__content">
+
+    {% assign formId = 'ContactForm' %}
+    {% form 'contact', id: ContactForm %}
+
+      <div class="Contact__form-row">
+        <input id="{{ formId }}-name" name="contact[name]"
+        required type="text" value="" placeholder="Name" />
+      </div>
+
+      <div class="Contact__form-row">
+        <input id="{{ formId }}-email" name="contact[email]"
+        required  type="email" value="" placeholder="Email" />
+      </div>
+
+      <div class="Contact__form-row">
+        <input id="{{ formId }}-phone" name="contact[phoneNumber]" type="tel" value="" placeholder="Phone Number" />
+      </div>
+
+      <div class="Contact__form-row">
+        <img 
+          src="{{ section.settings.arrow | img_url: 'master' }}" 
+          class="Contact__select-arrow">
+        <select 
+          required 
+          id="{{ formId }}-reason" 
+          class="Contact__select-input" 
+          name="contact[reason]" 
+          placeholder="Reason for inquiry">
+
+            <option hidden default>Reason for inquiry</option>
+            {% for block in section.blocks %}
+              <option>
+                {{ block.settings.title }}
+              </option>
+            {% endfor %}
+
+        </select>
+      </div>
+
+      <div class="Contact__form-row">
+        <textarea id="{{ formId }}-message" name="contact[message]" required placeholder="Message"></textarea>
+      </div>
+
+      <button type="submit" class="Contact__button Site__button-main">Send My Message</button>
+
+      {% if form.posted_successfully? %}
+        <script>
+          window.location = "/pages/thank-you?source=contact";
+        </script>
+      {% else %}
+        <script>
+          console.log('ERROR')
+        </script>
+      {% endif %}
+
+      {% if form.errors %}
+        {{ form.errors | default_errors }}
+      {% endif %}
+
+    {% endform %}
+
+    <p class="Contact__form-under-text">
+      {{ section.settings.form-under-details }}
+    </p>
+
+    <p class="Contact__SMS-msg">
+      <strong>Not a fan of emails?</strong><br><br>You can also text GLEAMINSUPPORT to 29071 with your order number! We won't leave you on read, we promise.
+    </p>
+    <p class="mobile-link"><a href="https://tiny.ps/QkLyY">Text Support</a></p>
+
+    
+    
+  </div>
+
+<style>
+
+  .Contact__content .Contact__SMS-msg {
+      margin-top: 50px;
+      font-size: 12px;
+      text-align: center;
+  }
+  p.mobile-link {
+        font-size: 14px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  @media screen and (min-width:768px) {
+    p.mobile-link {
+      display:none;
+    }
+  }
+
+</style>
+
+
+</section>
+
+{% schema %}
+  {
+    "name": "Contact Form",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "arrow",
+        "label": "Arrow PNG for select dropdown"
+      },
+      {
+        "type": "textarea",
+        "id": "form-under-details",
+        "label": "Under Form Details",
+        "default": "*Mon-Fri, we usually respond within 1 hour."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Reason For Inquiry",
+            "default": "Reason"
+          },
+          {
+            "type": "text",
+            "id": "value",
+            "label": "Input Value",
+            "default": "Value"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

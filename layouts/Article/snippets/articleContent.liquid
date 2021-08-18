@@ -1,0 +1,151 @@
+<link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+
+<style>
+
+.cta-wrapper {
+  display: flex;
+  background-color: #fff003;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.cta-wrapper .img-wrapper {
+  width: 40%;
+}
+
+.cta-wrapper .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta-wrapper .text-wrapper {
+  padding: 25px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+}
+
+.cta-btn {
+    display: inline-block;
+    vertical-align: top;
+    background: #030303;
+    color: rgb(255, 255, 255);
+    font-family: Poppins;
+    font-weight: 600;
+    appearance: none;
+    padding: 15px 60px;
+}
+
+.cta-btn:hover {
+  background-color: #2b2b2b;
+}
+
+.cta-btn span {
+  color: white;
+}
+  
+.cta-wrapper .Product-gi__product-text {
+  font-size: 18px;
+  font-weight:700;
+  text-transform: uppercase;
+}
+  
+.cta-italic-span {
+ 	font-family: "Playfair Italic";
+  	font-weight: 100;
+}
+  
+p.cta-bold-text {
+   font-family: "Poppins";
+  	font-weight: 600;
+}
+
+@media (max-width:767px) {
+  .Product-details__quote.headline {
+    font-size: 16px;
+  }
+  
+  .cta-btn .Product-gi__product-text {
+   	  font-size: 12px; 
+  }
+}
+
+@media (max-width: 870px) {
+ 	.cta-wrapper .text-wrapper { 
+   		align-items: center; 
+  	} 
+}
+
+.cta-wrapper p {
+  opacity: 1;
+}
+
+</style>
+
+
+{% capture cta_html %}
+<div class="cta-wrapper">
+  <div class="img-wrapper">
+      <img src="https://cdn.shopify.com/s/files/1/0071/0898/4921/files/gleamin_cta_photo.png?v=1619469825" alt="">
+  </div>
+  <div class="text-wrapper">
+      <div class="Product-details__quote-wrap">
+          <p class="Product-details__quote headline cta-bold-text">
+            In just 10 minutes,
+          </p>
+          <p class="Product-details__quote headline cta-bold-text">
+            leave your skin
+          </p>
+          <p class="Product-details__quote headline cta-bold-text">
+            <span class="cta-italic-span">utterly radiant</span>.
+          </p>
+      </div>
+      <a href="/products/mask" target="_blank" class="cta-btn Site__button-main">
+          <span class="Product-gi__product-text">Shop Now</span>   
+      </a>
+  </div>
+</div>
+{% endcapture %}
+
+
+
+<section id="Article-Content" class="Article__content">
+  <div class="Article__c-content">
+
+    {{ article.content }}
+
+  </div>
+</section>
+
+<div id="cta_html" style="display: none;">
+  {{cta_html}}
+</div>
+
+
+<script>
+
+  (function() {
+    
+     function get_elements_by_inner(word) {
+      res = []
+      elems = [...document.getElementsByTagName('span')];
+      elems.forEach((elem) => { 
+        console.log(elem.innerText)
+          if(elem.innerText.includes(word)) {
+              res.push(elem)
+          }
+      })
+      return(res)
+    }
+    
+      var cta_codes = get_elements_by_inner("###CTA###");
+      cta_codes.forEach((cta_code) => { 
+        $(cta_code).html($('#cta_html').html())
+      })
+  
+  })();
+    
+</script>

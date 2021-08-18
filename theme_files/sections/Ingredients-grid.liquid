@@ -1,0 +1,96 @@
+<section id="Ingredients-grid" class="Ingredients-grid">
+  <article class="Ingredients-g__content Site__page-width">
+  
+    <div class="Ingredients-g__grid">
+      {% for block in section.blocks %}
+
+        <div class="Ingredients-g__grid-item">
+          <div class="Ingredients-g__grid-item-inner">
+
+            <div class="Ingredients-g__grid-item-init">
+              <div class="Ingredients-g__image-wrap">
+                {% comment %}<img src="{{ block.settings.image | img_url: 'master' }}" class="Ingredients-g__image">{% endcomment %}
+                {% include 'responsive-image' image: block.settings.image, classes: 'Ingredients-g__image' %}
+              </div>
+
+              <div class="Ingredients-g__text-wrap">
+                <h5 class="Ingredients-g__name">
+                  {{ block.settings.name }}
+                </h5>
+                <p class="Ingredients-g__benefit">
+                  {{ block.settings.benefit }}
+                </p>
+              </div>
+            </div>
+
+            <div class="Ingredients-g__grid-item-hover">
+              <div class="Ingredients-g__text-wrap">
+                <h5 class="Ingredients-g__name Ingredients-g__name--hover">
+                  {{ block.settings.name }}
+                </h5>
+                <p class="Ingredients-g__benefit Ingredients-g__benefit--hover">
+                  {{ block.settings.benefit }}
+                </p>
+                <p class="Ingredients-g__description Ingredients-g__description--hover">
+                  {{ block.settings.description }}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      {% endfor %}
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Ingredients Grid",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Image Sizing: dimensions 590 x 440 or similar work best with a white or transparent background"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "default": "Block Name"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Ingredient Image"
+          },
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Ingredient Name",
+            "default": "Ingredient Name"
+          },
+          {
+            "type": "text",
+            "id": "benefit",
+            "label": "Ingredient Benefit",
+            "default": "Benefit Lorem Ipsum"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Ingredient Hover Description",
+            "default": "Even skin tone & protects the surface from nasties. Turmeric revitalizes skin-tone, bringing out your natural beautiful glow"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,135 @@
+.Press-quotes {
+  width: 100%;
+  height: auto;
+  padding: 80px 0px;
+}
+.Press-q__content {
+}
+.Press-q__slider-wrap {
+  position: relative;
+  width: 100%;
+}
+
+//Main Slider
+.Press-q__slider--main {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.Press-q__main-slide {
+  width: 100%;
+  height: auto;
+  outline: none;
+}
+.Press-q__quote-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
+.Press-q__quote {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 38.4px;
+  text-align: center;
+}
+
+//Nav Slider
+.Press-q__slider--nav-wrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.Press-q__slider--nav {
+  width: auto;
+  height: auto;
+  // overflow: hidden;
+}
+.Press-q__nav-slide {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 30px;
+  outline: none !important;
+}
+.Press-q__nav-slide-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 110px;
+}
+.Press-q__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.Press-q__nav-active-slide-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 5px;
+  background-color: #000000;
+  opacity: 0;
+}
+
+//Btns
+.Press-q__slider--main .slick-arrow {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .Press-q__slider--nav {
+    width: 100%;
+    height: auto;
+  }
+  .Press-q__nav-slide-inner {
+    width: 100%;
+    height: 100%;
+    max-width: 110px;
+    margin: 0px auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .Press-q__quote-wrap {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+  }
+  .Press-q__slider--nav {
+    width: 100%;
+    height: auto;
+  }
+  .Press-q__nav-slide {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // min-width: 140px;
+    margin: 0px 0px;
+    padding: 0px 20px;
+  }
+  .Press-q__nav-slide-inner {
+    width: 100%;
+    height: 100%;
+    max-width: 110px;
+    margin: 0px auto;
+  }
+}
+
+//Current Nav Slide
+.Press-quotes .Press-q__nav-slide {
+  opacity: 0.3;
+}
+.Press-quotes .slick-current {
+  opacity: 1;
+}
+.Press-quotes .slick-current .Press-q__nav-active-slide-underline {
+  opacity: 1;
+}

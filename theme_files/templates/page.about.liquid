@@ -1,0 +1,84 @@
+
+{% section 'AboutPage-AboutHero' %}
+
+{% section 'AboutPage-About5050' %}
+
+{% section 'AboutPage-AboutMeetOwner' %}
+
+{% section 'AboutPage-AboutQATabs' %}
+
+{% section 'AboutPage-AboutQuote' %}
+
+{% section 'AboutPage-AboutValueProps' %} 
+
+{% section 'Homepage5050CTA' %}
+
+{% section 'InstagramApp' %}
+
+<script>
+//--QA Tabs
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    //Desktop
+    (function () {
+      const tabs = document.querySelectorAll(".About-qat__tab");
+      const slides = document.querySelectorAll(".About-qat__slide");
+
+      const slideHandler = (id) => {
+        tabs.forEach((tab) => {
+          const tabID = tab.id.split("-")[1];
+          if (id === tabID) {
+            tab.classList.add("About-qat__tab--selected");
+          } else {
+            tab.classList.remove("About-qat__tab--selected");
+          }
+        });
+        slides.forEach((slide) => {
+          const slideId = slide.id.split("-")[1];
+          if (id === slideId) {
+            slide.classList.add("About-qat__slide--selected");
+          } else {
+            slide.classList.remove("About-qat__slide--selected");
+          }
+        });
+      };
+
+      tabs.forEach((tab) => {
+        const tabId = tab.id.split("-")[1];
+        tab.addEventListener("click", (e) => slideHandler(tabId));
+      });
+    })();
+    //Mobile
+    (function () {
+      try {
+        $(document).ready(function () {
+          $(".About-qatm__slider").slick({
+            arrows: false,
+            dots: false,
+            draggable: true,
+            swipe: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            adaptiveHeight: true,
+            infinite: true,
+            // autoplay: true,
+            // autoplaySpeed: 15000,
+            asNavFor: ".About-qatm__slider-nav",
+          });
+          $(".About-qatm__slider-nav").slick({
+            slidesToShow: "auto",
+            asNavFor: ".About-qatm__slider",
+            dots: false,
+            arrows: false,
+            focusOnSelect: true,
+            useTransform: false,
+          });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  });
+})();
+
+</script>

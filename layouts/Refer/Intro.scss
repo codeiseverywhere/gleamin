@@ -1,0 +1,210 @@
+.Refer-intro {
+  width: 100%;
+  height: auto;
+}
+.Refer-i__content {
+  width: 100%;
+  height: 42vw;
+  max-height: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.Refer-i__image-container {
+  width: 100%;
+  height: 100%;
+}
+.Refer-i__image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.Refer-i__text-container {
+  width: 100%;
+  max-width: 37%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Refer-i__text-box {
+  display: inline-block;
+  width: auto;
+  max-width: 444px;
+  height: auto;
+  margin-left: 74px;
+  padding: 0px 20px;
+}
+.Refer-i__intro-copy {
+  width: 100%;
+  height: 100%;
+}
+.swell-referral-content-sidebar {
+  display: none !important;
+}
+.Refer-i__intro-title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 52px;
+  margin-bottom: 15px;
+}
+.Refer-i__intro-text {
+  font-size: 18px;
+  line-height: 32px;
+  opacity: .8;
+  margin-bottom: 25px;
+}
+.Refer-i__intro-instructions {
+  opacity: 0.8;
+  font-size: 14px;
+  line-height: 18.2px;
+  margin-bottom: 15px;
+}
+
+.Refer-i__intro-form-wrap {
+  width: 100%;
+  height: auto;
+}
+.Refer-i__intro-form-wrap form {
+}
+.Refer-i__intro-form-inputs {
+  height: 43px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.Refer-i__intro-form-input {
+  flex-grow: 1;
+  height: 100%;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-right: 5px;
+  padding: 10px 5px;
+  font-size: 12px;
+}
+.Refer-i__intro-form-submit {
+  width: 100%;
+  max-width: 109px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1500px){
+  .Refer-i__text-box {
+    display: inline-block;
+    width: auto;
+    max-width: 444px;
+    height: auto;
+    margin-left: 35px;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 1078px){
+  .Refer-intro {
+    width: 100%;
+    height: auto;
+  }
+  .Refer-i__content {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    display: block;
+  }
+  
+  .Refer-i__image-container {
+    width: 100%;
+    height: 48vw;
+    margin-bottom: 35px;
+  }
+  .Refer-i__image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .Refer-i__text-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Refer-i__text-box {
+    display: inline-block;
+    width: auto;
+    max-width: 444px;
+    height: auto;
+    margin-left: 0px;
+    padding: 0px 20px;
+    text-align: center;
+  }
+  .Refer-i__intro-copy {
+    width: 100%;
+    height: 100%;
+  }
+  .swell-referral-content-sidebar {
+    display: none !important;
+  }
+  .Refer-i__intro-title {
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 51px;
+    margin-bottom: 12px;
+  }
+  .Refer-i__intro-text {
+    font-size: 18px;
+    line-height: 32px;
+    opacity: .8;
+    margin-bottom: 40px;
+  }
+  .Refer-i__intro-instructions {
+    opacity: 0.8;
+    font-size: 14px;
+    line-height: 18.2px;
+    margin-bottom: 15px;
+  }
+  
+  .Refer-i__intro-form-wrap {
+    width: 100%;
+    height: auto;
+  }
+  .Refer-i__intro-form-wrap form {
+  }
+  .Refer-i__intro-form-inputs {
+    height: 43px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .Refer-i__intro-form-input {
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #000000;
+    margin-right: 5px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .Refer-i__intro-form-submit {
+    width: 100%;
+    max-width: 109px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .Refer-i__image-container {
+    width: 100%;
+    height: 64vw;
+    margin-bottom: 35px;
+  }
+}

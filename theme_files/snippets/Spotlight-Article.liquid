@@ -1,0 +1,49 @@
+<div id="Blog-article-{{ spotlight_article.handle }}" class="Blog-f__article" data-index="{{ forloop.index }}">
+    <a href="{{ spotlight_article.url }}" class="Blog-f__article-wrap-link">
+
+      <div class="Blog-f__article-image">
+
+          {% comment %}<img src="{{ article.image | img_url: 'master' }}">{% endcomment %}
+          {% render 'responsive-image' image: spotlight_article.image %}
+
+          {% if spotlight_article.tags.size > 0 %}
+          <div class="Blog-f__label">
+            <p class="Blog-f__label-text">
+              {% for tag in spotlight_article.tags %}
+                {% if forloop.first %}
+                  {{ tag }}
+                {% endif %}
+              {% endfor %}
+            </p>
+          </div>
+          {% endif %}
+
+      </div>
+
+      {% if spotlight_article.tags.size > 0 %}
+        <div class="Blog-f__label--mobile">
+          <p class="Blog-f__label-text">
+            {% for tag in spotlight_article.tags %}
+              {% if forloop.first %}
+                {{ tag }}
+              {% endif %}
+            {% endfor %}
+          </p>
+        </div>
+      {% endif %}
+
+        <p class="Blog-f__article-title">
+          {{ spotlight_article.title }}
+        </p>
+
+      <p class="Blog-f__article-text">
+        {{ spotlight_article.excerpt_or_content | strip_html | truncatewords: 45, '...'}}
+      </p>
+      
+      <p class="Blog-f__article-link">
+        Read More &#8594;
+      </p>
+    </a>
+</div>
+
+

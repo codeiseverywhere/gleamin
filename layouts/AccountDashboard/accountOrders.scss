@@ -1,0 +1,126 @@
+// -- orders
+.Customer__account-column--orders {
+  flex-grow: 1;
+  padding-right: 57px;
+  border-right: 1px solid #00000030;
+}
+.Customer__account-column--orders-desktop {
+  width: 100%;
+  height: auto;
+}
+.Customer__account-column--orders-mobile {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 1000px) {
+  .Customer__account-column--orders {
+    width: 100%;
+    padding-right: 0px;
+    border-right: none;
+    border-bottom: 1px solid #00000030;
+    margin-bottom: 50px;
+  }
+  .Customer__account-column--orders-desktop {
+    display: none;
+  }
+  .Customer__account-column--orders-mobile {
+    display: block;
+  }
+}
+
+// desktop
+.Customer__account-orders {
+  width: 100%;
+  height: 100%;
+  font-family: $Paragraph-font;
+}
+.Customer__account-orders-table {
+  width: 100%;
+}
+.Customer__account-orders-table-head {
+  width: 100%;
+  height: 20px;
+}
+.Customer__account-orders-table-head tr th {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  color: #000;
+  text-align: left;
+  padding: 33px 0px 0px;
+  white-space: nowrap;
+  margin: 0;
+}
+.Customer__account-orders-table-body {
+  width: 100%;
+}
+.Customer__account-orders-table-body tr {
+  width: 100%;
+  border-bottom: 1px solid #00000030;
+}
+.Customer__account-orders-table-data {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #000000;
+  opacity: 0.8;
+  margin: 0;
+  padding: 10px 0px 33px;
+}
+.Customer__account-orders-table-data--order-number a {
+  color: #73add2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__account-orders-table-data--order-number a:hover {
+  color: #000000;
+}
+
+// mobile
+.Customer__account-column--orders-mobile {
+  width: 100%;
+}
+.Customer__account-orders--mobile {
+  width: 100%;
+  max-height: 0px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.Customer__account-orders--mobile-open {
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.Customer__account-order {
+  width: 100%;
+  border-bottom: 1px solid #00000030;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+.Customer__account-order-header {
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+  font-weight: 600;
+  opacity: 0.8;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.Customer__account-order-header--number {
+  opacity: 1;
+}
+.Customer__account-order-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+.Customer__account-order-text a {
+  color: #73add2;
+}
+.Customer__account-order-text:last-child {
+  margin-bottom: 0;
+}

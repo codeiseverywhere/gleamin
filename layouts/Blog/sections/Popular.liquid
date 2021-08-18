@@ -1,0 +1,127 @@
+{% assign current_article_tag = "" %}
+{% if article.tags.size > 0 %}
+    {% for tag in article.tags %}
+      {% if forloop.first %}
+      {% assign current_article_tag = tag %}
+      {% endif %}
+    {% endfor %}
+{% endif %}
+
+<section id="Blog-Popular" class="Blog-Section-sidebar Blog-d__column-right-max-width Blog-Popular">
+  <article class="Blog-p__content">
+  
+    {% if section.settings.image != blank %}
+      <div class="Blog-p__image-wrap Blog-p__image-wrap--mobile Article-p__hide-image--mobile">
+        {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}">{% endcomment %}
+        {% include 'responsive-image' image: section.settings.image %}
+      </div>
+    {% endif %}
+
+  
+    <h4 class="Blog-p__title">
+      {% if template == "blog" %}{{ section.settings.title }}{% else %}Most Popular in {{current_article_tag}}{% endif %}
+    </h4>
+
+    <ul class="Blog-p__posts">
+      {% if template == "blog" %}
+      {% for block in section.blocks %}
+
+        {% assign blogname = block.settings.post | split: '/' | first %}
+        {% assign postname = block.settings.post | split: '/' | last | replace: '-', ' ' %}
+
+        {% assign article = articles[block.settings.post] %}
+
+        <li 
+          id="Blog-p--{{ block.settings.link-text | handlize }}" 
+          class="Blog-p__post">
+          <p class="Blog-p__post-label">
+            {{ block.settings.label }}
+          </p>
+          <a href="{{ block.settings.link }}" class="Blog-p__post-link">
+            <p class="Blog-p__post-text">
+              {{ block.settings.link-text }}
+            </p>
+          </a>
+        </li>
+      {% endfor %}
+      {% elsif template == "article" %}
+      {% assign counter = 0 %}
+      {% for article in blog.articles %}
+        {% if article.tags contains current_article_tag %}
+        {% assign counter = counter | plus: 1 %}
+          {% if counter <= 5 %}
+          <li 
+            id="Blog-p--{{ article.handle | handlize }}" 
+            class="Blog-p__post">
+            <p class="Blog-p__post-label">
+              {{ current_article_tag }}
+            </p>
+            <a href="{{ article.url }}" class="Blog-p__post-link">
+              <p class="Blog-p__post-text">
+                {{ article.title }}
+              </p>
+            </a>
+          </li>
+          {% endif %}
+      	{% endif %}
+      {% endfor %}
+      {% endif %}
+    </ul>
+
+    {% if section.settings.image != blank %}
+      <div class="Blog-p__image-wrap">
+        {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}">{% endcomment %}
+        {% include 'responsive-image' image: section.settings.image %}
+      </div>
+    {% endif %}
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Popular Posts",
+    "class": "Blog-sections-margin sticky-sidebar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Most Popular"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+      
+    ],
+    "blocks": [
+      {
+        "type": "block-type",
+        "name": "Block Name",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "text",
+            "id": "link-text",
+            "label": "Link text",
+            "default": "Lorem Ipsum dolor amet"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Choose a link from the store or a link to any site/page."
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Label for link",
+            "default": "Trending"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

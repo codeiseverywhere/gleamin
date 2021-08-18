@@ -1,0 +1,139 @@
+
+
+<div id="Product-grid-item-{{ product.id }}" class="Product-grid-item">
+  <div class="Product-gi-inner">
+
+    {% include 'Product-grid_item_label' %}
+    <a href="{{ product.url }}" class="Product-gi__image-cover"></a>
+
+    <a href="{{ product.url }}" class="Product-gi__image-wrap"
+        {% if product.metafields.global.coming-soon != "true" %}
+          data-quickview="{{product.url}}?view=quickview"
+          data-target="#Collection-grid_item_modal--{{product.handle}}"
+          data-toggle="offcanvas"
+          data-toggle-options="nohover"
+          {% endif %}>
+
+      {% include 'responsive-image' image: product.featured_image, classes: 'Product-gi__image' type: 'product' %}
+      {% comment %} <img src="{{ product.featured_image | product_img_url: 'original' }}" class="Product-gi__image">{% endcomment %}
+      
+      {% if product.metafields.global.coming-soon != "true" %}
+        <div class="Product-gi__quick-view Product-gi__quick-view--hide-mobile">
+          <p class="Product-gi__quick-view-text">Quick View</p>
+        </div>
+      {% endif %}
+    </a>
+
+    <div class="Product-gi__info-wrap">
+
+      <div class="Product-gi__details">
+        <a href="{{ product.url }}" class="Product-gi__product-title">
+        {% if product.metafields.coming-soon.title != blank %}
+          {{ product.metafields.coming-soon.title }}
+        {% else %}
+          {{ product.title }}
+        {% endif %}
+        </a>
+        <p class="p-small Product-gi__product-detail">
+          {% if product.metafields.product-card.alt-description != blank %}
+            {{ product.metafields.product-card.alt-description }}
+          {% else %}
+           
+          {% endif %}
+        </p>
+      </div>
+
+      {% unless product.tags contains "orderbump upgrade" %}
+      <div class="Product-gi__form">
+        {% form 'product', product, data-productid: product.id, id:form_id, class:'Product-gi__form', data-cart-form: '' %}
+
+          {% comment %}
+            Select element hidden when JS initializes. Safeguard for JS-disabled.
+          {% endcomment %}
+          <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" style="display: none">
+            {% for variant in product.variants %}
+              {%unless variant.metafields.secomapp.freegifts %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} {% unless variant.available %} disabled="disabled" {% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_without_trailing_zeros }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
+              {% endunless %}
+            {% endfor %}
+          </select>
+
+          {% assign price = current_variant.price | money_without_trailing_zeros %}
+          <p class="product__price{% if shop.taxes_included or shop.shipping_policy.body != blank %} product__price--has-policies{% endif %}" style="display: none">
+            <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+            <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            {% comment %} 
+              {% if sca_price_max > sca_price %}
+                <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                <span class="product__price--reg">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                <span class="product__price--sale">{{ 'products.general.now_price_html' | t: price: price }}</span>
+              {% else %}
+                <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                <span class="product__price--reg js-price">
+                  {{ price }}
+                </span>
+              {% endif %} 
+            {% endcomment %}
+            {% include 'product-unit-price', variant: current_variant %}
+          </p>
+
+          {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+            <div class="product__policies rte" style="display: none">
+              {%- if shop.taxes_included -%}
+                {{ 'products.general.include_taxes' | t }}
+              {%- endif -%}
+              {%- if shop.shipping_policy.body != blank -%}
+                {{ 'products.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {% if product.metafields.global.coming-soon == 'true' %}
+            <a href="{{ product.url }}" class="Product-gi-form-btn Site__button-main">
+              <p class="Product-gi__product-text">
+                Coming Soon
+              </p>
+            </a>
+          {% else %}
+            {% if product.available %}
+              <button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %} Product-gi-form-btn Site__button-main">
+                <span class="Product-gi__product-text">Add to Bag </span>
+                <p class="Product-gi__product-price"> - {{ sca_price | money_without_trailing_zeros }}</p>
+              </button>
+            {% else %}
+              <button type="button" class="Product-gi-form-button-sold-out Site__button-main" disabled="disabled">
+                <p>
+                  Sold out
+                </p>
+              </button>
+            {% endif %}
+          {% endif %}
+
+          {% if section.settings.enable_payment_button %}
+            {% unless shop.metafields.subscriptions.subscription_active and product.metafields.subscriptions.shipping_interval_frequency %}
+            {{ form | payment_button }}
+            {% endunless %}
+          {% endif %}
+
+        {% endform %}
+      </div>
+      {% endunless %}
+      
+
+    </div>
+
+  </div>
+</div>  
+
+{% if product.metafields.global.coming-soon != "true" %}
+  <div class="Modal is-Offcanvas--closed Product-quick_view_modal pqv--ov" id="Collection-grid_item_modal--{{product.handle}}">
+    <div class="Modal__inner-quickview">
+      <button type="button" class="Modal-close" data-dismiss="offcanvas" aria-label="Close">
+        <img src="{{ settings.quick-view-x | img_url: '14px' }}" alt="X Icon" class="Modal-close-image">
+        <img src="{{ settings.quick-view-x-hover | img_url: '14px' }}" alt="X Icon" class="Modal-close-image Modal-close-image--hover">
+      </button>
+      <div class="Modal-content" data-quickview-content>
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,74 @@
+{% section 'FAQ-hero' %}
+
+<div class="FAQ-content-container Site__page-width">
+  {% section 'FAQ-sidebar' %}
+  <div class="FAQ-accordion-wrap">
+    {% section 'FAQ-most-asked' %}
+    {% section 'FAQ-product-info' %}
+    {% section 'FAQ-orders-payments-refunds' %}
+    {% section 'FAQ-shipping-delivery' %}
+    {% section 'FAQ-subscribe-save' %}
+    {% section 'FAQ-company-info' %}
+  </div>
+</div>
+
+{% section 'FAQ-5050CTA' %}
+
+<script>
+(function () {
+  window.addEventListener("DOMContentLoaded", () => {
+    //Accordion
+    const questions = document.querySelectorAll(".FAQ-a__drawer-header");
+    const drawers = document.querySelectorAll(".FAQ-a__drawer");
+
+    const accordionHandler = (id) => {
+      const ID = id.split("-")[2];
+      drawers.forEach((drawer) => {
+        const dID = drawer.id.split("-")[2];
+        if (dID === ID) {
+          if (drawer.classList.length > 1) {
+            drawer.classList.remove("FAQ-a__drawer--open");
+          } else {
+            drawer.classList.add("FAQ-a__drawer--open");
+          }
+        } else {
+          drawer.classList.remove("FAQ-a__drawer--open");
+        }
+      });
+    };
+    questions.forEach((question) => {
+      question.addEventListener("click", (e) => accordionHandler(question.id));
+    });
+
+    //Filter - mobile
+    const filter = document.querySelector(".FAQ-s__filter");
+    const headerFilter = document.querySelector(".FAQ-s__filter-header");
+    const filterItems = document.querySelectorAll(".FAQ-s__list-item--filter");
+
+    const filterHandler = () => {
+      if (filter.classList.length > 1) {
+        filter.classList.remove("FAQ-s__filter--open");
+      } else {
+        filter.classList.add("FAQ-s__filter--open");
+      }
+    };
+    if (headerFilter) {
+      headerFilter.addEventListener("click", filterHandler);
+    }
+    if (filterItems) {
+      filterItems.forEach((item) => {
+        item.addEventListener("click", filterHandler);
+      });
+    }
+  
+    //set zindex in descending order
+    const sections = document.querySelectorAll('.FAQ-a__block');
+    const number = sections.length + 1;
+    sections.forEach((section, i) => {
+      const newNumber = number - i;
+      section.style.zIndex = `${newNumber}`;
+    });
+  });
+})();
+
+</script>

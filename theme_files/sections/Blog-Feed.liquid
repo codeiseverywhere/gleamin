@@ -1,0 +1,75 @@
+<section id="Blog-Feed" class="Blog-Feed">
+  <article class="Blog-f__content">
+
+    {% if current_tags %}
+      {% include 'Blog-Category-Grid' %}
+    {% else %}  
+    <div class="Blog-f__blog-feed">
+      {% for article in blogs[section.settings.blog].articles %}
+        <div id="Blog-article-{{ article.handle }}" class="Blog-f__article" data-index="{{ forloop.index }}">
+          <a href="{{ article.url }}" class="Blog-f__article-wrap-link">
+
+            <div class="Blog-f__article-image">
+
+                {% comment %}<img src="{{ article.image | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: article.image %}
+
+                {% if article.tags.size > 0 %}
+                <div class="Blog-f__label">
+                  <p class="Blog-f__label-text">
+                    {% for tag in article.tags %}
+                      {% if forloop.first %}
+                        {{ tag }}
+                      {% endif %}
+                    {% endfor %}
+                  </p>
+                </div>
+                {% endif %}
+
+            </div>
+
+            {% if article.tags.size > 0 %}
+              <div class="Blog-f__label--mobile">
+                <p class="Blog-f__label-text">
+                  {% for tag in article.tags %}
+                    {% if forloop.first %}
+                      {{ tag }}
+                    {% endif %}
+                  {% endfor %}
+                </p>
+              </div>
+            {% endif %}
+
+              <p class="Blog-f__article-title">
+                {{ article.title }}
+              </p>
+
+            <p class="Blog-f__article-text">
+              {{ article.excerpt_or_content | strip_html | truncatewords: 25, '...'}}
+            </p>
+            
+            <p class="Blog-f__article-link">
+              Read More &#8594;
+            </p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Blog Feed",
+    "class": "Blog-sections-margin",
+    "settings": [
+		{
+        "type": "blog",
+        "id": "blog",
+        "label": "Select a Blog"
+      }
+    ]
+  }
+{% endschema %}

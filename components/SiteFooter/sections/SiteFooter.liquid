@@ -1,0 +1,540 @@
+
+<footer id="SiteFooter" class="SiteFooter">
+
+  <div class="SiteFooter-border-top"></div>
+
+  <div class="SiteFooter__top">
+    <div class="SiteFooter-inner">
+      <div class="SiteFooter__top-content">
+
+
+
+      <div class="SiteFooter-top-content__row">
+
+        <div class="SiteFooter-block__message">
+          <h6 class="SiteFooter-message-title">{{ section.settings.footer-message-title }}</h6>
+          <p class="SiteFooter-message-text">{{ section.settings.footer-message-text }}</p>
+          <a href="{{ section.settings.footer-message-link }}" class="SiteFooter-message-link" style="color: {{ section.settings.message-link-color }}">
+            <p class="SiteFooter-message-link-text">
+              {{ section.settings.footer-message-link-text }}
+            </p>
+          </a>
+        </div>
+
+        <div class="SiteFooter-block__links">
+          <div class="SiteFooter-block__links-inner">
+            <div class="SiteFooter-block__links-list">
+              <p class="SiteFooter-block__links-list-title">
+                {{ section.settings.list-1-title }}
+              </p>
+              {% for link in linklists[section.settings.footer-link-list-1].links %}
+                <a href="{{ link.url }}" class="SiteFooter-block__link">
+                  <p class="SiteFooter-block__link-text">
+                    {{ link.title }}
+                  </p>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="SiteFooter-block__links-list SiteFooter-block__links-list--middle">
+              <p class="SiteFooter-block__links-list-title">
+                {{ section.settings.list-2-title }}
+              </p>
+              <a class="SiteFooter-block__link"><p data-acsb-custom-trigger="true" class="SiteFooter-block__link-text">Accessibility</p></a>
+              {% for link in linklists[section.settings.footer-link-list-2].links %}
+                <a href="{{ link.url }}" class="SiteFooter-block__link">
+                  <p class="SiteFooter-block__link-text {% if forloop.last %}SiteFooter-block__link-text-no-margin{% endif %}">
+                    {{ link.title }}
+                  </p>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="SiteFooter-block__links-list">
+              <p class="SiteFooter-block__links-list-title">
+                {{ section.settings.list-3-title }}
+              </p>
+              {% for link in linklists[section.settings.footer-link-list-3].links %}
+                <a href="{{ link.url }}" class="SiteFooter-block__link">
+                  <p class="SiteFooter-block__link-text {% if forloop.last %}SiteFooter-block__link-text-no-margin{% endif %}">
+                    {{ link.title }}
+                  </p>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="SiteFooter-block__links-list SiteFooter-block__link-list-mobile SiteFooter-block__link-list-mobile--first">
+              <a class="SiteFooter-block__link"><p data-acsb-custom-trigger="true" class="SiteFooter-block__link-text">Accessibility</p></a>
+              {% for link in linklists[section.settings.footer-link-list-1-mobile].links %}
+                <a href="{{ link.url }}" class="SiteFooter-block__link">
+                  <p class="SiteFooter-block__link-text {% if forloop.last %}SiteFooter-block__link-text-no-margin{% endif %}">
+                    {{ link.title }}
+                  </p>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="SiteFooter-block__links-list SiteFooter-block__link-list-mobile SiteFooter-block__link-list-mobile--last">
+              {% for link in linklists[section.settings.footer-link-list-2-mobile].links %}
+                <a href="{{ link.url }}" class="SiteFooter-block__link">
+                  <p class="SiteFooter-block__link-text {% if forloop.last %}SiteFooter-block__link-text-no-margin{% endif %}">
+                    {{ link.title }}
+                  </p>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="SiteFooter-block__email SiteFooter-block__hide-mobile">
+          <div class="SiteFooter-block__email-title-wrap">
+            <div class="SiteFooter-block__email-title-hilight">
+              <h3 class="SiteFooter-block__email-title">
+                {{ section.settings.email-title }}
+              </h3>
+            </div>
+          </div>
+          <p class="SiteFooter-block__email-text">
+            {{ section.settings.email-text }}
+          </p>
+          <form 
+            id="email_signup" 
+            class="SiteFooter-block__email-email-box" 
+            action="//manage.kmail-lists.com/subscriptions/subscribe"
+            novalidate="novalidate">
+
+              <input type="hidden" name="g" value="NFDRmY">
+              <input type="hidden" name="$fields" value="$consent">
+              <input type="hidden" name="$list_fields" value="$consent">
+
+            <div class="SiteFooter-block__email-input-wrap">
+              <input 
+                type="email" 
+                name="email"
+                id="k_id_email"
+                placeholder="Enter e-mail address here.." 
+                class="SiteFooter-block__email-input" />
+            </div>
+            <div class="SiteFooter-block__email-btn-wrap">
+              <button type="submit" placeholder="Enter e-mail address here.." class="SiteFooter-block__email-btn">
+                Subscribe
+              </button>
+            </div>
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+          try{
+
+            KlaviyoSubscribe.attachToForms('#email_signup', {
+              hide_form_on_success: true,
+              extra_properties: {
+                $source: '$embed',
+                $method_type: "Klaviyo Form",
+                $method_id: 'embed',
+                $consent_version: 'Embed default text'
+              }
+            });
+          } catch (err){
+            console.log(err)
+          }
+          </script>
+          <div class="SiteFooter-block__email-social-icons">
+            {% if section.settings.social-icon-1 %}
+              <a href="{{ section.settings.social-icon-1-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                <img src="{{ section.settings.social-icon-1 | img_url: '20x' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-1-hover | img_url: '20x' }}" class="SiteFooter-block__email-social-icon-hover">
+                {% comment %}{% include 'responsive-image' image: section.settings.social-icon-1, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-1-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} {% endcomment %}
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-2 %}
+              <a href="{{ section.settings.social-icon-2-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                <img src="{{ section.settings.social-icon-2 | img_url: '20x' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-2-hover | img_url: '20x' }}" class="SiteFooter-block__email-social-icon-hover">
+                {% comment %}{% include 'responsive-image' image: section.settings.social-icon-2, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-2-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} {% endcomment %}
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-3 %}
+              <a href="{{ section.settings.social-icon-3-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                <img src="{{ section.settings.social-icon-3 | img_url: '20x' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-3-hover | img_url: '20x' }}" class="SiteFooter-block__email-social-icon-hover">
+                {% comment %}{% include 'responsive-image' image: section.settings.social-icon-3, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-3-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} {% endcomment %}
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-4 %}
+              <a href="{{ section.settings.social-icon-4-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                <img src="{{ section.settings.social-icon-4 | img_url: '20x' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-4-hover | img_url: '20x' }}" class="SiteFooter-block__email-social-icon-hover">
+                {% comment %}{% include 'responsive-image' image: section.settings.social-icon-4, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-4-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} {% endcomment %}
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-5 %}
+              <a href="{{ section.settings.social-icon-5-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                <img src="{{ section.settings.social-icon-5 | img_url: '20x' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-5-hover | img_url: '20x' }}" class="SiteFooter-block__email-social-icon-hover">
+                {% comment %}{% include 'responsive-image' image: section.settings.social-icon-5, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-5-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} {% endcomment %}
+              </a>
+            {% endif %} 
+          </div>
+        </div>
+
+      </div>
+
+
+        <!-- Email Block -->
+       <div class="SiteFooter-block__email SiteFooter-block__show-mobile">
+          <div class="SiteFooter-block__email-title-wrap">
+            <div class="SiteFooter-block__email-title-hilight">
+              <h3 class="SiteFooter-block__email-title">
+                {{ section.settings.email-title }}
+              </h3>
+            </div>
+          </div>
+          <p class="SiteFooter-block__email-text">
+            {{ section.settings.email-text }}
+          </p>
+          <form 
+            id="email_signup" 
+            class="SiteFooter-block__email-email-box" 
+            action="//manage.kmail-lists.com/subscriptions/subscribe"
+            novalidate="novalidate">
+
+              <input type="hidden" name="g" value="NFDRmY">
+              <input type="hidden" name="$fields" value="$consent">
+              <input type="hidden" name="$list_fields" value="$consent">
+
+            <div class="SiteFooter-block__email-input-wrap">
+              <input 
+                type="email" 
+                name="email"
+                id="k_id_email"
+                placeholder="Enter e-mail address here.." 
+                class="SiteFooter-block__email-input" />
+            </div>
+            <div class="SiteFooter-block__email-btn-wrap">
+              <button type="submit" placeholder="Enter e-mail address here.." class="SiteFooter-block__email-btn">
+                Subscribe
+              </button>
+            </div>
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            KlaviyoSubscribe.attachToForms('#email_signup', {
+              hide_form_on_success: true,
+              extra_properties: {
+                $source: '$embed',
+                $method_type: "Klaviyo Form",
+                $method_id: 'embed',
+                $consent_version: 'Embed default text'
+              }
+            });
+          </script>
+          <div class="SiteFooter-block__email-social-icons">
+            {% if section.settings.social-icon-1 %}
+              <a href="{{ section.settings.social-icon-1-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                {% comment %}<img src="{{ section.settings.social-icon-1 | img_url: 'master' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-1-hover | img_url: 'master' }}" class="SiteFooter-block__email-social-icon-hover">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.social-icon-1, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-1-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} 
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-2 %}
+              <a href="{{ section.settings.social-icon-2-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                {% comment %}<img src="{{ section.settings.social-icon-2 | img_url: 'master' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-2-hover | img_url: 'master' }}" class="SiteFooter-block__email-social-icon-hover">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.social-icon-2, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-2-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} 
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-3 %}
+              <a href="{{ section.settings.social-icon-3-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                {% comment %}<img src="{{ section.settings.social-icon-3 | img_url: 'master' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-3-hover | img_url: 'master' }}" class="SiteFooter-block__email-social-icon-hover">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.social-icon-3, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-3-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} 
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-4 %}
+              <a href="{{ section.settings.social-icon-4-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                {% comment %}<img src="{{ section.settings.social-icon-4 | img_url: 'master' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-4-hover | img_url: 'master' }}" class="SiteFooter-block__email-social-icon-hover">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.social-icon-4, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-4-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} 
+              </a>
+            {% endif %} 
+            {% if section.settings.social-icon-5 %}
+              <a href="{{ section.settings.social-icon-5-url }}" target="_blank" class="SiteFooter-block__email-social-icon-wrap">
+                {% comment %}<img src="{{ section.settings.social-icon-5 | img_url: 'master' }}" class="SiteFooter-block__email-social-icon">
+                <img src="{{ section.settings.social-icon-5-hover | img_url: 'master' }}" class="SiteFooter-block__email-social-icon-hover">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.social-icon-5, classes: 'SiteFooter-block__email-social-icon' %}
+                {% include 'responsive-image' image: section.settings.social-icon-5-hover, classes: 'SiteFooter-block__email-social-icon-hover' %} 
+              </a>
+            {% endif %} 
+          </div>
+        </div>
+
+          
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="SiteFooter__bottom">
+    <div class="SiteFooter-inner">
+      <div class="SiteFooter__bottom-content">
+        <div class="SiteFooter-bottom-content__links">
+            <div class="SiteFooter-bottom-content__link">
+              <p class="SiteFooter-bottom-content__link-text">
+                &copy; {{ 'now' | date: "%Y" }} Gleamin Inc.
+              </p>
+            </div>
+          {% for link in linklists[section.settings.bottom-link-list].links %}
+            <a href="{{ link.url }}" class="SiteFooter-bottom-content__link">
+              <p class="SiteFooter-bottom-content__link-text">
+                {{ link.title }}
+              </p>
+            </a>
+          {% endfor %}
+        </div>
+        <div class="SiteFooter-bottom-content__icons">
+          {% for block in section.blocks %}
+            {% comment %}<img src="{{ block.settings.payment_icon | img_url: 'master' }}" class="SiteFooter-bottom-content__icon-image">{% endcomment %}
+            {% include 'responsive-image' image: block.settings.payment_icon, classes: 'SiteFooter-bottom-content__icon-image' %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+
+{% schema %}
+  {
+    "name": "Site Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Footer Top Settings"
+      },
+      {
+        "type": "header",
+        "content": "Message"
+      },
+        {
+            "type": "text",
+            "id": "footer-message-title",
+            "label": "Title for message",
+            "default": "Ingredients Lorem Ipsum"
+        },
+        {
+            "type": "text",
+            "id": "footer-message-text",
+            "label": "Content of message",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
+        },
+        {
+            "type": "text",
+            "id": "footer-message-link-text",
+            "label": "Link Text for message",
+            "default": "See All Lorem Ipsum"
+        },
+        {
+            "type": "url",
+            "id": "footer-message-link",
+            "label": "Choose a url to link to"
+        },
+        {
+            "type": "color",
+            "id": "message-link-color",
+            "label": "Choose a color for your link"
+        },
+
+      {
+        "type": "header",
+        "content": "Link Lists"
+      },
+        {
+          "type": "text",
+          "id": "list-1-title",
+          "label": "Header for List 1",
+          "default": "About Gleamin"
+        },
+        {
+          "type": "link_list",
+          "id": "footer-link-list-1",
+          "label": "First List of Links"
+        },
+        {
+          "type": "text",
+          "id": "list-2-title",
+          "label": "Header for List 2",
+          "default": "Help"
+        },
+        {
+          "type": "link_list",
+          "id": "footer-link-list-2",
+          "label": "Second List of Links"
+        },
+        {
+          "type": "text",
+          "id": "list-3-title",
+          "label": "Header for List 3",
+          "default": "More"
+        },
+        {
+          "type": "link_list",
+          "id": "footer-link-list-3",
+          "label": "Third List of Links"
+        },
+        {
+          "type": "link_list",
+          "id": "footer-link-list-1-mobile",
+          "label": "Mobile First List of Links"
+        },
+        {
+          "type": "link_list",
+          "id": "footer-link-list-2-mobile",
+          "label": "Mobile Second List of Links"
+        },
+
+      {
+        "type": "header",
+        "content": "Email Capture"
+      },
+        {
+          "type": "text",
+          "id": "email-title",
+          "label": "Title for Email Capture",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "text",
+          "id": "email-text",
+          "label": "Text for Email Capture",
+          "default": "Dolor sit amet, consectetur adipisicing!"
+        },
+
+      {
+        "type": "header",
+        "content": "Social Icons"
+      },
+        {
+          "type": "image_picker",
+          "id": "social-icon-1",
+          "label": "Social Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "social-icon-1-hover",
+          "label": "Social Icon 1 Hover"
+        },
+        {
+          "type": "url",
+          "id": "social-icon-1-url",
+          "label": "Social Icon 1 Link"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "social-icon-2",
+          "label": "Social Icon 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "social-icon-2-hover",
+          "label": "Social Icon 2 Hover"
+        },
+        {
+          "type": "url",
+          "id": "social-icon-2-url",
+          "label": "Social Icon 2 Link"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "social-icon-3",
+          "label": "Social Icon 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "social-icon-3-hover",
+          "label": "Social Icon 3 Hover"
+        },
+        {
+          "type": "url",
+          "id": "social-icon-3-url",
+          "label": "Social Icon 3 Link"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "social-icon-4",
+          "label": "Social Icon 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "social-icon-4-hover",
+          "label": "Social Icon 4 Hover"
+        },
+        {
+          "type": "url",
+          "id": "social-icon-4-url",
+          "label": "Social Icon 4 Link"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "social-icon-5",
+          "label": "Social Icon 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "social-icon-5-hover",
+          "label": "Social Icon 5 Hover"
+        },
+        {
+          "type": "url",
+          "id": "social-icon-5-url",
+          "label": "Social Icon 5 Link"
+        },
+
+
+
+      {
+        "type": "header",
+        "content": "Footer Bottom Settings"
+      },
+
+      {
+        "type": "header",
+        "content": "Bottom Links"
+      },
+        {
+          "type": "link_list",
+          "id": "bottom-link-list",
+          "label": "Bottom List of links"
+        },
+
+      {
+        "type": "header",
+        "content": "Payment Icons"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "payment_icons",
+        "name": "Payment Icons",
+        "settings": [
+          {
+            "id": "payment_icon",
+            "type": "image_picker",
+            "label": "choose or upload an image for payment icons"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

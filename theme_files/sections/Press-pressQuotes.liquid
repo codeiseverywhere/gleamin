@@ -1,0 +1,91 @@
+<section id="Press-quotes" class="Press-quotes" style="background-color: {{ section.settings.section-bg-color }}">
+  <article class="Press-q__content">
+
+    <div class="Press-q__slider-wrap">
+
+      <div class="Press-q__slider--main">
+        {% for block in section.blocks %}
+          <div class="Press-q__main-slide">
+            <div class="Press-q__quote-wrap">
+              <p class="Press-q__quote">
+                {{ block.settings.quote }}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="Press-q__slider--nav-wrap">
+        <div class="Press-q__slider--nav">
+          {% for block in section.blocks %}
+            <div class="Press-q__nav-slide" style="">
+              <img src="{{ block.settings.image | img_url: 'master' }}" class="Press-q__image">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+<style>
+  .Press-q__nav-slide {
+    max-height: 52px;
+    width: calc(100% / {{ section.blocks.size }});
+    max-width: 110px;
+    min-width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 30px;
+    cursor: pointer;
+  }
+@media screen and (max-width: 1000px){
+  .Press-q__nav-slide {
+    max-height: 52px;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 30px;
+    cursor: pointer;
+  }
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Press Quotes",
+    "settings": [
+      {
+        "type": "color",
+        "id": "section-bg-color",
+        "label": "Section Background Color",
+        "default": "#F5F5F5"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "slide",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "quote",
+            "label": "Slide Quote",
+            "default": "How many times have you been looking for a product, and seen a couple of options on a website, and thought, ‘what’s the difference?’. I’d guess many of you have. I’d also guess that many of you haven’t been able, or haven’t easily been able to find..."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Slide Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

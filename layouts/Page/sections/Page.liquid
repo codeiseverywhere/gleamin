@@ -1,0 +1,30 @@
+<div class="Page Page--static StaticPage StaticPage--normal Site__page-width">
+
+  <div class="Page__static-content">
+    
+    <!-- Header -->
+    <div class="Page__static-header">
+      <div class="Page__static-header-hilight">
+        <h1 class="Page__static-header-text">
+          {{ page.title }}
+        </h1>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="Page__static-body">
+      {{ page.content }}
+    </div>
+    
+    
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Page Page",
+    "settings": [
+      
+    ]
+  }
+{% endschema %}

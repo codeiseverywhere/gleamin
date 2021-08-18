@@ -1,0 +1,39 @@
+<section id="Ingredients-textbox" class="Ingredients-textbox" style="background-color: {{ section.settings.bg-color }}">
+  <article class="Ingredients-tb__content Site__page-width">
+
+    <h5 class="Ingredients-tb__title">
+      {{ section.settings.title }}
+    </h5>
+
+    <h4 class="Ingredients-tb__text">
+      {{ section.settings.text }}
+    </h4>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "TextBox",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Section Background Color",
+        "default": "#F2F2F4"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "What to exclude"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam eget felis eget nunc lobortis mattis aliquam. Aenean sed adipiscing diam tristique risus nec."
+      }
+    ]
+  }
+{% endschema %}

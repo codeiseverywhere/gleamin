@@ -1,0 +1,103 @@
+@import "Quickview.scss";
+
+$Modal--maximum_height: 90vh;
+
+$Modal-close--background_color: black;
+$Modal-close--color: $Font-color--white;
+
+//contrast($Modal-close--background_color, $Font-color--black, $Font-color--white);
+
+$Modal-content--width: $Container-sm;
+
+//Quick View Variables --------------
+$Modal-close--background_color: white;
+$Modal-close--x-color: black;
+
+$Modal--background_color: white;
+$Modal--max-height: 85vh;
+$Modal--max-width: 1200px;
+$Modal--gutter_width: 0px auto;
+
+@mixin make-Modal(
+  $Modal--background_color: $Modal--background_color,
+  $Modal--max-height: $Modal--max-height
+) {
+  background-color: $Modal--background_color;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 100%;
+  max-height: $Modal--max-height;
+
+  overflow-y: auto;
+
+  z-index: $ZIndex-modal;
+
+  &.is-Offcanvas--closed {
+    display: none;
+  }
+}
+
+@mixin make-Modal-content--width($Modal-content--width: $Modal--max-width) {
+  width: 100%;
+  max-width: $Modal-content--width;
+}
+
+@mixin make-Modal-content(
+  $Modal--gutter_width: $Modal--gutter_width,
+  $Modal--maximum_height: $Modal--maximum_height
+) {
+  @include make-Container();
+  @include make-Padding($Modal--gutter_width);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin make-Modal-close(
+  $Modal-close--background_color: $Modal-close--background_color,
+  $Modal-close--color: $Modal-close--x-color
+) {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+
+  width: 14px;
+  height: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $Modal-close--background_color;
+  color: $Modal-close--color;
+
+  padding: 5px;
+  z-index: 2;
+}
+
+.Modal {
+  @include make-Modal();
+}
+
+.Modal--toast {
+  @include make-Offcanvas--toast();
+  @include make-Offcanvas--toast_lv1();
+
+  &.is-Offcanvas--closed {
+    display: block;
+  }
+}
+
+.Modal-content {
+  @include make-Modal-content();
+  @include make-Modal-content--width();
+}
+
+.Modal-close {
+  @include make-Modal-close();
+}

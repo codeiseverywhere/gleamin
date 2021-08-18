@@ -1,0 +1,39 @@
+{% section 'RealResults-hero' %}
+{% section 'RealResults-grid' %}
+{% section 'DropdownWithImage' %}
+
+<script>
+(function () {
+  try {
+    window.addEventListener("DOMContentLoaded", () => {
+      const gridItems = document.querySelectorAll(".Real-Results-g__grid-item");
+      const moreBtnWrap = document.querySelector(
+        ".Real-Results-g__button-wrap"
+      );
+      const moreBtn = document.getElementById("Real-Results-g-button");
+      //init - hide more than 10
+      if (gridItems.length > 10) {
+        gridItems.forEach((item, i) => {
+          console.log(i);
+          if (i > 10) {
+            item.style.display = "none";
+          }
+        });
+        //moreBtn handler - show more / rest
+        const moreHandler = () => {
+          gridItems.forEach((item) => {
+            item.style.display = "inline-block";
+            moreBtnWrap.style.display = "none";
+          });
+        };
+        moreBtn.addEventListener("click", moreHandler);
+      } else {
+        moreBtnWrap.style.display = "none";
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+})();
+
+</script>

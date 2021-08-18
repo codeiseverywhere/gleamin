@@ -1,0 +1,47 @@
+/* Sticky Add To Cart */
+.Product__sticky-ATC {
+  display: block;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -100%;
+  z-index: 99;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  background-color: #fff;
+  transition: bottom 0.4s ease-in-out;
+  padding: 20px;
+  -webkit-box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+}
+// .Product__sticky-ATC--optimize {
+//   display: block;
+// }
+.Product__sticky-ATC--open {
+  bottom: 0;
+}
+
+.satc__Product-details__form-wrap {
+  margin-bottom: 0px;
+}
+.satc__Product-details-form-row-top { 
+  margin-bottom: 10px;
+}
+.satc__Product-details__afterpay-wrap {
+  display: none;
+}
+.satc__Product-details__subscription-wrap {
+  display: none;
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 870px) {
+  .Product__sticky-ATC {
+    display: block;
+  }
+  .satc__Product-details-form-row-top {
+    margin-bottom: 10px;
+  }
+}

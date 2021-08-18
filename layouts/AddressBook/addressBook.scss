@@ -1,0 +1,214 @@
+.Customer__address {
+  width: 100%;
+  max-width: 1186px;
+  height: auto;
+  margin: 0px auto;
+  padding: 60px 20px 0px;
+}
+.Customer__address-content {
+  width: 100%;
+  height: 100%;
+}
+
+//Header
+.Customer__address-header {
+  width: 100%;
+  height: 64px;
+  margin-bottom: 50px;
+}
+.Customer__address-title-hilight {
+  display: inline;
+  background-color: #fff005;
+  padding: 0 1%;
+}
+.Customer__address-title-text {
+  display: inline;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0;
+}
+.Customer__address-account-link {
+  float: right;
+  width: 100%;
+  max-width: 263px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  line-height: 20px;
+  color: #fff;
+  background-color: #000000;
+  margin: 0;
+}
+.Customer__address-account-link:hover {
+  background-color: #fff005;
+  color: #000000;
+}
+
+//Addresses Add
+.Customer__address-add-new-row {
+  width: 100%;
+  height: auto;
+}
+.Customer__address-btn--add-new {
+  color: #73add2;
+  font-size: 18px;
+  line-height: 32px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__address-btn--add-new:hover {
+  color: #000000;
+}
+
+//Address
+.Customer__addresses {
+  width: 100%;
+  height: auto;
+}
+.Customer__address-address-wrap {
+  width: 100%;
+  padding: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00000030;
+}
+.Customer__address-address-wrap--last {
+  padding: 30px 0px 0px;
+  border-bottom: 0px solid transparent;
+}
+
+.Customer__address-details-column {
+  display: inline-block;
+  width: auto;
+}
+.Customer__address-btns-column {
+  display: inline-block;
+  width: auto;
+}
+.Customer__address-btn {
+  color: #73add2;
+  font-size: 18px;
+  line-height: 32px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Customer__address-btn:first-child {
+  margin-right: 50px;
+}
+.Customer__address-btn:hover {
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .Customer__address {
+    width: 100%;
+    max-width: 1186px;
+    height: auto;
+    margin: 0px auto;
+    padding: 60px 20px 0px;
+  }
+  .Customer__address-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  //Header
+  .Customer__address-header {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .Customer__address-title-hilight {
+    display: inline;
+    background-color: #fff005;
+    padding: 0 1%;
+  }
+  .Customer__address-title-text {
+    display: inline;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    margin: 0;
+  }
+  .Customer__address-account-link {
+    float: none;
+    width: 100%;
+    max-width: 263px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    line-height: 20px;
+    color: #fff;
+    background-color: #000000;
+    margin: 0px auto;
+  }
+  .Customer__address-account-link:hover {
+    background-color: #fff005;
+    color: #000000;
+  }
+
+  //Addresses Add
+  .Customer__address-add-new-row {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .Customer__address-btn--add-new {
+    color: #73add2;
+    font-size: 18px;
+    line-height: 32px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .Customer__address-btn--add-new:hover {
+    color: #000000;
+  }
+
+  //Address
+  .Customer__addresses {
+    width: 100%;
+    height: auto;
+  }
+  .Customer__address-address-wrap {
+    width: 100%;
+    padding: 30px 0px;
+    display: block;
+    border-bottom: 1px solid #00000030;
+  }
+
+  .Customer__address-details-column {
+    display: block;
+    width: auto;
+    margin-bottom: 30px;
+  }
+  .Customer__address-btns-column {
+    display: block;
+    width: auto;
+  }
+  .Customer__address-btn {
+    display: block;
+    color: #73add2;
+    font-size: 18px;
+    line-height: 32px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .Customer__address-btn:first-child {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+  .Customer__address-btn:hover {
+    color: #000000;
+  }
+}

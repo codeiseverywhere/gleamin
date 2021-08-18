@@ -1,0 +1,770 @@
+
+{{ Product.metafields.shogun.above }}
+
+<main class="Page Page--Product Page--Product--Main-Template">
+
+  {%include 'sca_freegift_price' with product %}  
+
+  <!-- Bold: Order Manager-->
+    {% if Product.metafields.inventory.ShappifyHidden == "true" %}
+      Product is not available
+    {% else %}
+      <article class="Product Product--inner" itemscope itemtype="http://schema.org/Product">
+        <div class="Product--grid">
+
+          <!-- Product Image Column -->
+          <div class="Product--column Product--column-image">
+
+            <div class="Product--Breadcrumb-wrap">
+              {% include 'Breadcrumb' %}
+            </div>
+
+            <div class="Product--column-image-inner">
+              <div class="Product--image-wrap">
+
+                <!-- Nav Slider -->
+                <div class="swiper-container Product__slider-nav">
+                  <div class="swiper-wrapper Product__slider-nav-wrapper">
+                    {% for image in product.images %}
+                      {% if image.alt != 'coming-soon-image' %}
+                        <div class="swiper-slide Product__slide-nav-image-wrap">
+                          {% comment %}<img src="{{ image | img_url: 'master' }}" class="Product__slide-nav-image">{% endcomment %}
+                          {% include 'responsive-image' image: image, classes: 'Product__slide-nav-image', max_width:50, max_height:50 %} 
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <!-- Main Slider -->
+                <div class="swiper-container Product__slider mySwiper">
+                  <div class="swiper-wrapper Product__slider-wrapper">
+                    {% for image in product.images %}
+                      {% if image.alt != 'coming-soon-image' %}
+                        <div class="swiper-slide Product__slide-image-wrap">
+                          {% comment %}<img src="{{ image | img_url: 'master' }}" class="Product__slide-image">{% endcomment %}
+                          {% include 'responsive-image' image: image, classes: 'Product__slide-image' %} 
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <div class="swiper-button-next Product__swiper-color-change"></div>
+                  <div class="swiper-button-prev Product__swiper-color-change"></div> 
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Details Column -->
+          <div class="Product--column Product--column-details">
+
+            <!-- **Details Column -- Mobile Padding Container** -->
+            <div class="Product--column-details-padding">
+
+              <!-- Product Title -->
+              <div class="Product-details__title-wrap">
+                <h1 class="Product-details__title">
+                {% if product.metafields.product-page.alt-title != blank %}
+                  {{ product.metafields.product-page.alt-title }}
+                {% else %}
+                  {{ product.title }}
+                {% endif %}
+                </h1>
+              </div>
+
+              <!-- Product Quote -->
+              <div class="Product-details__quote-wrap">
+                <p class="Product-details__quote">
+                  {% if product.metafields.product-page.quote != blank %}
+                    {{ product.metafields.product-page.quote }}
+                  {% else %}
+                    “This mask has my skin clear, soft & glowing.” - Arianna E
+                  {% endif %}
+                </p>
+              </div>
+
+              <!-- Product Stars -->
+              <div class="Product-details__reviews-wrap">
+                <div class="yotpo bottomLine"
+                     data-appkey="oaSU55AXQ55Zl3N2Yc7Y2imcYzIsbHHoNFPUxNok"
+                     data-domain="{{shop.permanent_domain | escape }}"
+                     data-product-id="{{ product.id }}"
+                     data-product-models="{{ product.id }}"
+                     data-name="{{ product.title | escape }}"
+                     data-url="{{ shop.url }}{{ product.url }}"
+                     data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                     data-description="{{ product.description | escape }}"
+                     data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+                  {%- assign time_now = 'now' | date: '%s' %}
+                  {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+                  {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
+                  {%- assign yotpo_bottomline_last_updated = product.metafields.yotpo.bottomline_update_time | date: '%s' %}
+                  {%- assign diff_seconds_from_last_bottomline_update = time_now | minus: yotpo_bottomline_last_updated %}
+                  {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_bottomline_last_updated and diff_seconds_from_last_bottomline_update < 86400 -%}
+                    {%- assign yotpo_bottomline_obsolete = false %}
+                  {%- else %}
+                    {%- assign yotpo_bottomline_obsolete = true %}
+                  {%- endif %}
+                  {%- if yotpo_offload_content == 'yes' and yotpo_bottomline_obsolete != true -%}
+                    {{ product.metafields.yotpo.bottomline }}
+                  {%- endif %}
+                </div>
+              </div>
+
+              <!-- Product Description ( Desktop) -->
+              <div class="Product-details__desc-wrap Product-details-desktop-only">
+                <p class="Product-details__desc">
+                  {{ product.content }}
+                </p>
+              </div>
+
+              <!-- Product From -->
+              <div id="Product-form" class="Product-details__form-wrap">
+                {% form 'product', product, data-productid: product.id, id:form_id, class:'Product-details__form', data-cart-form: '' %}
+
+                  <!-- Variant -->
+                  <!-- <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" style="display: none">
+                    {% for variant in product.variants %}
+                      <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} {% unless variant.available %} disabled="disabled" {% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_without_trailing_zeros }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
+                    {% endfor %}
+                  </select> -->
+
+                  
+                  {% assign price = current_variant.price | money_without_trailing_zeros %}
+                  <p class="product__price{% if shop.taxes_included or shop.shipping_policy.body != blank %} product__price--has-policies{% endif %}" style="display: none">
+                    <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+                    <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                      <span class="product__price--reg">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                      <span class="product__price--sale">{{ 'products.general.now_price_html' | t: price: price }}</span>
+                    {% else %}
+                      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                      <span class="product__price--reg js-price">
+                        {{ price }}
+                      </span>
+                    {% endif %}
+                  </p>
+                
+                  {% if product.variants.size > 1 %}
+                    <select 
+                      name="id" 
+                      data-productid="{{ product.id }}" 
+                      id="ProductSelect-{{ section.id }}"
+                      type="hidden"
+                      style="display: none;">
+                        {% for variant in product.variants %}
+                            {%unless variant.metafields.secomapp.freegifts %}
+                              <option 
+                              {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}
+                              {% comment %} {% unless variant.available %} disabled="disabled" {% endunless %} {% endcomment %}
+                              class="product-option"
+                              value="{{ variant.id }}"
+                              data-sku="{{ variant.sku }}"
+                              data-key="{{variant.id}}">
+                                {{ variant.title }}
+                              </option>
+                      		{%endunless%}
+                        {% endfor %}
+                    </select>
+                
+                	<div class="Product-details-form-row-top">
+                      <div class="Product-details__form-options">
+                        {% for product_option in prdouct.options_with_values %}
+                          {% if product_option == 'Size' %}
+                            {% for variant in product.variants %}
+                              <div 
+                              id="variant-{{variant.title}}" 
+                              class="{% if variant.available %}Product-details__form-option{% else %} Product-details__form-option-unavailible{% endif %}" 
+                              data-key="{{variant.id}}">
+                                {% if variant.title == 'Extra-Small' %}
+                                  <p class="Product-details__form-option-text">XS</p>
+                                {% elsif variant.title == 'Small' %}
+                                  <p class="Product-details__form-option-text">S</p>
+                                {% elsif variant.title == 'Medium' %}
+                                  <p class="Product-details__form-option-text">M</p>
+                                {% elsif variant.title == 'Large' %}
+                                  <p class="Product-details__form-option-text">L</p>
+                                {% elsif variant.title == 'Extra-Large' %}
+                                  <p class="Product-details__form-option-text">XL</p>
+                                {% endif %}
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    {% assign has_options = false %}
+                    {% if product.variants.size > 1 %}
+                      {% assign has_options = true %}
+                    {% endif %}
+
+                    {% assign is_sizes = false %}
+                    {% for option in product.options %}
+                      {% if option == 'Sizes' %}
+                        {% assign is_sizes = true %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% assign is_masks = false %}
+                    {% for option in product.options %}
+                      {% if option == 'Pack Size' %}
+                        {% assign is_masks = true %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% assign free_gift_promo = false %}
+                    {% for variant in product.variants %}
+                      {% if variant.title contains '(100% off)' %}
+                        {% assign free_gift_promo = true %}
+                      {% endif %}
+                    {% endfor %}
+                
+
+                    {% if has_options %}
+                      {% if is_masks == false %}
+                        {% if free_gift_promo == false %}
+                          <div class="Product-details-form-row-top satc__Product-details-form-row-top" data-mask="{{ is_masks }}">
+                            <div class="Product-details__form-options">
+                              {% for variant in product.variants %}
+                                {% if is_sizes %}
+                                  <div 
+                                    id="variant-{{variant.title}}" 
+                                    class="{% if variant.available %}Product-details__form-option Product-details__form-option--regular{% else %} Product-details__form-option-unavailible{% endif %}" 
+                                    data-key="{{variant.id}}"
+                                    data-price="{{ variant.price | money_without_currency }}">
+                                      <div class="Product-details__form-option-inner Product-details__form-option-inner--circle">
+                                        <p class="Product-details__form-option-text">{{variant.title}}</p>
+                                      </div>
+                                  </div>
+                                {% else %}
+                                  <div 
+                                    id="variant-{{variant.title}}" 
+                                    class="{% if variant.available %}Product-details__form-option Product-details__form-option--regular{% else %} Product-details__form-option-unavailible{% endif %}" 
+                                    data-key="{{variant.id}}"
+                                    data-price="{{ variant.price | money_without_currency }}">
+                                      <div class="Product-details__form-option-inner">
+                                        <p class="Product-details__form-option-text">{{variant.title}}</p>
+                                      </div>
+                                  </div>
+                                {% endif %}
+                              {% endfor %}
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                    
+                  {% endif %}
+
+
+                  
+
+                  {% unless product.tags contains "orderbump upgrade" %}
+                    <div class="Product-details-form-row-bottom">
+
+                      <div id="Product-quantity-selector" class="Product-quantity-selector">
+                      <input id="Product-qs-input-main" type="hidden" value="1" name="quantity" />
+                        <div class="Product-qs-inner">
+                          <div id="Product-qs-minus-main" class="Product-qs-minus">
+                            <p class="Product-qs-minus-text">-</p>
+                          </div>
+                          <div class="Product-qs-value">
+                            <p id="Product-qs-value-text-main" class="Product-qs-value-text">1</p>
+                          </div>
+                          <div id="Product-qs-plus-main" class="Product-qs-plus">
+                            <p class="Product-qs-plus-text">+</p>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    
+                    
+                      {% if product.available %}
+                        <button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %} Product-details__add-to-cart-btn site-btn {% if sca_compare_at_price != sca_price %}Product-details__add-to-cart-btn--compare{% endif %}">
+                          <span class="Product-details-btn-text">Add to Cart -</span>
+                          <p 
+                            id="Product-details-btn-price" 
+                            class="Product-details-btn-price" 
+                            data-price="{{ sca_price | money_without_currency }}"
+                            data-symbol="{{ cart.currency.symbol }}"
+                            data-code="{{ cart.currency.iso_code }}"
+                            >{{ sca_price | money_without_trailing_zeros  }}</p>
+                          {% if sca_compare_at_price != sca_price %}
+                            <p class="Product-details-btn-price Product-details-btn-price--compare">
+                              {{ sca_compare_at_price | money_without_trailing_zeros }}
+                            </p>
+                          {% endif %}
+                        </button>
+                      {% else %}
+                        <button type="button" class="Product-details__button-sold-out Site__button-main" disabled="disabled">
+                          <p>
+                            Sold Out
+                          </p>
+                        </button>
+                      {% endif %}
+
+                  </div>
+
+                    {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+                      <div class="product__policies rte">
+                        {%- if shop.taxes_included -%}
+                          {{ 'products.general.include_taxes' | t }}
+                        {%- endif -%}
+                        {%- if shop.shipping_policy.body != blank -%}
+                          {{ 'products.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+
+                    {% if section.settings.enable_payment_button %}
+                      {% unless shop.metafields.subscriptions.subscription_active and product.metafields.subscriptions.shipping_interval_frequency %}
+                      {{ form | payment_button }}
+                      {% endunless %}
+                    {% endif %}
+                  {% endunless %}
+                
+                {% endform %}
+              </div>
+
+              {% unless product.tags contains "orderbump upgrade" %}
+                <!-- Product Afterpay -->
+              {% if product.metafields.product-page.afterpay == "true" %}
+                {% comment %} <div class="Product-details__afterpay-wrap">
+                  <p class="Product-details__afterpay-text">or 4 installments of $10.00 with</p>
+                  <img src="{{section.settings.afterpayLogo | img_url: 'master'}}" class="Product-details__afterpay-logo">
+                </div> {% endcomment %}
+              {% endif %}
+
+                <!-- Product Subscription -->
+                {% if product.metafields.subscriptions.has_subscription == 'True' %}
+                  <div class="Product-details__subscripton-wrap">
+                    <a href="{{ section.settings.subscribe-link-1 }}" class="Product-details__subscription-link">{{ section.settings.subscription-1 }}</a>
+                    {% if customer %}
+                      <p class="Product-details__subscription-text"> or </p>
+                      <a href="{{ section.settings.subscribe-link-2 }}" class="Product-details__subscription-link">{{ section.settings.subscription-2 }}</a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endunless %}
+
+              <!-- Product Description ( Mobile) -->
+              <div class="Product-details__desc-wrap Product-details-mobile-only">
+                <p class="Product-details__desc">
+                  {{ product.content }}
+                </p>
+              </div>
+
+              <!-- Product Accordion -->
+              <div id="Product-accordion" class="Product-details__accordion">
+                <div class="Product-details__accordion-content">
+
+                  <!-- Reviews -->
+                  <div id="ad-1" class="pd__accordion-drawer pd__accordion-drawer-open">
+
+                    <div class="pd__accordion-drawer-title-wrap">
+                      <p class="pd__accordion-drawer-title">
+                        {{ section.settings.ac-title-1 }}
+                      </p>
+                      <span class="pd__accordion-drawer-plus">
+                       {% comment %} <img src="{{ section.settings.plus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.plus-icon, classes: 'pd__accordion-icon' %} 
+
+                      </span>
+                      <span class="pd__accordion-drawer-minus">
+                        {% comment %}<img src="{{ section.settings.minus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.minus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                    </div>
+
+                    <div class="pd__accordion-review-subtext-row">
+                      <p class="pd__accordion-review-subtext">
+                        {{ section.settings.ac-review-subtext }}
+                      </p>
+                    </div>
+
+                    <div class="pd__accordion-drawer-content">
+                      {% if product.metafields.product-page.reviews-list.reviews != blank %}
+                        {% for review in product.metafields.product-page.reviews-list.reviews %}
+                          <div class="pd__accordion-review-block">
+                            <a href="#product-reviews" class="pd__accordion-stars-wrap">
+                              {% if review.stars == 1 %}
+                                {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">{% endcomment %}
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+
+                              {% elsif review.stars == 2 %}
+                               {% comment %} <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">{% endcomment %}
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                              {% elsif review.stars == 3 %}
+                                {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">{% endcomment %}
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                              {% elsif review.stars == 4 %}
+                                {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">{% endcomment %}
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                              {% elsif review.stars == 5 %}
+                                {% comment %}<img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">
+                                <img src="{{ section.settings.star | img_url: 'master' }}" class="pd__accordion-star">{% endcomment %}
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                                {% include 'responsive-image' image: section.settings.star, classes: 'pd__accordion-star' %} 
+                              {% endif %}
+                            </a>
+                            <div class="pd__accordion-review-title-wrap">
+                              <p class="pd__accordion-review-title">
+                                {{ review.title }}
+                              </p>
+                            </div>
+                            <div class="pd__accordion-review-text-wrap">
+                              <p class="pd__accordion-review-text">
+                                {{ review.text }}
+                              </p>
+                            </div>
+                            <div class="pd__accordion-review-name-wrap">
+                              <p class="pd__accordion-review-name">
+                                {{ review.name }}
+                              </p>
+                            </div>
+                            <div class="pd__accordion-review-count-wrap">
+                              <p class="pd__accordion-review-count">
+                                {{ review.count }} People found this helpful
+                              </p>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <p class="pd__accordion-drawer-no-reviews">No reviews available</p>
+                      {% endif %}
+                    </div>
+
+                    {% if product.metafields.product-page.reviews-list.reviews != blank %}
+                      <div id="ad-1-cta" class="pd__accordion-drawer-cta">
+                        <a href="#product-reviews" class="pd__accordion-drawer-cta-link">
+                          Read All Reviews
+                        </a>
+                      </div>
+                    {% endif %}
+
+                  </div>
+
+                  <!-- Ingredients -->
+                  <div id="ad-2" class="pd__accordion-drawer">
+                    <div class="pd__accordion-drawer-title-wrap">
+                      <p class="pd__accordion-drawer-title">
+                        {{ section.settings.ac-title-2 }}
+                      </p>
+                      <span class="pd__accordion-drawer-plus">
+                       {% comment %} <img src="{{ section.settings.plus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.plus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                      <span class="pd__accordion-drawer-minus">
+                        {% comment %}<img src="{{ section.settings.minus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.minus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                    </div>
+                    <div class="pd__accordion-drawer-content">
+                      <div class="pd__accordion-drawer-content-text-wrap">
+                        <p class="pd__accordion-drawer-content-text">
+                          {{ product.metafields.product-page.accordion-ingredients }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Guarantee -->
+                  <div id="ad-3" class="pd__accordion-drawer">
+                    <div class="pd__accordion-drawer-title-wrap">
+                      <p class="pd__accordion-drawer-title">
+                        {{ section.settings.ac-title-3 }}
+                      </p>
+                      <span class="pd__accordion-drawer-plus">
+                       {% comment %} <img src="{{ section.settings.plus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.plus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                      <span class="pd__accordion-drawer-minus">
+                        {% comment %}<img src="{{ section.settings.minus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.minus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                    </div>
+                    <div class="pd__accordion-drawer-content">
+                      <div class="pd__accordion-drawer-content-text-wrap">
+                        <p class="pd__accordion-drawer-content-text">
+                          {{ section.settings.ac-text-3 }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Shipping -->
+                  <div id="ad-4" class="pd__accordion-drawer">
+                    <div class="pd__accordion-drawer-title-wrap">
+                      <p class="pd__accordion-drawer-title">
+                        {{ section.settings.ac-title-4 }}
+                      </p>
+                      <span class="pd__accordion-drawer-plus">
+                        {% comment %}<img src="{{ section.settings.plus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.plus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                      <span class="pd__accordion-drawer-minus">
+                        {% comment %}<img src="{{ section.settings.minus-icon | img_url: 'master' }}" class="pd__accordion-icon">{% endcomment %}
+                        {% include 'responsive-image' image: section.settings.minus-icon, classes: 'pd__accordion-icon' %} 
+                      </span>
+                    </div>
+                    <div class="pd__accordion-drawer-content">
+                      <div class="pd__accordion-drawer-content-text-wrap">
+                        <p class="pd__accordion-drawer-content-text">
+                          {{ section.settings.ac-text-4 }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            
+            </div>
+          </div>
+
+        </div>
+      </article>
+    {% endif %}
+  <!-- Bold: Order Manager-->
+
+</main>
+
+
+{{ Product.metafields.shogun.below }}
+
+
+{% schema %}
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Subscription / Payment Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "afterpayLogo",
+        "label": "Afterpay Logo"
+      },
+      {
+        "type": "text",
+        "id": "subscription-1",
+        "label": "Text for Subscription Link 1"
+      },
+      {
+        "type": "url",
+        "id": "subscribe-link-1",
+        "label": "Text for Subscription Link 1"
+      },
+      {
+        "type": "text",
+        "id": "subscription-2",
+        "label": "Text for Subscription Link 2"
+      },
+      {
+        "type": "url",
+        "id": "subscribe-link-2",
+        "label": "Text for Subscription Link 2"
+      },
+
+
+
+      {
+        "type": "header",
+        "content": "Accordion Settings",
+        "info": "All accordion content and settings are found below, each drawer of the accordion are labeled at the beginning of each section."
+      },
+      {
+        "type": "header",
+        "content": "Reviews"
+      },
+      {
+        "type": "image_picker",
+        "id": "star",
+        "label": "Reviews Star Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "plus-icon",
+        "label": "Reviews Plus Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "minus-icon",
+        "label": "Reviews Minus Icon"
+      },
+      {
+        "type": "text",
+        "id": "ac-title-1",
+        "label": "Accordion Title - Reviews",
+        "default": "REVIEWS"
+      },
+      {
+        "type": "text",
+        "id": "ac-review-subtext",
+        "label": "Review Subtext",
+        "default": "Most Upvoted Reviews"
+      },
+      {
+        "type": "range",
+        "id": "stars",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Review 1 Stars",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "rv-title-1",
+        "label": "Review 1 Title",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "textarea",
+        "id": "rv-text-1",
+        "label": "Review 1 Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      },
+      {
+        "type": "text",
+        "id": "rv-count-1",
+        "label": "Review Count 1",
+        "default": "200"
+      },
+      {
+        "type": "range",
+        "id": "rv-stars-2",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Review 2 Stars",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "rv-title-2",
+        "label": "Review 2 Title",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "textarea",
+        "id": "rv-text-2",
+        "label": "Review 2 Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      },
+      {
+        "type": "text",
+        "id": "rv-count-2",
+        "label": "Review Count 2",
+        "default": "100"
+      },
+      {
+        "type": "range",
+        "id": "rv-stars-3",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Review 3 Stars",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "rv-title-3",
+        "label": "Review 3 Title",
+        "default": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "type": "textarea",
+        "id": "rv-text-3",
+        "label": "Review 3 Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      },
+      {
+        "type": "text",
+        "id": "rv-count-3",
+        "label": "Review Count 3",
+        "default": "270"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Ingredients"
+      },
+      {
+        "type": "text",
+        "id": "ac-title-2",
+        "label": "Accordion Title - Ingredeints",
+        "default": "INGREDIENTS"
+      },
+      {
+        "type": "textarea",
+        "id": "ac-text-2",
+        "label": "Ingredients Content",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      },
+
+
+
+      {
+        "type": "header",
+        "content": "Guarantee"
+      },
+      {
+        "type": "text",
+        "id": "ac-title-3",
+        "label": "Accordion Title - Reviews",
+        "default": "GUARANTEE"
+      },
+      {
+        "type": "textarea",
+        "id": "ac-text-3",
+        "label": "Guarantee Content",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      },
+
+
+
+      {
+        "type": "header",
+        "content": "Shipping"
+      },
+      {
+        "type": "text",
+        "id": "ac-title-4",
+        "label": "Accordion Title - Reviews",
+        "default": "SHIPPING"
+      },
+      {
+        "type": "textarea",
+        "id": "ac-text-4",
+        "label": "Shipping Content",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras semper auctor. Sit amet volutpat consequat mauris sed."
+      }
+    ]
+  }
+{% endschema %}

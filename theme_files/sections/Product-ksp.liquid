@@ -1,0 +1,44 @@
+{% if product.metafields.product-page.key-selling-points.points != blank %}
+
+<section id="product-key-selling-points" class="product-key-selling-points">
+  <div class="pksp__content">
+
+    <div class="pksp__column pksp__column--text">
+      <div class="pksp__text-box">
+        {% for key in product.metafields.product-page.key-selling-points.points %}
+          <div class="pksp__row">
+            <h4 class="pksp__title">
+              {{ key.title }}
+            </h4>
+            <p class="pksp__text">
+              {{ key.text }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="pksp__column pksp__column--image">
+      <div class="pksp__image-wrap">
+       {% comment %} <img src="{{ product.metafields.product-page.key-selling-points.image }}" class="pksp__image">{% endcomment %}
+        {% include 'responsive-image' image: product.metafields.product-page.key-selling-points.image, classes: 'pksp__image' %}
+      </div>
+    </div>
+  
+  </div>
+</section>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Key Selling Points",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

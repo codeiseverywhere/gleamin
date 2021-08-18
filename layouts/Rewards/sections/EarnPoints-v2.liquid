@@ -1,0 +1,257 @@
+<section id="Rewards__Earn-Points" class="Rewards__Earn-Points">
+  <article class="Rewards-ep__content">
+
+    <div class="Rewards-ep__header">
+      <h4 class="Rewards-ep__title">
+        {{ section.settings.title }}
+      </h4>
+    </div>
+
+    <div class="Rewards-ep__columns-container">
+      
+        <div class="Rewards-ep__column-image">
+          <div class="Rewards-ep__image-wrap">
+            {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="Rewards-ep__image"> {% endcomment %}
+            {% include 'responsive-image' image: section.settings.image, classes: 'Rewards-ep__image' %}
+          </div>
+        </div>
+
+        <div class="Rewards-ep__column-slider">
+          <div class="Rewards-ep__slider-content">
+          
+            <div class="swiper-container Rewards-ep__slider-container">
+
+              {% comment %} Controls {% endcomment %}
+              <div class="Rewards-ep__slider-controls">
+                <div class="Rewards-ep__slider-controls-inner">
+                  <div class="swiper-button-prev Rewards-ep__slider--arrow Rewards-ep__slider--arrow-prev"></div>
+                  <div class="swiper-button-next Rewards-ep__slider--arrow Rewards-ep__slider--arrow-next"></div>
+                </div>
+              </div>
+
+              {% comment %} Slider {% endcomment %}
+              <div class="swiper-wrapper Rewards-ep__slider-wrapper">
+
+
+
+                {% comment %} Freebies {% endcomment %}
+                <div data-id="Freebies" class="swiper-slide Rewards-ep__slider-slide">
+                  <div class="Rewards-ep__slider-slide-inner">
+
+                    <div class="Rewards-ep__slider-slide-header">
+                      <h4 class="Rewards-ep__slider-slide-header-text">
+                        {{ section.settings.freebies-title }}
+                      </h4>
+                    </div>
+
+                    <div class="Rewards-ep__slider-slide-grid ">
+                      {% for block in section.blocks %}
+                          {% if block.settings.category == 'freebies' %}
+                            <div 
+                              id="Freebies--{{ forloop.index }}"
+                              data-campaign-id="{{ block.settings.campaign-id }}"
+                              class="Rewards-ep__slider-slide-grid-item campaigns {% if customer %}logged-in{% endif %}">
+
+                            </div>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+
+                {% comment %} Review {% endcomment %}
+                <div data-id="Reviews" class="swiper-slide Rewards-ep__slider-slide swiper-slide-active">
+                  <div class="Rewards-ep__slider-slide-inner">
+
+                    <div class="Rewards-ep__slider-slide-header">
+                      <h4 class="Rewards-ep__slider-slide-header-text">
+                        {{ section.settings.reviews-title }}
+                      </h4>
+                    </div>
+
+                    <div class="Rewards-ep__slider-slide-grid ">
+                      {% for block in section.blocks %}
+                          {% if block.settings.category == 'reviews' %}
+                            <div 
+                              id="Reviews--{{ forloop.index }}"
+                              data-campaign-id="{{ block.settings.campaign-id }}"
+                              class="Rewards-ep__slider-slide-grid-item campaigns {% if customer %}logged-in{% endif %}">
+
+                            </div>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+
+                {% comment %} Purchases {% endcomment %}
+                <div data-id="Purchases" class="swiper-slide Rewards-ep__slider-slide">
+                  <div class="Rewards-ep__slider-slide-inner">
+
+                    <div class="Rewards-ep__slider-slide-header">
+                      <h4 class="Rewards-ep__slider-slide-header-text">
+                        {{ section.settings.purchases-title }}
+                      </h4>
+                    </div>
+
+                    <div class="Rewards-ep__slider-slide-grid ">
+                      {% for block in section.blocks %}
+                          {% if block.settings.category == 'purchases' %}
+                            <div 
+                              id="Purchases--{{ forloop.index }}"
+                              data-campaign-id="{{ block.settings.campaign-id }}"
+                              class="Rewards-ep__slider-slide-grid-item campaigns {% if customer %}logged-in{% endif %}">
+
+                            </div>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+
+                {% comment %} Social Media {% endcomment %}
+                <div data-id="Social-Media" class="swiper-slide Rewards-ep__slider-slide">
+                  <div class="Rewards-ep__slider-slide-inner">
+
+                    <div class="Rewards-ep__slider-slide-header">
+                      <h4 class="Rewards-ep__slider-slide-header-text">
+                        {{ section.settings.social-media-title }}
+                      </h4>
+                    </div>
+
+                    <div class="Rewards-ep__slider-slide-grid ">
+                      {% for block in section.blocks %}
+                          {% if block.settings.category == 'social' %}
+                            <div 
+                              id="Social-Media--{{ forloop.index }}"
+                              data-campaign-id="{{ block.settings.campaign-id }}"
+                              class="Rewards-ep__slider-slide-grid-item campaigns {% if customer %}logged-in{% endif %}">
+                                {% comment %} ~ campaigns ~ {% endcomment %}
+                            </div>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+
+
+              
+              </div>
+
+            </div>
+          
+          </div>
+        </div>
+
+    </div>
+
+    
+
+  </article>
+</section>
+
+<script>
+  (function(){
+    window.addEventListener('DOMContentLoaded', () => {
+
+      
+
+    })
+  })()
+</script>
+
+{% schema %}
+  {
+    "name": "Earn Points",
+    "class": "Rewards-ep__Earn",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "How to earn points"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      },
+      {
+        "type": "header",
+        "content": "Category Labels"
+      },
+      {
+        "type": "text",
+        "id": "freebies-title",
+        "label": "Freebies Title",
+        "default": "Freebies"
+      },
+      {
+        "type": "text",
+        "id": "reviews-title",
+        "label": "Reviews Title",
+        "default": "Reviews"
+      },
+      {
+        "type": "text",
+        "id": "purchases-title",
+        "label": "Purchases Title",
+        "default": "Purchases"
+      },
+      {
+        "type": "text",
+        "id": "social-media-title",
+        "label": "Social Media Title",
+        "default": "Social Media"
+      }
+    ],
+    "blocks":[
+      {
+        "type": "block_type",
+        "name": "Block Name",
+        "settings":[
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Campaign Title",
+            "default": "Campaign Lorem Ipsum"
+          },
+          {
+            "type": "text",
+            "id": "campaign-id",
+            "label": "Campaign ID",
+            "default": "123"
+          },
+          {
+            "type": "select",
+            "id": "category",
+            "label": "Category",
+            "options": [
+              {
+              "value": "freebies",
+              "label": "Freebies"
+              },
+              {
+              "value": "reviews",
+              "label": "Reviews"
+              },
+              {
+              "value": "purchases",
+              "label": "Purchases"
+              },
+              {
+              "value": "social",
+              "label": "Social Media"
+              }
+            ],
+            "default": "social"
+          }
+        ]
+       }
+     ]
+  }
+{% endschema %}

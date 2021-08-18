@@ -1,0 +1,67 @@
+<section id="Rewards-Redeem-For-Discounts" class="Rewards-Redeem-For-Discounts">
+  <article class="Rewards-rfd__content">
+
+    <div class="Rewards-rfd__header">
+      <div class="Rewards-rfd__text-box">
+        <h4 class="Rewards-rfd__title">
+          {{ section.settings.title }}
+        </h4>
+        <p class="Rewards-rfd__text">
+          {{ section.settings.text }}
+        </p>
+      </div>
+    </div>
+
+    <div class="Rewards-rfd__column-container">
+  
+      <div class="Rewards-rfd__column-grid">
+      {% if customer %}
+        <div class="Rewards-rfd__grid swell-redeem-section redeem-one-time logged-in">
+            <!-- Redeem -- one time-->
+            <i class="fa fa-spinner spinner-icon"></i>
+        </div>
+      {% else %}
+        <div class="Rewards-rfd__grid swell-redeem-section redeem-one-time">
+            <!-- Redeem -- one time-->
+            <i class="fa fa-spinner spinner-icon"></i>
+        </div>
+      {% endif %}
+      </div>
+
+      <div class="Rewards-rfd__column-image">
+        <div class="Rewards-rfd__image-wrap">
+          {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="Rewards-rfd__image">{% endcomment %}
+          {% include 'responsive-image' image: section.settings.image, classes: 'Rewards-rfd__image' %}
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Redeem For Discounts",
+    "settings":[
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Redeem for Discounts"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "Redeeming your hard-earned points is easy! Simply choose a redemption option below!"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Section Image"
+      }
+    ]
+  }
+{% endschema %}

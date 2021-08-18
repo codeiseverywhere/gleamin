@@ -1,0 +1,135 @@
+<div class="Customer__account-column Customer__account-column--orders">
+
+  {% comment %} - desktop - {% endcomment %}
+  <div class="Customer__account-column--orders-desktop">
+
+    <div class="Customer__account-subheader Customer__account-subheader--orders">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.order }}
+      </h4>
+    </div>
+
+    <div class="Customer__account-orders">
+      {% if customer.orders.size > 0 %}
+        {% paginate customer.orders by 5 %}
+
+          <table id="Customer-account-orders-table" class="Customer__account-orders-table">
+            {% for order in customer.orders %}
+              <thead class="Customer__account-orders-table-head">
+                  <tr>
+                      <th>Order Number</th>
+                      <th>Ship To</th>
+                      <th>Total</th>
+                      <th></th>
+                  </tr>
+              </thead>
+
+              <tbody class="Customer__account-orders-table-body">
+                
+                  <tr>
+
+                    <td 
+                      data-label="{{ 'customer.orders.order_number' | t }}"
+                      class="Customer__account-orders-table-data Customer__account-orders-table-data--order-number">
+                        {{ order.order_number | prepend: '#' | link_to: order.customer_url }}
+                    </td>
+
+                    <td 
+                      data-label="{{ customer.first_name }}"
+                      class="Customer__account-orders-table-data Customer__account-orders-table-data--name">
+                        {{ order.customer.first_name }}
+                    </td>
+
+                    <td 
+                      data-label="{{ order.total_price }}"
+                      class="Customer__account-orders-table-data Customer__account-orders-table-data--total">
+                        {{ order.total_price | money_without_trailing_zeros }}
+                    </td>
+
+                    <td 
+                      data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                      class="Customer__account-orders-table-data">
+                        {{ order.fulfillment_status_label }} {{ order.created_at | date: "%a, %b %d" }}
+                    </td>
+                  </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+
+          {% if paginate.pages > 1 %}
+            {% include 'Pagination-pagination' %}
+          {% endif %}
+
+        {% endpaginate %}
+
+      {% else %}
+        <p class="Customer__account-orders--no-orders">
+          {{ section.settings.no-orders }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% comment %} - mobile - {% endcomment %}
+  <div class="Customer__account-column Customer__account-column--orders-mobile">
+
+    <div id="customer-account-mobile-orders-header" class="Customer__account-subheader Customer__account-subheader--orders">
+      <h4 class="Customer__account-subheader-text">
+        {{ section.settings.order }}
+      </h4>
+      <div id="Customer__account-subheader-arrow-wrap" class="Customer__account-subheader-arrow-wrap">
+       {% comment %} <img src="https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-down--big--blue.png?v=1595004786" id="customer-account-mobile-orders-arrow" class="Customer__account-subheader-arrow Customer__account-subheader-arrow--flip">{% endcomment %}
+        {% include 'responsive-image' type: 'link', link: 'https://cdn.shopify.com/s/files/1/0355/6006/3115/files/arrow-down--big--blue.png?v=1595004786', classes: 'customer__account-subheader-arrow Customer__account-subheader-arrow--fliphpq__card-star' %} 
+      </div>
+    </div>
+
+    <div id="customer-account-mobile-orders" class="Customer__account-orders--mobile Customer__account-orders--mobile-open" data-state="open">
+      {% if customer.orders.size > 0 %}
+        {% paginate customer.orders by 5 %}
+
+          {% for order in customer.orders %}
+            <div class="Customer__account-order">
+
+              <h5 class="Customer__account-order-header Customer__account-order-header--number">
+                Order Number
+              </h5>
+              <p class="Customer__account-order-text Customer__account-order-text--number">
+                {{ order.order_number | prepend: '#' | link_to: order.order_status_url }}
+              </p>
+
+              <h5 class="Customer__account-order-header">
+                Ship To
+              </h5>
+              <p class="Customer__account-order-text">
+                {{ order.customer.first_name }}
+              </p>
+
+              <h5 class="Customer__account-order-header">
+                Total
+              </h5>
+              <p class="Customer__account-order-text">
+                {{ order.total_price | money }}
+              </p>
+
+              <p class="Customer__account-order-text">
+                {{ order.fulfillment_status_label }} {{ order.created_at | date: "%a, %b %d" }}
+              </p>
+
+            </div>
+          {% endfor %}
+
+          {% if paginate.pages > 1 %}
+            {% include 'Pagination-pagination' %}
+          {% endif %}
+        {% endpaginate %}
+
+      {% else %}
+        <p class="Customer__account-orders--no-orders">
+          {{ section.settings.no-orders }}
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,259 @@
+<section id="Search" class="Search" data-url="{{ canonical_url }}">
+  <article class="Search__content Site__page-width">
+
+    {% if search.performed %}
+      <!-- Results Search Page -->
+
+      {% if search.results_count < 1 %}
+      <!-- results = 0 -->
+
+        <!-- Header -->
+        <div class="Search__form-header Search__form-header--no-results">
+
+          <!-- Results Headline / Count -->
+            <div class="Search__results-headline Search__results-headline--no-results">
+              <p class="Search__results-headline-text Search__results-headline-text--no-results">
+                Showing {{ search.results_count }} search results for "{{ search.terms }}".
+              </p>
+            </div>
+
+          <!-- No Results Textbox -->
+            <div class="Search__results-textbox">
+              <div class="Search__results-highlight">
+                <h1 class="Search__results-title">
+                  {{ section.settings.no-results-title }}
+                </h1>
+              </div>
+              <p class="Search__results-text">
+                {{ section.settings.no-results-text }}
+              </p>
+            </div>
+
+          <!-- Search Bar -->
+            <div class="Search__form-wrap Search__form-wrap--no-results">
+              <form class="Search__form" action="/search">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  name="q"
+                  class="Search__form-field"
+                  value="{{ search.terms | escape }}"
+                />
+                <button type="submit" value="Search" class="Search__form-button" >
+                  {% comment %}<img src="{{ section.settings.search-icon | img_url: 'master' }}">{% endcomment %}
+                  {% include 'responsive-image' image: section.settings.search-icon %} 
+
+                </button>
+              </form>
+            </div>
+        </div>
+
+
+      {% else %}
+      <!-- resutls > 0 -->
+
+        <!-- Header -->
+        <div class="Search__form-header">
+
+          <!-- Results Headline / Count -->
+          <div class="Search__results-headline">
+            <p class="Search__results-headline-text">
+              Showing {{ search.results_count }} search results for "{{ search.terms }}".
+            </p>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="Search__form-wrap">
+            <form class="Search__form" action="/search">
+              <input
+                type="text"
+                placeholder="Search"
+                name="q"
+                class="Search__form-field"
+                value="{{ search.terms | escape }}"
+              />
+              <button type="submit" value="Search" class="Search__form-button" >
+                {% comment %}<img src="{{ section.settings.search-icon | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.search-icon %} 
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        {% assign has_products = false %}
+        {% assign has_pages = false %}
+        {% assign has_articles = false %}
+
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% assign has_products = true %}
+          {% endif %}
+          {% if item.object_type == 'article' %}
+            {% assign has_articles = true %}
+          {% endif %}
+          {% if item.object_type == 'page' %}
+			{% comment %}{% assign has_pages = true %}{% endcomment %}
+          {% endif %}
+        {% endfor %}
+
+        <!-- Results Grid Products -->
+        {% if has_products %}
+          <h4 class="Search__results-grid-title">
+            Products
+          </h4>
+          <div class="Search__results-grid">
+
+            <!-- product -->
+            {% for item in search.results %}
+              {% if item.object_type == 'product' %}
+                {% assign product = item %}
+                {%include 'sca_freegift_price' with product %}
+                {% if product.metafields.search.in-search != blank %}
+                {% else %}
+                  {% include 'Search-grid-item', product: item %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+              
+          </div>
+        {% endif %}
+
+        <!-- Results Grid Articles-->
+        {% if has_articles %}
+          <h4 class="Search__results-grid-title">
+            Articles
+          </h4>
+          <div class="Search__results-grid">
+
+            <!-- article -->
+            {% for item in search.results %}
+              {% if item.object_type == 'article' %}
+                {% include 'Search-article-item', article: item %}
+              {% endif %}
+            {% endfor %}
+              
+          </div>
+        {% endif %}
+
+        <!-- Results Grid Pages -->
+        {% if has_pages %}
+          <h4 class="Search__results-grid-title">
+            Pages        
+          </h4>
+          <div class="Search__results-grid">
+
+            <!-- page -->
+            {% for item in search.results %}
+              {% if item.object_type == 'page' %}
+                {% include 'Search-page-item', page: item %}
+              {% endif %}
+            {% endfor %}
+              
+          </div>
+        {% endif %}
+      
+      {% endif %}
+
+    {% else %}
+      <!-- Fresh Search Page -->
+
+      <!-- Header -->
+      <div class="Search__form-header--new-results">
+
+        <!-- No Results Textbox -->
+        <div class="Search__results-textbox">
+          <div class="Search__results-highlight">
+            <h1 class="Search__results-title">
+              {{ section.settings.new-search-title }}
+            </h1>
+          </div>
+          <p class="Search__results-text">
+            {{ section.settings.new-search-text }}
+          </p>
+        </div>
+
+        <!-- Search Bar -->
+          <div class="Search__form-wrap Search__form-wrap--new-search">
+            <form class="Search__form" action="/search">
+              <input
+                type="text"
+                placeholder="Search..."
+                name="q"
+                class="Search__form-field"
+                value="{{ search.terms | escape }}"
+              />
+              <button type="submit" value="Search" class="Search__form-button" >
+                {% comment %}<img src="{{ section.settings.search-icon | img_url: 'master' }}">{% endcomment %}
+                {% include 'responsive-image' image: section.settings.search-icon %} 
+              </button>
+            </form>
+          </div>
+
+      </div>
+
+    {% endif %}
+
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Search Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Search Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "search-icon",
+        "label": "Search Icon"
+      },
+
+      {
+        "type": "header",
+        "content": "Results Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "page-default-image",
+        "label": "Choose a default image for Page Results"
+      },
+      {
+        "type": "header",
+        "content": "No Results Textbox"
+      },
+      {
+        "type": "text",
+        "id": "no-results-title",
+        "label": "Title for No Results",
+        "default": "Oops!"
+      },
+      {
+        "type": "textarea",
+        "id": "no-results-text",
+        "label": "Text For No Results",
+        "default": "Looks like there were no results for your search lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      },
+
+      {
+        "type": "header",
+        "content": "New Search Textbox"
+      },
+      {
+        "type": "text",
+        "id": "new-search-title",
+        "label": "Title for New Search",
+        "default": "Search"
+      },
+      {
+        "type": "textarea",
+        "id": "new-search-text",
+        "label": "Text For New Search",
+        "default": "What can we help you find?"
+      }
+    ]
+  }
+{% endschema %}

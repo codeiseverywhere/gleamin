@@ -1,0 +1,91 @@
+<section id="Rewards-Hero" class="Rewards-Hero" data-customer="{{ customer }}">
+  <article class="Rewards-h__content">
+    
+    <div class="Rewards-h__image-wrap">
+      {% comment %}<img src="{{ section.settings.image | img_url: 'master' }}" class="Rewards-h__image">{% endcomment %}
+      {% include 'responsive-image' image: section.settings.image, classes: 'Rewards-h__image' %}
+    </div>
+
+    <div class="Rewards-h__text-box">
+      <div class="Rewards-h__title-wrap">
+        <span class="Rewards-h__title-highlight">
+          <h3 class="Rewards-h__title">
+            {{ section.settings.title }}
+          </h3>
+        </span>
+      </div>
+
+      <div class="Rewards-h__text-wrap">
+        <p class="Rewards-h__text">
+          {{ section.settings.text }}
+        </p>
+      </div>
+
+      {% unless customer %}
+        <div class="Rewards-h__button-wrap">
+          <div class="Rewards-h__button">
+            <a href="/account/login" class="Rewards-h__button-link">
+              {{ section.settings.btn-text-1 }}
+            </a>
+          </div>
+          <div class="Rewards-h__button">
+            <a href="/account/register" class="Rewards-h__button-link">
+              {{ section.settings.btn-text-2 }}
+            </a>
+          </div>
+        </div>
+      {% endunless %}
+    </div>
+
+  </article>
+</section>
+
+<style>
+  {% if customer %}
+    .Rewards-Hero-customer {
+      margin-bottom: 60px !important;
+    }
+  {% endif %}
+  .Rewards-Hero-customer {
+      margin-bottom: 60px !important;
+    }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Hero",
+    "class": "Rewards-Hero-customer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Gleamin Rewards"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Section Text",
+        "default": "As a rewards member you’ll get closer to earning exclusive rewards every time you shop."
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "text",
+        "id": "btn-text-1",
+        "label": "Button 1 Text",
+        "default": "Sign In" 
+      },
+      {
+        "type": "text",
+        "id": "btn-text-2",
+        "label": "Button 2 Text",
+        "default": "Sign Up" 
+      }
+    ]
+  }
+{% endschema %}

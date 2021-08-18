@@ -1,0 +1,57 @@
+
+<section id="Customer__order" class="Customer__order">
+  <article class="Customer__order-content">
+  
+    <div class="Customer__order-header">
+      <span class="Customer__order-title-hilight">
+        <h1 class="Customer__order-title">
+          {{ section.settings.title }}
+        </h1>
+      </span>
+      <a href="/account" class="Customer__order-account-link">
+        {{ section.settings.return-text }}
+      </a>
+    </div>
+
+    <div class="Customer__order-columns">
+    
+      {% include 'Order-order' %}
+
+      {% include 'Order-details' %}
+
+    </div>
+
+  </article>
+</section>
+
+{% schema %}
+  {
+    "name": "Order Page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Page Title",
+        "default": "My Account"
+      },
+      {
+        "type": "text",
+        "id": "return-text",
+        "label": "Return Button Text",
+        "default": "Return to Account"
+      },
+      {
+        "type": "text",
+        "id": "billing",
+        "label": "Billing Header",
+        "default": "Billing"
+      },
+      {
+        "type": "text",
+        "id": "shipping",
+        "label": "Shipping Header",
+        "default": "Shipping"
+      }
+    ]
+  }
+{% endschema %}
